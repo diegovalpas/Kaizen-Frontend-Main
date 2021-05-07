@@ -18,6 +18,9 @@
     "@angular/core": "~11.2.5",
     "@angular/forms": "~11.2.5",
     "@angular/localize": "~11.2.5",
+    "@angular/cli": "^11.2.12",
+    "@angular/compiler-cli": "~11.2.5",
+    "typescript": "~4.1.5",
     "@angular/platform-browser": "~11.2.5",
     "@angular/platform-browser-dynamic": "~11.2.5",
     "@angular/router": "~11.2.5",
@@ -33,7 +36,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1102.3",
-    "@angular/cli": "~11.2.4",
+    "@angular/cli": "^11.2.12",
     "@angular/compiler-cli": "~11.2.5",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
@@ -60,4 +63,3 @@
     "npm": "7.8.0"
   }
 }
-
