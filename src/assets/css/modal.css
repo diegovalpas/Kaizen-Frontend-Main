@@ -1,0 +1,46 @@
+/*------------------------------------------------------------------
+[CSS Modals] 
+
+[Contenidos]
+
+1. Estilos en general.
+2. Estilos responsive.
+
+Autor : José Soplin Roncal
+-------------------------------------------------------------------*/
+.mitad1{
+    width: 40%;
+  float: left;
+}
+.mitad2{
+    width: 55%;
+  float: right;
+}
+
+/*
+1. Colocar el Modal en Fullscreen
+*/
+.fullscreen-modal .modal-dialog {
+    margin: 0;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+  }
+/*
+2. Modal Responsive
+*/
+  @media (min-width: 768px) {
+    .fullscreen-modal .modal-dialog {
+      width: 750px;
+    }
+  }
+  @media (min-width: 992px) {
+    .fullscreen-modal .modal-dialog {
+      width: 970px;
+    }
+  }
+  @media (min-width: 1200px) {
+    .fullscreen-modal .modal-dialog {
+       width: 1170px;
+    }
+  }

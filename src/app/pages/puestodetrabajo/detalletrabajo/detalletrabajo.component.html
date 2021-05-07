@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Desarrollador Web - Kaizen Talent</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="José Soplin Roncal" />
+    <link rel="shortcut icon" href="/assets/images/favicon.ico">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+    <!--Material Icons -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.css" />
+    <!-- Selectize css -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/selectize.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/nice-select.css" />
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+
+</head>
+
+<body>
+    <!-- Barra navegación -->
+    <header id="topnav" class="defaultscroll scroll-active">
+        <!-- Inicio Tagline -->
+        <div class="tagline">
+            <div class="container">
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- Fin tagline-->
+
+        <!-- Inicio del Menu -->
+        <div class="container">
+            <!-- Contenedor del logo -->
+            <div>
+                <a href="index.html" class="logo">
+                    <img src="/assets/images/logolight.png" alt="" class="logo-light" height="36" />
+                    <img src="/assets/images/logo.png" alt="" class="logo-dark" height="36" />
+                </a>
+            </div>
+            <!--               
+            <div class="buy-button">
+                <a href="loginpostulante.html" class="btn btn-primary"><i class="mdi mdi-cloud-upload"></i> Subir mi CV </a>
+            </div>
+            -->
+            <!---->
+            <!-- Fin del container del logo -->
+            <div class="menu-extras">
+                <div class="menu-item">
+                    <!-- Mobile menu -->
+                    <a class="navbar-toggle">
+                        <div class="lines">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </a>
+                    <!-- Fin del mobile menu-->
+                </div>
+            </div>
+    
+            <div id="navigation">
+                <!-- Menu de navegación -->   
+                <ul class="navigation-menu">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="listaempleos.html">Empleos</a></li>
+                    <li class="has-submenu">
+                        <a href="javascript:void(0)">Mi Cuenta</a><span class="menu-arrow"></span>
+                        <ul class="submenu">
+                            <li><a href="perfilcandidato.html">Mi Perfil</a></li>
+                            <li><a href="mispostulaciones.html">Mis Postulaciones</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="contactanos.html">Contáctanos</a>
+                    </li>
+                </ul><!--Fin del Menu de navegación -->
+            </div><!---->
+        </div><!--Fin del container-->
+        <!---->
+    </header><!--Fin del header-->
+    <!-- Fin de la navbar -->
+    
+    <!-- Inicio -->
+    <section class="bg-half page-next-level"> 
+        <div class="bg-overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="text-center text-white">
+                        <h4 class="text-uppercase title mb-4">Detalle de Empleo</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Fin Inicio -->
+
+    <!-- Inicio Detalle de Empeleo -->
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4 class="text-dark mb-3">{{currentDetalleLista.nombrePuestoTrabajo}}</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8 col-md-7">
+                    <div class="job-detail border rounded p-4">
+                        <div class="job-detail-content">
+                            <img src="{{currentDetalleLista.logoEmpresa.urlImagen}}" alt="" style="max-width: 55px; max-height: 55px;" class="img-fluid float-left mr-md-3 mr-2 mx-auto d-block">
+                            <div class="job-detail-com-desc overflow-hidden d-block">
+                                <h4 class="mb-2"><a href="#" class="text-dark">{{currentDetalleLista.nombreEmpresa}}</a></h4>
+                                <p class="text-muted mb-0"><i class="mdi mdi-map-marker mr-2"></i>{{currentDetalleLista.direccionEmpresa}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h5 class="text-dark mt-4">Descripción del Empleo :</h5>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="job-detail border rounded mt-2 p-4">
+                                <div class="job-detail-desc">
+                                    <p class="text-muted mb-3">{{currentDetalleLista.descripcionPuestoTrabajo}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>     
+                </div>
+
+                <div class="col-lg-4 col-md-5 mt-4 mt-sm-0">
+                    <div class="job-detail border rounded p-4">
+                        <h5 class="text-muted text-center pb-2"><i class="mdi mdi-account-check"></i> Información</h5>
+
+                        <div class="job-detail-location pt-4 border-top">
+                            <div class="job-details-desc-item">
+                                <div class="float-left mr-2">
+                                    <i class="mdi mdi-bank text-muted"></i>
+                                </div>
+                                <input type="hidden" formControlName="idpuestotrabajo" value="{{currentDetalleLista.idPuestoTrabajo}}">
+                                <p class="text-muted mb-2">: {{currentDetalleLista.nombreEmpresa}}</p>
+                            </div>
+
+                            <div class="job-details-desc-item">
+                                <div class="float-left mr-2">
+                                    <i class="mdi mdi-email text-muted"></i>
+                                </div>
+                                <p class="text-muted mb-2">: {{currentDetalleLista.emailEmpresa}}</p>
+                            </div>
+
+                            <div class="job-details-desc-item">
+                                <div class="float-left mr-2">
+                                    <i class="mdi mdi-cellphone-iphone text-muted"></i>
+                                </div>
+                                <p class="text-muted mb-2">: {{currentDetalleLista.telefonoEmpresa}}</p>
+                            </div>
+
+                            <div class="job-details-desc-item">
+                                <div class="float-left mr-2">
+                                    <i class="mdi mdi-currency-usd text-muted"></i>
+                                </div>
+                                <p class="text-muted mb-2">: {{currentDetalleLista.sueldoPuestoTrabajo}}</p>
+                            </div>
+                            <!-- Considerar experiencia "1 año" como la entrada de datos del back-end (Concatenado) Ejemplo : Experiencia mínima de 'valor'-->
+                            <div class="job-details-desc-item">
+                                <div class="float-left mr-2">
+                                    <i class="mdi mdi-security text-muted"></i>
+                                </div>
+                                <p class="text-muted mb-2">: {{currentDetalleLista.experienciaPuestoTrabajo}}</p>
+                            </div>
+
+                            <!--<div class="job-details-desc-item">
+                                <div class="float-left mr-2">
+                                    <i class="mdi mdi-clock-outline text-muted"></i>
+                                </div>
+                                <p class="text-muted mb-2">: Hace 2 minutos</p>
+                            </div>-->
+                        </div>
+                    </div>
+
+                    <div class="job-detail border rounded mt-4">
+                        <a (click)="Postularempleo()" class="btn btn-primary btn-block">Postular</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Fin Detalle de Empeleo -->
+
+    <!-- Inicio del footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
+                    <a href="javascript:void(0)"><img src="images/logo.png" height="35" alt=""></a>
+                    <p class="mt-4">El lugar donde encontrarás tu siguiente empleo.</p>
+                    <ul class="social-icon social list-inline mb-0">
+                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
+                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="https://www.instagram.com/kaizen_talent" class="rounded"><i class="mdi mdi-instagram"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    <p class="text-white mb-4 footer-list-title">Acerca de nosotros</p>
+                    <ul class="list-unstyled footer-list">
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Nosotros</a></li>
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Responsabilidad Social</a></li>
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Trabaja con nosotros</a></li>
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    <p class="text-white mb-4 footer-list-title">Empleos</p>
+                    <ul class="list-unstyled footer-list">
+                        <li><a href="listaempleos.html" class="text-foot"><i class="mdi mdi-chevron-right"></i> Postula a un Empleo</a></li>
+                        <li><a href="loginreclutador.html" class="text-foot"><i class="mdi mdi-chevron-right"></i> Publica un empleo</a></li>
+                    </ul>
+                </div>
+            
+                <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    <p class="text-white mb-4 footer-list-title f-17">Horario Laboral</p>
+                    <ul class="list-unstyled text-foot mt-4 mb-0">
+                        <li>Lunes a Viernes de 8:30 am a 5 pm</li>
+                        <li class="mt-2">Sábados: 10:00 am a 3:00 pm</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Fin del footer -->
+    <hr>
+    <footer class="footer footer-bar">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="">
+                        <p class="mb-0">© 2021 Kaizen Talent. Diseñado por José Soplin por parte de Partner Tech.</p>
+                    </div>
+                </div>
+            </div>
+        </div><!---->
+    </footer><!---->
+    <!-- Fin del footer -->
+
+    <!-- Back to top -->
+    <a href="#" class="back-to-top rounded text-center" id="back-to-top"> 
+        <i class="mdi mdi-chevron-up d-block"> </i> 
+    </a>
+    <!-- Back to top -->
+
+    <!-- javascript -->
+    
+
+</body>
+</html>
+    
+
+
+
+

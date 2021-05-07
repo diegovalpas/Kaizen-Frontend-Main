@@ -1,0 +1,252 @@
+
+
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Regístrate - Kaizen Talent">
+    <meta name="author" content="José Soplin Roncal">
+    <title>Regístro Reclutador | Kaizen Talent</title>
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+
+    <!-- Fuente -->
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
+
+    <!-- Css Base -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/assets/css/menu.css" rel="stylesheet">
+    <link href="/assets/css/styleregistro.css" rel="stylesheet">
+	<link href="/assets/css/vendors.css" rel="stylesheet">	
+
+
+</head>
+
+<body>	
+
+	<!-- Contenedor lado izquierdo -->
+	
+	<div class="container-fluid">
+	    <div class="row row-height">
+	        <div class="col-xl-4 col-lg-4 content-left">
+	            <div class="content-left-wrapper">
+	                <a href="index.html" id="logo"><img src="/assets/images/logolight.png" alt="" width="145" height="45"></a>
+	                <div id="social">
+	                    <ul>
+	                        <li><a href="#"><i class="icon-facebook"></i></a></li>
+	                        <li><a href="https://www.instagram.com/kaizen_talent" target="_blank"><i class="icon-instagram"></i></a></li>
+	                    </ul>
+	                </div>
+	                <!-- /social -->
+	                <div>
+	                    <figure><img src="/assets/images/infografia.svg" alt="" class="img-fluid" width="270" height="270"></figure>
+	                    <h2>Regístrate</h2>
+	                    <p>Regístrate en Kaizen Talent para acceder a cientos de empleos.</p>
+	                </div>
+	                <div class="copy">© 2021 Kaizen Talent</div>
+	            </div>
+	            <!-- Fin del contenedor izquierdo -->
+	        </div>
+	        <!-- Barra superior wizard -->
+	        <div class="col-xl-8 col-lg-8 content-right" id="start">
+	            <div id="wizard_container">
+	                <div id="top-wizard">
+	                    <span id="location"></span>
+	                    <div id="progressbar"></div>
+	                </div>
+	                <!-- Fin Barra superior wizard -->
+	                <form id="wrapped" method="post" enctype="multipart/form-data" [formGroup]="reclutadorsignupForm" (ngSubmit)="guardarReclutador()">
+	                    <input id="website" name="website" type="text" value="">
+	                    <!-- No modificar, protección antispam -->
+	                    <div id="middle-wizard">
+	                        <div class="step">
+
+	                            <h2 class="section_title">Regístro Reclutador</h2>
+	                            <h3 class="main_question">Completa los siguientes campos</h3>								
+
+								<div class="form-group add_top_30">
+	                                <label for="name">Nombre de la Empresa</label>
+	                                <input type="text" name="name" id="name" class="form-control required" minlength="2" formControlName="nombreUsuario"                                    
+									[ngClass]="{
+										'is-invalid': reclutadorsignupForm.controls['nombreUsuario'].invalid && 
+									                  (reclutadorsignupForm.controls['nombreUsuario'].dirty || 
+													  reclutadorsignupForm.controls['nombreUsuario'].touched) , 
+										  'is-valid': reclutadorsignupForm.controls['nombreUsuario'].valid}">
+                                    <div class="invalid-feedback">
+                                        <span class="text-danger" *ngIf="reclutadorsignupForm.controls['nombreUsuario'].hasError('required')">
+                                            No puede dejar este campo vacío
+                                        </span>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        <span class="text-danger" *ngIf="reclutadorsignupForm.controls['nombreUsuario'].hasError('minlength')">
+                                            Debe contener al menos 2 caracteres
+                                        </span>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        <span class="text-danger" *ngIf="reclutadorsignupForm.controls['nombreUsuario'].hasError('maxlength')">
+                                            Debe contener como maximo 50 caracteres
+                                        </span>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        <span class="text-danger" *ngIf="reclutadorsignupForm.controls['nombreUsuario'].hasError('pattern')">
+                                            Caracteres no permitidos
+                                        </span>
+                                    </div>
+	                            </div>
+								
+								<div class="form-group">
+	                                <label for="ruc">RUC</label>
+	                                <input type="number" name="ruc" id="ruc" class="form-control " minlength="11" formControlName="numerodocumentoUsuario" >
+	                            </div>
+	                           
+								<div class="form-group">
+	                                <label for="email">Correo electrónico</label>
+	                                <input ntype="email" name="email" id="email" class="form-control required" formControlName="emailUsuario"
+									[ngClass]="{
+										'is-invalid': reclutadorsignupForm.controls['emailUsuario'].invalid && 
+									                  (reclutadorsignupForm.controls['emailUsuario'].dirty || 
+													  reclutadorsignupForm.controls['emailUsuario'].touched) , 
+										  'is-valid': reclutadorsignupForm.controls['emailUsuario'].valid}">
+                                    <div class="invalid-feedback">
+                                        <span class="text-danger" *ngIf="reclutadorsignupForm.controls['emailUsuario'].hasError('required')">
+                                            No puede dejar este campo vacío
+                                        </span>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        <span class="text-danger" *ngIf="reclutadorsignupForm.controls['emailUsuario'].hasError('email')">
+                                            Correo electrónico no válido
+                                        </span>
+                                    </div>
+	                            </div>
+								
+								<div class="form-group">
+	                                <label for="contraseñaUsuario">Contraseña</label>
+	                                <input type="password" name="password" id="password" class="form-control required" minlength="8" maxlength="16" 
+									formControlName="contraseñaUsuario"
+									[ngClass]="{
+										'is-invalid': reclutadorsignupForm.controls['contraseñaUsuario'].invalid && 
+									                  (reclutadorsignupForm.controls['contraseñaUsuario'].dirty || 
+													  reclutadorsignupForm.controls['contraseñaUsuario'].touched) , 
+										  'is-valid': reclutadorsignupForm.controls['contraseñaUsuario'].valid}">
+                                    <div class="invalid-feedback">
+                                        <span class="text-danger" *ngIf="reclutadorsignupForm.controls['contraseñaUsuario'].hasError('required')">
+                                            No puede dejar este campo vacío
+                                        </span>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        <span class="text-danger" *ngIf="reclutadorsignupForm.controls['contraseñaUsuario'].hasError('minlength')">
+                                            Debe contener al menos 8 caracteres
+                                        </span>
+                                    </div> 
+                                    <div class="invalid-feedback">
+                                        <span class="text-danger" *ngIf="reclutadorsignupForm.controls['contraseñaUsuario'].hasError('passwordnumber')">
+                                            Debe contener al menos un número
+                                        </span>
+                                    </div> 
+                                    <div class="invalid-feedback">
+                                        <span class="text-danger" *ngIf="reclutadorsignupForm.controls['contraseñaUsuario'].hasError('passworduppercase')">
+                                            Debe contener al menos una letra mayúscula
+                                        </span>
+                                    </div> 
+                                    <div class="invalid-feedback">
+                                        <span class="text-danger" *ngIf="reclutadorsignupForm.controls['contraseñaUsuario'].hasError('passwordsmallcase')">
+                                            Debe contener al menos una letra minúscula
+                                        </span>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        <span class="text-danger" *ngIf="reclutadorsignupForm.controls['contraseñaUsuario'].hasError('passwordspecialcharacter')">
+                                            Debe contener al menos un carácter especial
+                                        </span>
+                                    </div> 
+	                            </div>
+
+
+	                            <div class="form-group add_bottom_30 add_top_20">
+	                                <label>Sube el logo de la Empresa<br><small>(Archivos aceptados: .png, .jpeg - Máximo tamaño : 3MB)</small></label>
+										<div class="fileupload">
+											<input type="file" name="fileupload" class="required" accept="image/png,image/jpeg" formControlName="imagenUsuario" (change)="seleccionarLogo($event)">
+										</div>
+	                            </div>
+	                        </div>
+							<!-- /step-->
+							<div class="step">
+	                            <h2 class="section_title">Sobre la empresa</h2>
+	                            <h3 class="main_question">¿Cuántas personas laboran en tu empresa actualmente?</h3>
+	                            <div class="form-group">
+	                                <input type="form-control" class="form-control form-control-lg" list="tamanioempresa" name="tamanioempresa" placeholder="Tamaño de la empresa" formControlName ="tamañoempresaUsuario" required>
+                                    <datalist id="tamanioempresa">
+                                        <option *ngFor="let tamanioempresa of Tempresas" value="{{tamanioempresa.value}}">{{tamanioempresa.text}}</option>       
+                                    </datalist>
+	                            </div>
+	                    	</div>
+	                        <!-- /step-->
+							<div class="submit step" id="end">
+	                            <h2 class="section_title">Sobre la empresa</h2>
+								<h3 class="main_question">Completa los siguientes campos</h3>
+								<div class="form-group add_top_30">
+									<div class="styled-select">
+										<input type="form-control" class="form-control" list="ciudad" placeholder="Ciudad" formControlName="ciudadUsuario" required>
+                                        <datalist id="ciudad">
+                                            <option *ngFor="let ciudad of Ciudades" value="{{ciudad.value}}">{{ciudad.text}}</option>
+                                        </datalist>
+									</div>
+									<div class="form-group add_top_20">
+										<label for="nombrecontactante">Nombre Completo del Contactante</label>
+										<input type="text" name="nombrecontactante" id="nombrecontactante" class="form-control required" minlength="2" formControlName="nombrecontactanteUsuario">
+									</div>
+									<div class="text-center">
+	                                    <div class="form-group terms">
+	                                        <label class="container_check">Por favor acepta nuestros <a href="#" data-toggle="modal" data-target="#terms-txt">Términos y condiciones</a> antes de Registrarte
+	                                            <input type="checkbox" name="terms" value="si" class="required">
+	                                            <span class="checkmark"></span>
+	                                        </label>
+	                                    </div>
+	                                </div>
+								</div>								
+	                        </div>
+	                    </div>
+	                    <!-- Inicio Botones de navegación -->
+	                    <div id="bottom-wizard">
+	                        <button type="button" name="backward" class="backward">Retroceder</button>
+	                        <button type="button" name="forward" class="forward">Siguiente</button>
+	                        <button id="submit" type="submit" name="process" class="submit">Enviar</button>
+	                    </div>
+	                    <!-- Botones de navegación -->
+	                </form>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	
+	
+	<!-- Modal de terminos y condiciones -->
+	<div class="modal fade" id="terms-txt" tabindex="-1" role="dialog" aria-labelledby="termsLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="termsLabel">Términos y condiciones</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<p>Al registrarse en Kaizen Talent usted <strong>acepta</strong> de forma explícita que Kaizen Talent, pueda administrar sus datos, así como almacenarlos en una base de datos.</p>
+					<p>Kaizen Talent jamás venderá sus datos a terceros o intermmediarios para que puedan hacer uso de ellos.</p>
+					<p>Kaizen Talent se reserva el derecho de manejar su información con fines explicitamente laborales, los cuales permitirán mostrarle mejores ofertas laborales.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn_1" data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Fin Modal-->
+
+</body>
+</html>
+
+
+
