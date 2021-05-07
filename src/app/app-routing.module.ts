@@ -34,7 +34,8 @@ const routes: Routes = [
   { path: 'postulante/:idPostulante/postular/puestotrabajo', component:PostulacionComponent},
   { path: 'postulante/home/show/all', component:ListaTrabajosComponent},
   { path: 'index', component:HomeComponent},
-  { path: 'puestrotrabajo/:idPuestoTrabajo/detail', component:DetalletrabajoComponent}
+  { path: 'puestrotrabajo/:idPuestoTrabajo/detail', component:DetalletrabajoComponent},
+  {path: '', redirectTo:'index', pathMatch: 'full'}
 ];
 
 @NgModule({
