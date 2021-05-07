@@ -5,7 +5,7 @@ const app = express();
 
 
 // Serve only the static files form the dist directory
-app.use(express.static(path.join(__dirname, 'src')));
+app.use(express.static('./dist/kaizen-talent-app'));
 
 app.get('/*', (req, res) =>
     res.sendFile('index.html', {root: 'dist/kaizen-talent-app/'}),
