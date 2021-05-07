@@ -149,11 +149,10 @@ export const TiposDocumento: TiposDocumento[] = [
     { value: 'Pasaporte', text: 'Pasaporte' }
 ]
 
-
 export const Sexos: Sexos[] = [
     { value: 'Femenino', text: 'Femenino', selector: 'femenin' },
     { value: 'Masculino', text: 'Masculino', selector: 'mascul' },
-  //no contemplado  { value: 'Otros', text: 'Otros' }
+    { value: 'Otros', text: 'Otros',selector:'otrogenero' }
 ]
 
 //en minuscula se muestra repetido
@@ -205,5 +204,5 @@ export const Remoto: Remoto [] = [
 
 export const TipoPostulacion: TipoPostulacion[] = [
     { value: 'Part-Time', text: 'Part-Time' },
-    { value: 'Full-Time', text: 'Full-Time' } 
+    { value: 'Full-Time', text: 'Full-Time' }
 ]

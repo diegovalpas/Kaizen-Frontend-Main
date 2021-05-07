@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
-const baseUrl = 'http://localhost:8080/api/reclutador';
+const baseUrl = 'https://backend-kaizentalent.herokuapp.com/api/reclutador';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };

@@ -22,6 +22,7 @@
     "@angular/router": "~11.2.5",
     "@ng-bootstrap/ng-bootstrap": "^9.1.0",
     "bootstrap": "^4.6.0",
+    "heroku": "^7.53.0",
     "jquery": "^3.6.0",
     "ngx-pagination": "^5.0.0",
     "rxjs": "~6.6.0",
@@ -47,5 +48,10 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~4.1.5"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.4.",
+  "main": "karma.conf.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

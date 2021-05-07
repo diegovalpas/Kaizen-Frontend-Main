@@ -14,6 +14,7 @@ export class DetalletrabajoComponent implements OnInit {
 
   PostulanteActual:any ;
   currentDetalleLista:any = [];
+  
 
   constructor(private detalle:DetalletrabajoService, private tokens:TokenStorageService, private route:Router,
               private postulacionservice:PostulacionService, private fb:FormBuilder) { }
@@ -44,6 +45,8 @@ export class DetalletrabajoComponent implements OnInit {
       });
     }else{
       this.route.navigate(['/signin/postulante']);
+      //alerta de dejar sesion faltaria
+      this.tokens.signOut();
     }
   }
 }

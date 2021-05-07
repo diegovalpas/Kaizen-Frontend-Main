@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {PostulanteSigninRequest} from 'src/app/pages/signin/postulante/postulante-signin-interface';
-import {authInterceptorProviders} from 'src/app/util/auth.interceptor'
 import { PostulanteUpdate } from './postulante-interface';
 
-const baseUrl = 'http://localhost:8080/api/postulante';
+// const baseUrl = 'http://localhost:8080/api/postulante';
+const baseUrl = 'https://backend-kaizentalent.herokuapp.com/api/postulante';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
@@ -32,7 +31,7 @@ export class PostulanteService {
   
   updateLogo(file:PostulanteUpdate,id:any): Observable<any> {
     return this.http.put(
-      baseUrl+`/${id}/update/logo`,  
+      baseUrl+`/${id}/update/foto`,  
       file,
       httpOptions
     );

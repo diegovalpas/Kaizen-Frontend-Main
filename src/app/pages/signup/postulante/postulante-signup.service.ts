@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PostulanteSignupRequest } from './postulante-signup-interface';
 
-const AUTH_API = 'http://localhost:8080/api/postulante/signup';
+//const AUTH_API = 'http://localhost:8080/api/postulante/signup';
+const AUTH_API = 'https://backend-kaizentalent.herokuapp.com/api/postulante/signup';
 
 @Injectable({
   providedIn: 'root'

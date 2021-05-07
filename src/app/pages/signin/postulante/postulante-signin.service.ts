@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PostulanteSigninRequest } from './postulante-signin-interface';
 
-const AUTH_API = 'http://localhost:8080/api/postulante/signin';
+
+//const AUTH_API = 'http://localhost:8080/api/postulante/signin';
+const AUTH_API = 'https://backend-kaizentalent.herokuapp.com/api/postulante/signin';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})

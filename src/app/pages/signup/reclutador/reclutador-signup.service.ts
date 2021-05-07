@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { ReclutadorSignupRequest } from './reclutador-signup-interface';
 import { Observable } from 'rxjs';
 
-const AUTH_API = 'http://localhost:8080/api/reclutador/signup';
+//const AUTH_API = 'http://localhost:8080/api/reclutador/signup';
+const AUTH_API = 'https://backend-kaizentalent.herokuapp.com/api/reclutador/signup';
 
 @Injectable({
   providedIn: 'root'

@@ -2,9 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const baseUrl = 'http://localhost:8080/api/forgotpassword/sendemail';
-const AutUrl = "http://localhost:8080/api/reset_password"
-const updUrl = "http://localhost:8080/api/forgotpassword/update"
+//const baseUrl = 'http://localhost:8080/api/forgotpassword/sendemail';
+const baseUrl = 'https://backend-kaizentalent.herokuapp.com/api/forgotpassword/sendemail';
+
+//const AutUrl = "http://localhost:8080/api/reset_password";
+const AutUrl = "https://backend-kaizentalent.herokuapp.com/api/reset_password";
+
+//const updUrl = "http://localhost:8080/api/forgotpassword/update";
+const updUrl = "https://backend-kaizentalent.herokuapp.com/api/forgotpassword/update";
 
 @Injectable({
   providedIn: 'root'

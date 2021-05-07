@@ -2,8 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-const baseUrl = 'http://localhost:8080/api/home/show/all';
-const auxUrl = 'http://localhost:8080/api/home/show/puestostrabajo/by'
+const baseUrl = 'https://backend-kaizentalent.herokuapp.com/api/home/show/all';
+const auxUrl = 'https://backend-kaizentalent.herokuapp.com/api/home/show/puestostrabajo/by'
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})

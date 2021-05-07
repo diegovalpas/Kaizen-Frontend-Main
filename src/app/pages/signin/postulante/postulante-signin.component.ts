@@ -17,6 +17,7 @@ export class PostulanteSigninComponent implements OnInit {
   auxusuarioid:any;
   isLoggedIn:any;
   link: any;
+
   public postulanteloginForm = this.fb.group({     
     
     emailUsuario: new FormControl('', Validators.compose([
@@ -44,7 +45,6 @@ export class PostulanteSigninComponent implements OnInit {
 
   ngOnInit(): void {
     /*
-    *Autenticacion si ya esta logueado pero salen infinitos errores consecutivos
     if(this.tokenstorageservice.getUser()){
       this.auxUsertoken = this.tokenstorageservice.getUser()
       if(this.auxUsertoken.idReclutador !== ''){
@@ -75,7 +75,7 @@ export class PostulanteSigninComponent implements OnInit {
   }
 
   autenticacion(){
-    var auxuser:any = this.tokenstorageservice.getUser();
+    
     if(this.auxusuarioid === ''){}
     else{
       this.router.navigate(['login/reclutador/'+this.auxusuarioid.idPostulante+'/profile/basicinfo'])
