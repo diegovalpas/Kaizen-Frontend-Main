@@ -1,12 +1,15 @@
 const express = require('express');
 const path = require('path');
+
 const app = express();
 
-app.set('port', process.env.PORT || 4200)
+
 // Serve only the static files form the dist directory
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'src')));
+
+app.get('/*', (req, res) =>
+    res.sendFile('index.html', {root: 'dist/kaizen-talent-app/'}),
+);
 
 // Start the app by listening on the default Heroku port
-app.listen(app.get('port'), () => {
-    console.log('Server on port', app.get('port'))
-})
+app.listen(process.env.PORT || 4200);
