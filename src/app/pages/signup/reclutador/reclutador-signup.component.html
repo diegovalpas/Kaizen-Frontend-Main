@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Reclutador – Kaizen Talent</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/stylekaizen.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/registroreclutador.css">
+    <!-- Favicon Kaizen -->
+		<link rel="shortcut icon" href="/assets/images/favicon.ico">
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="form-body on-top-mobile">
+        <div class="website-logo">
+            <a href="index.html">
+                <div class="logo">
+                    <img class="logo-size" src="/assets/images/logo.png" alt="Logo Kaizen">
+                </div>
+            </a>
+        </div>
+        <div class="row">
+            <div class="img-holder">
+                <div class="bg"></div>
+                <div class="info-holder simple-info">
+                    <div><img src="/assets/images/dibujocvs.svg" alt=""></div>
+                    <div><h3>Regístrate en Kaizen Talent</h3></div>
+                    <div><p>Estás a pocos pasos de poder <br>publicar cientos de empleos.</p></div>
+                </div>
+            </div>
+            <div class="form-holder">
+                <div class="form-content">
+                    <div class="form-items">
+                        <form [formGroup]="reclutadorsignupForm" (ngSubmit)="guardarReclutador()">
+                            <div class="row">
+                                <div class="col-12 col-sm-12">
+                                    <input type="text" class="form-control" placeholder="Nombre de la empresa"
+                                    formControlName="nombreUsuario" required>
+                                </div>                                
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-sm-6">
+                                    <input type="form-control" class="form-control" list="ciudad" placeholder="Ciudad" formControlName="ciudadUsuario" required>
+                                    <datalist id="ciudad">
+                                        <option *ngFor="let ciudad of Ciudades" value="{{ciudad.value}}">{{ciudad.text}}</option>
+                                    </datalist>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <input type="email" class="form-control" placeholder="Correo electrónico" formControlName="emailUsuario" required>
+                                </div>                                
+                            </div>
+                            <div class="row">                                
+                                <div class="col-12 col-sm-6">
+                                    <!--falta guardar el telefono-->
+                                    <input type="tel" class="form-control" placeholder="Número telefónico"  formControlName="telefonoUsuario" required>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <input type="text" class="form-control" placeholder="RUC" formControlName="numerodocumentoUsuario" required>
+                                </div>
+                            </div>
+                            <div class="row">                                
+                                <div class="col-12 col-sm-12">
+                                    <input type="text" class="form-control" placeholder="Nombre del Contactante" formControlName="nombrecontactanteUsuario" required>
+                                </div>                              
+                            </div>
+                            <div class="row">                              
+                                <div class="col-12 col-sm-6">
+                                    <input type="form-control" class="form-control form-control-lg" list="tamanioempresa" name="tamanioempresa" placeholder="Tamaño de la empresa" formControlName ="tamañoempresaUsuario" required>
+                                    <datalist id="tamanioempresa">
+                                        <option *ngFor="let tamanioempresa of Tempresas" value="{{tamanioempresa.value}}">{{tamanioempresa.text}}</option>       
+                                    </datalist>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <input type="password" class="form-control" placeholder="Contraseña" formControlName="contraseñaUsuario" required >
+                                </div> 
+                            </div>
+                            <div class="row">                                
+                                <!-- <div class="col-12 col-sm-6">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="validatedCustomFile">
+                                        <label class="custom-file-label" for="validatedCustomFile">Documentación adicional</label>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <div class="row top-padding">
+                                <div class="col-12 col-sm-7">
+                                    <input type="checkbox" id="chk1" required><label for="chk1">Al hacer click en registrarme acepto los <a href="#">terminos y condiciones</a> de Kaizen Talent</label>
+                                </div>
+                                <div class="col-12 col-sm-5">
+                                    <div class="form-button text-right">
+                                        <button id="submit" type="submit" class="ibtn less-padding">Regístrate</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
