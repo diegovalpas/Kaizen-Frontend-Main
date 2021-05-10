@@ -48,11 +48,6 @@ export class ReclutadorComponent implements OnInit {
 
     this.autenticacion();   
 
-    
-
-   
-      
-
   }
 
   getUserparam(){

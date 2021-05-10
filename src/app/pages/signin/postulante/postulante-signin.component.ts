@@ -43,19 +43,22 @@ export class PostulanteSigninComponent implements OnInit {
    
 
   ngOnInit(): void {
-    /*
-    *Autenticacion si ya esta logueado pero salen infinitos errores consecutivos
+    this.VerificarSesion();
+  }
+
+  VerificarSesion(): void {
     if(this.tokenstorageservice.getUser()){
       this.auxUsertoken = this.tokenstorageservice.getUser()
-      if(this.auxUsertoken.idReclutador !== ''){
-        this.tokenstorageservice.signOut();
+      if(this.auxUsertoken.idReclutador !== undefined){
+        this.router.navigate(['login/reclutador/'+this.auxUsertoken.idReclutador+'/profile/basicinfo']);
       }
-      if(this.auxUsertoken.idPostulante !== ''){
+      if(this.auxUsertoken.idPostulante !== undefined){
         this.router.navigate(['login/postulante/'+this.auxUsertoken.idPostulante+'/profile/basicinfo']);
       }
     }else{
-    }*/
+    }
   }
+
   
   IngresoLogin(): void {
     

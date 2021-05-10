@@ -36,6 +36,7 @@ export class ReclutadorSigninComponent implements OnInit {
     ]))   
   
   });
+  auxUsertoken: any;
 
   constructor(private tokenstorageservice:TokenStorageService
                 ,private Reclutador:ReclutadorSigninService
@@ -45,7 +46,20 @@ export class ReclutadorSigninComponent implements OnInit {
 
 
   ngOnInit(): void {
-    
+    this.VerificarSesion();
+  }
+
+  VerificarSesion(): void {
+    if(this.tokenstorageservice.getUser()){
+      this.auxUsertoken = this.tokenstorageservice.getUser()
+      if(this.auxUsertoken.idReclutador !== undefined){
+        this.router.navigate(['login/reclutador/'+this.auxUsertoken.idReclutador+'/profile/basicinfo']);
+      }
+      if(this.auxUsertoken.idPostulante !== undefined){
+        this.router.navigate(['login/postulante/'+this.auxUsertoken.idPostulante+'/profile/basicinfo']);
+      }
+    }else{
+    }
   }
   
   IngresoLoginR(): void {

@@ -16,6 +16,7 @@ export class PublicacionComponent implements OnInit {
   Experiencia = Experiencia;
   Publicacion = Publicacion;
   Remoto = Remoto;
+  idReclutador:any;
 
   Ciudades = Ciudades.sort(function (a, b) {
     if (a.text > b.text) {
@@ -37,6 +38,7 @@ export class PublicacionComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
+    this.idReclutador = this.currentUser.idReclutador;
   }
 
 
@@ -89,8 +91,4 @@ export class PublicacionComponent implements OnInit {
         console.log(data);
     });
   }
-
-
-
-
 }

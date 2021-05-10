@@ -36,7 +36,7 @@ export class DetalletrabajoComponent implements OnInit {
   }
 
   Postularempleo(){
-    if(this.PostulanteActual.idPostulante != null){
+    if(this.PostulanteActual.idPostulante != undefined){
       
       this.postulacionservice.PostularTrabajoenDetalle(this.PostulanteActual.idPostulante,this.currentDetalleLista.idPuestoTrabajo).subscribe(
         data => {

@@ -37,6 +37,7 @@
             <!-- Contenedor del logo -->
             <div>
                 <a href="index.html" class="logo">
+                    <img src="/assets/images/logolight.png" alt="" class="logo-light" height="36" />
                     <img src="/assets/images/logo.png" alt="" class="logo-dark" height="36" />
                 </a>
             </div>
@@ -58,12 +59,12 @@
             <div id="navigation">
                 <!-- Menu de navegación -->   
                 <ul class="navigation-menu">
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="listaempleos.html">Empleos</a></li>
+                    <li><a href="/index">Inicio</a></li>
+                    <li><a href="/postulante/home/show/all">Empleos</a></li>
                     <li class="has-submenu">
                         <a href="javascript:void(0)">Mi Cuenta</a><span class="menu-arrow"></span>
                         <ul class="submenu">
-                            <li><a href="perfilcandidato.html">Mi Perfil</a></li>
+                            <li><a href="/login/reclutador/{{CurrentUser.idPostulante}}/profile/basicinfo">Mi Perfil</a></li>
                             <li><a href="mispostulaciones.html">Mis Postulaciones</a></li>
                             
                         </ul>
@@ -92,8 +93,75 @@
                         Editar perfil
                         </button>
                         <br>
-                        <a href="cambiarpassword.html"> Editar contraseña</a>
+                        <a href="/password"> Editar contraseña</a>
                     </div>
+                    <!--  codigo anterior -->
+<ng-template #contenido let-modal>
+    <div class="fullscreen-modal " id="modalKaizenpostulante" >
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 100%" role="document">
+            <div class="modal-content">
+            <form  [formGroup]="postulanteModalForm" (ngSubmit)="updateUserparam()">
+                <div class="modal-header">
+                    <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                     
+                        <div class="form-group">
+                               <label for="exampleFormControlTextarea1">Descripcion</label>
+                               <textarea class="form-control" style="height: 500px;" formControlName="descripcionUsuario" [(ngModel)]="CurrentUserparam.descripcionPostulante" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <div class="form-group row">
+                                <label for="inputLabel" class="col-sm-2 col-form-label">Nombre</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" formControlName="nombreUsuario"  [(ngModel)]="Usuario.nombrePostulante" id="inputLabel" placeholder="Ingresa tu Nombre">
+                                </div>
+                        </div>
+                        <div class="form-group row">
+                                <label for="inputAddress" class="col-sm-2 col-form-label">Apellido</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" formControlName="apellidoUsuario" [(ngModel)]="Usuario.apellidoPostulante" id="inputAddress" placeholder="Ingresa tu Apellido">
+                                </div>
+                        </div>
+                        <div class="form-group row">
+                                <label for="inputphone" class="col-sm-2 col-form-label">Ciudad</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="inputphone" placeholder="Ingresa tu ciudad">
+                                </div>
+                        </div>
+                        <input type="hidden" class="form-control"  formControlName="tipodocumentoUsuario" [(ngModel)]="Usuario.tipodocumentoPostulante" required>
+                        <div class="form-group row">
+                                <label for="docnumber" class="col-sm-2 col-form-label">Documento</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" formControlName="numerodocumentoUsuario" [(ngModel)]="Usuario.numerodocumentoPostulante" id="docnumber" placeholder="Ingresa tu numero de documento">
+                                </div>
+                        </div>
+                        <input type="hidden" class="form-control"  formControlName="generoUsuario" [(ngModel)]="Usuario.generoPostulante" required>
+                        <div class="form-group row">
+                                <label for="direccionpos" class="col-sm-2 col-form-label">Direccion</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" formControlName="direccionUsuario" [(ngModel)]="CurrentUserparam.direccionPostulante"  id="direccionpos" placeholder="Ingresa tu numero de documento">
+                                </div>
+                        </div>
+                        <div class="form-group row">
+                                <label for="phonnumb" class="col-sm-2 col-form-label">Telefono</label>
+                                <div class="col-sm-10">
+                                  <input type="tel" class="form-control" formControlName="telefonoUsuario" [(ngModel)]="CurrentUserparam.telefonoPostulante"  id="phonnumb" placeholder="Ingresa tu numero de telefono">
+                                </div>
+                        </div> 
+                </div>   
+                <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" >Guardar cambios</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    
+</ng-template>
+
+    
                 </div>
             </div>
         </div>
@@ -130,7 +198,22 @@
                     </div>
                 </div>
             </div>
-
+            <div class="row">
+                <div class="col-lg-12 mt-4 pt-2">
+                    <h4 class="text-dark">Cambiar Logo :</h4>
+                </div>
+                <form [formGroup]="postulanteModalForm" (ngSubmit)="UpdateFoto()" >
+                    <div class="col-12 col-sm-6">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="validatedCustomFoto"
+                            formControlName="imagenUsuario" (change)="seleccionarFoto($event)">
+                            <label class="custom-file-label" for="validatedCustomFoto">Logo</label>
+                        </div>
+                        <button type="submit" style="margin-top: 8px;" class="btn btn-success" >Cambiar Logo!</button>
+        
+                    </div>
+                </form>
+            </div>
             <div class="row">
                 <div class="col-lg-12 mt-4 pt-2">
                     <h4 class="text-dark">Educación :</h4>
@@ -227,10 +310,15 @@
                 </div>
             </div>       
         </div>
+       
     </section>
+
+    
+
     <button type="button" class="btn btn-primary" (click)="Salir()">
         Logout
     </button>
+
     <footer class="footer">
         <div class="container">
             <div class="row">
@@ -286,76 +374,3 @@
     </footer>
 </body>
 </html>
-
-
-
-<!--  codigo anterior -->
-<ng-template #contenido let-modal>
-    <div class="fullscreen-modal " id="modalKaizenpostulante" >
-        <div class="modal-dialog modal-dialog-centered" style="max-width: 100%" role="document">
-            <div class="modal-content">
-            <form  [formGroup]="postulanteModalForm" (ngSubmit)="updateUserparam()">
-                <div class="modal-header">
-                    <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                     
-                        <div class="form-group">
-                               <label for="exampleFormControlTextarea1">Descripcion</label>
-                               <textarea class="form-control" style="height: 500px;" formControlName="descripcionUsuario" [(ngModel)]="CurrentUserparam.descripcionPostulante" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-                        <div class="form-group row">
-                                <label for="inputLabel" class="col-sm-2 col-form-label">Nombre</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" formControlName="nombreUsuario"  [(ngModel)]="Usuario.nombrePostulante" id="inputLabel" placeholder="Ingresa tu Nombre">
-                                </div>
-                        </div>
-                        <div class="form-group row">
-                                <label for="inputAddress" class="col-sm-2 col-form-label">Apellido</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" formControlName="apellidoUsuario" [(ngModel)]="Usuario.apellidoPostulante" id="inputAddress" placeholder="Ingresa tu Apellido">
-                                </div>
-                        </div>
-                        <div class="form-group row">
-                                <label for="inputphone" class="col-sm-2 col-form-label">Ciudad</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="inputphone" placeholder="Ingresa tu ciudad">
-                                </div>
-                        </div>
-                        <input type="hidden" class="form-control"  formControlName="tipodocumentoUsuario" [(ngModel)]="Usuario.tipodocumentoPostulante" required>
-                        <div class="form-group row">
-                                <label for="docnumber" class="col-sm-2 col-form-label">Documento</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" formControlName="numerodocumentoUsuario" [(ngModel)]="Usuario.numerodocumentoPostulante" id="docnumber" placeholder="Ingresa tu numero de documento">
-                                </div>
-                        </div>
-                        <input type="hidden" class="form-control"  formControlName="generoUsuario" [(ngModel)]="Usuario.generoPostulante" required>
-                        <div class="form-group row">
-                                <label for="direccionpos" class="col-sm-2 col-form-label">Direccion</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" formControlName="direccionUsuario" [(ngModel)]="CurrentUserparam.direccionPostulante"  id="direccionpos" placeholder="Ingresa tu numero de documento">
-                                </div>
-                        </div>
-                        <div class="form-group row">
-                                <label for="phonnumb" class="col-sm-2 col-form-label">Telefono</label>
-                                <div class="col-sm-10">
-                                  <input type="tel" class="form-control" formControlName="telefonoUsuario" [(ngModel)]="CurrentUserparam.telefonoPostulante"  id="phonnumb" placeholder="Ingresa tu numero de telefono">
-                                </div>
-                        </div> 
-                </div>   
-                <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" >Guardar cambios</button>
-                </div>
-            </form>
-            </div>
-        </div>
-    </div>
-    
-</ng-template>
-    <hr>
-    <p> <a href="{{ Usuario.archivocvPostulante }} ">  {{ Usuario.archivocvPostulante }} </a> </p>
-
-<hr>
-

@@ -16,15 +16,9 @@ import { PuestodetrabajoModule } from './pages/puestodetrabajo/puestodetrabajo.m
 
 import { NgxPaginationModule } from 'ngx-pagination';
 
-
-
-
 @NgModule({
   declarations: [
-    AppComponent,
-    
-    
-   
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +31,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     PasswordModule,
     PuestodetrabajoModule,
     NgxPaginationModule
-    
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

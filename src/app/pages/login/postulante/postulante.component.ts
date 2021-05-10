@@ -29,13 +29,15 @@ export class PostulanteComponent implements OnInit {
     
   };
 
-
+  selectedFoto: any;
+  currentFoto ?: File;
 
   CurrentUser:any;
   idPostulante:any;
   isLoginFailed = false;
   signupSuccess = false;
   errorMessage = '';
+  CurrentUser2: any;
 
   constructor(private tokens:TokenStorageService,
       private fb:FormBuilder,
@@ -171,6 +173,38 @@ export class PostulanteComponent implements OnInit {
     );
     
 
+  }
+
+  seleccionarFoto(event: any): void {
+    this.selectedFoto = event.target.files;
+  }
+
+  subirFoto(): any {
+    if (this.selectedFoto) {
+      const foto: File | null = this.selectedFoto.item(0);
+      if (foto) {
+        this.currentFoto = foto;
+      }
+      return this.currentFoto;
+    }
+  }
+
+  UpdateFoto(){
+    
+    this.PostulanteService.updateFoto(this.CurrentUser.idPostulante,this.subirFoto()).subscribe(
+      data => { 
+        this.CurrentUser2 = data;
+        console.log(this.CurrentUser2);
+        this.CurrentUser2.fotoperfilPostulante = this.currentFoto;
+        this.signupSuccess = true;
+        window.location.reload();
+        
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.signupSuccess = false;
+      }
+    );
   }
 
   //fin de actualizar datos
