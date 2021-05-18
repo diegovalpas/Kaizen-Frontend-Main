@@ -52,12 +52,12 @@ export class ReclutadorSigninComponent implements OnInit {
   VerificarSesion(): void {
     if(this.tokenstorageservice.getUser()){
       this.auxUsertoken = this.tokenstorageservice.getUser()
-      if(this.auxUsertoken.idReclutador !== undefined){
-        this.router.navigate(['login/reclutador/'+this.auxUsertoken.idReclutador+'/profile/basicinfo']);
-      }
       if(this.auxUsertoken.idPostulante !== undefined){
         this.router.navigate(['login/postulante/'+this.auxUsertoken.idPostulante+'/profile/basicinfo']);
       }
+      if(this.auxUsertoken.idReclutador !== undefined){
+        this.router.navigate(['login/reclutador/'+this.auxUsertoken.idReclutador+'/profile/basicinfo']);
+      }      
     }else{
     }
   }

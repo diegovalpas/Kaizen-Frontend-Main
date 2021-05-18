@@ -11,9 +11,10 @@ import { FormBuilder,FormControl, Validators } from '@angular/forms';
   styleUrls: []
 })
 export class DetalletrabajoComponent implements OnInit {
-
+  isButtonVisible = false;
   PostulanteActual:any ;
   currentDetalleLista:any = [];
+  auxUsertoken: any;
 
   constructor(private detalle:DetalletrabajoService, private tokens:TokenStorageService, private route:Router,
               private postulacionservice:PostulacionService, private fb:FormBuilder) { }
@@ -21,6 +22,22 @@ export class DetalletrabajoComponent implements OnInit {
   ngOnInit(): void {
     this.PostulanteActual = this.tokens.getUser();
     this.getdetalleEmpleo();
+    this.verBoton();
+  }
+
+  verBoton(){
+    if(this.tokens.getUser()){
+      this.auxUsertoken = this.tokens.getUser()
+      if(this.auxUsertoken.idReclutador !== undefined){
+        
+      }
+      if(this.auxUsertoken.idPostulante !== undefined){
+        this.isButtonVisible = true;
+      }
+    }
+    if(this.tokens.getToken() === null){
+      this.isButtonVisible = true;
+    }
   }
 
   getdetalleEmpleo(){
@@ -36,13 +53,14 @@ export class DetalletrabajoComponent implements OnInit {
   }
 
   Postularempleo(){
-    if(this.PostulanteActual.idPostulante != undefined){
-      
-      this.postulacionservice.PostularTrabajoenDetalle(this.PostulanteActual.idPostulante,this.currentDetalleLista.idPuestoTrabajo).subscribe(
+    if(this.PostulanteActual.idPostulante != null || this.PostulanteActual.idPostulante != undefined  ){
+            this.postulacionservice.PostularTrabajoenDetalle(this.PostulanteActual.idPostulante,this.currentDetalleLista.idPuestoTrabajo).subscribe(
         data => {
           console.log(data);
       });
     }else{
+      var aviso = "Debe ser postulante para realizar esta acción || debes de iniciar sesion";
+      console.log(aviso);
       this.route.navigate(['/signin/postulante']);
     }
   }

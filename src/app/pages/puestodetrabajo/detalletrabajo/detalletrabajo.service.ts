@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const baseUrl = 'https://backend-kaizentalent.herokuapp.com/api/puestrotrabajo';
+const baseUrl = 'https://backend-kaizentalent.herokuapp.com/api/puestotrabajo';
 
 @Injectable({
   providedIn: 'root'

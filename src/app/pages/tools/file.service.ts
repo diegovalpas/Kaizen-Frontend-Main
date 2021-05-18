@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class FileService {
 
-  private BaseUrl = 'http://localhost:8080';
+  private BaseUrl = 'https://backend-kaizentalent.herokuapp.com';
 
   constructor(private http: HttpClient) { }
 

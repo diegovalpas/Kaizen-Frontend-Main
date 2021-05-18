@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const baseUrl = 'https://backend-kaizentalent.herokuapp.com/api/home/show/puestostrabajo/all';
-const urlPart = 'https://backend-kaizentalent.herokuapp.com/api/home/show/puestostrabajo/by/parttime';
-const urlFull = 'https://backend-kaizentalent.herokuapp.com/api/home/show/puestostrabajo/by/fulltime';
-const urlLookFor = 'https://backend-kaizentalent.herokuapp.com/api/home/send/filterparameters';
+const baseUrl = 'https://backend-kaizentalent.herokuapp.com/api/index/show/puestostrabajo/all';
+const urlPart = 'https://backend-kaizentalent.herokuapp.com/api/index/show/puestostrabajo/by/parttime';
+const urlFull = 'https://backend-kaizentalent.herokuapp.com/api/index/show/puestostrabajo/by/fulltime';
+const urlLookFor = 'https://backend-kaizentalent.herokuapp.com/api/index/send/filterparameters';
 
 @Injectable({
   providedIn: 'root'

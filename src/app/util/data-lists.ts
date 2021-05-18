@@ -31,7 +31,7 @@ export interface TipoPostulacion {
 }
 
 export interface Publicacion {
-    value : string;
+    value : number;
     text : string;
 }
 
@@ -41,7 +41,7 @@ export interface Remoto {
 }
 
 export interface Experiencia {
-    value : string;
+    value : number;
     text : string;
     selector : string;
 }
@@ -181,20 +181,20 @@ export const PeriodoPublicacion: PeriodoPublicacion[] = [
 ]
 
 export const Experiencia: Experiencia[] = [
-    { value: '0' , text: 'Sin experiencia'     , selector:'6' },
-    { value: '1', text: '1 Año de Experiencia' , selector:'7' },
-    { value: '2', text: '2 Años de Experiencia', selector:'8' },
-    { value: '3', text: '3 Años de Experiencia', selector:'9' },
-    { value: '4', text: '4 Años de Experiencia', selector:'10' },
-    { value: '5', text: '5 Años de Experiencia', selector:'11' },
-    { value: '6', text: '6 Años de Experiencia', selector:'12' },
-    { value: '7', text: '7 Años a mas' , selector:'13'}
+    { value: 0 , text: 'Sin experiencia'     , selector:'6' },
+    { value: 1, text: '1 Año de Experiencia' , selector:'7' },
+    { value: 2, text: '2 Años de Experiencia', selector:'8' },
+    { value: 3, text: '3 Años de Experiencia', selector:'9' },
+    { value: 4, text: '4 Años de Experiencia', selector:'10' },
+    { value: 5, text: '5 Años de Experiencia', selector:'11' },
+    { value: 6, text: '6 Años de Experiencia', selector:'12' },
+    { value: 7, text: '7 Años a mas' , selector:'13'}
 ]
 
 export const Publicacion: Publicacion [] = [
-    { value: 'semanal', text: 'semanal'},
-    { value: 'quincenal', text: 'quincenal'},
-    { value: 'mensual', text: 'mensual'}
+    { value: 7, text: 'Semanal'},
+    { value: 15, text: 'Quincenal'},
+    { value: 30, text: 'Mensual'}
 ]
 
 export const Remoto: Remoto [] = [

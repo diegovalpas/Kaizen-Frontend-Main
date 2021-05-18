@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/util/token-storage.service';
 import { FormBuilder,FormGroup, FormControl, Validators} from '@angular/forms';
-import { ActivatedRoute,Router} from '@angular/router';
+import { ActivatedRoute,Router, ParamMap} from '@angular/router';
 import { PostulanteBasicInfoResponse} from 'src/app/pages/signin/postulante/postulante-signin-interface';
 import { PostulanteService} from './postulante.service';
 import { NgbModal, NgbTypeahead} from '@ng-bootstrap/ng-bootstrap';
@@ -29,14 +29,15 @@ export class PostulanteComponent implements OnInit {
     
   };
 
-  selectedFoto: any;
-  currentFoto ?: File;
 
+  ids:any;
   CurrentUser:any;
   idPostulante:any;
   isLoginFailed = false;
   signupSuccess = false;
   errorMessage = '';
+  selectedlogo: any;
+  currentLogo?: File;
   CurrentUser2: any;
 
   constructor(private tokens:TokenStorageService,
@@ -48,9 +49,11 @@ export class PostulanteComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.autenticacion();   
-      
+    this.autenticacion();
+    
+    
   }
+
 
   //obtener el session storage
   getUserparam(){
@@ -61,9 +64,8 @@ export class PostulanteComponent implements OnInit {
     if( link!= link){
       this.router.navigate(['/signup/postulante']);
     }else{
-      this.idPostulante = this.CurrentUser.idPostulante;
-            
-      this.PostulanteService.get(this.CurrentUser.idPostulante).subscribe(
+      this.idPostulante = this.CurrentUser.idPostulante;   
+      this.PostulanteService.getUserLogin(this.CurrentUser.idPostulante).subscribe(
       data => {
         this.CurrentUserparam = data;
         this.Usuario.nombrePostulante = this.CurrentUserparam.nombrePostulante,
@@ -132,7 +134,39 @@ export class PostulanteComponent implements OnInit {
     }); 
 
 //fin de validacion y jalar    
-    
+seleccionarLogo(event: any): void {
+  this.selectedlogo = event.target.files;
+}
+
+subirLogo(): any {
+  if (this.selectedlogo) {
+    const logo: File | null = this.selectedlogo.item(0);
+    if (logo) {
+      this.currentLogo = logo;
+    }
+    return this.currentLogo;
+  }
+}
+
+UpdateFoto(){
+  
+  this.PostulanteService.updateLogo(this.subirLogo(),this.CurrentUser.idPostulante).subscribe(
+    data => { 
+      this.CurrentUser2 = data;
+      this.CurrentUser2.fotoperfilPostulante = this.currentLogo;
+      this.signupSuccess = true; 
+      window.location.reload();
+      
+    },
+    err => {
+      this.errorMessage = err.error.message;
+      this.signupSuccess = false;
+    }
+  );
+}
+
+
+
 //actualizar datos 
   updateUserparam(){ 
 
@@ -175,38 +209,6 @@ export class PostulanteComponent implements OnInit {
 
   }
 
-  seleccionarFoto(event: any): void {
-    this.selectedFoto = event.target.files;
-  }
-
-  subirFoto(): any {
-    if (this.selectedFoto) {
-      const foto: File | null = this.selectedFoto.item(0);
-      if (foto) {
-        this.currentFoto = foto;
-      }
-      return this.currentFoto;
-    }
-  }
-
-  UpdateFoto(){
-    
-    this.PostulanteService.updateFoto(this.CurrentUser.idPostulante,this.subirFoto()).subscribe(
-      data => { 
-        this.CurrentUser2 = data;
-        console.log(this.CurrentUser2);
-        this.CurrentUser2.fotoperfilPostulante = this.currentFoto;
-        this.signupSuccess = true;
-        window.location.reload();
-        
-      },
-      err => {
-        this.errorMessage = err.error.message;
-        this.signupSuccess = false;
-      }
-    );
-  }
-
   //fin de actualizar datos
 
   
@@ -220,6 +222,7 @@ export class PostulanteComponent implements OnInit {
       this.Salir();
     } 
   }
+  
   
 
   Salir(){

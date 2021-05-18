@@ -9,7 +9,6 @@ const AUTH_API = 'https://backend-kaizentalent.herokuapp.com/api/reclutador/sign
   providedIn: 'root'
 })
 
-
 export class ReclutadorSignupService {
 
     logoFile = new File([], '');  

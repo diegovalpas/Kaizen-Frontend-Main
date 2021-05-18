@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-const baseUrl = 'https://backend-kaizentalent.herokuapp.com';
+const baseUrl = 'https://backend-kaizentalent.herokuapp.com/api/postulante';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +21,8 @@ export class PostulacionService {
       baseUrl+`/${idpostulante}/postular/puestotrabajo`,
       puestotrabajo
     );
-}
+  }
+
+  
 
 }

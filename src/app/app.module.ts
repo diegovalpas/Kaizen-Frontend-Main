@@ -15,10 +15,15 @@ import { PasswordModule } from './pages/password/password.module';
 import { PuestodetrabajoModule } from './pages/puestodetrabajo/puestodetrabajo.module'
 
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent, 
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
     NgbModule,
     PasswordModule,
     PuestodetrabajoModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

@@ -127,7 +127,7 @@
                         <div class="form-group row">
                                 <label for="inputphone" class="col-sm-2 col-form-label">Ciudad</label>
                                 <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="inputphone" placeholder="Ingresa tu ciudad">
+                                  <input type="text" class="form-control" id="inputphone" placeholder="Ingresa tu ciudad" [(ngModel)]="Usuario.ciudadPostulante">
                                 </div>
                         </div>
                         <input type="hidden" class="form-control"  formControlName="tipodocumentoUsuario" [(ngModel)]="Usuario.tipodocumentoPostulante" required>
@@ -206,7 +206,7 @@
                     <div class="col-12 col-sm-6">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="validatedCustomFoto"
-                            formControlName="imagenUsuario" (change)="seleccionarFoto($event)">
+                            formControlName="imagenUsuario" (change)="seleccionarLogo($event)">
                             <label class="custom-file-label" for="validatedCustomFoto">Logo</label>
                         </div>
                         <button type="submit" style="margin-top: 8px;" class="btn btn-success" >Cambiar Logo!</button>
@@ -374,3 +374,9 @@
     </footer>
 </body>
 </html>
+
+
+
+
+
+

@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {PostulanteSigninRequest} from 'src/app/pages/signin/postulante/postulante-signin-interface';
+import {authInterceptorProviders} from 'src/app/util/auth.interceptor';
 import { PostulanteUpdate } from './postulante-interface';
 
 const baseUrl = 'https://backend-kaizentalent.herokuapp.com/api/postulante';
+
+
+
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
@@ -14,9 +19,9 @@ const httpOptions = {
 export class PostulanteService {
 
   constructor(private http:HttpClient) { }
-  auxfotoperfil = new File([], '');
+  auxfoto = new File([], '');
 
-  get(id:any): Observable<any> {
+  getUserLogin(id:any): Observable<any> {
     return this.http.get(`${baseUrl}/${id}/profile/basicinfo`);
   }
   
@@ -29,19 +34,19 @@ export class PostulanteService {
   }
 
   
-  updateFoto(id:any,foto: File): Observable<any> {
+  updateLogo(foto:File, id:any): Observable<any> {
 
     var postulante: FormData = new FormData();
 
     if (foto != null) {
       postulante.append('foto', foto);
     }else {
-      postulante.append('foto', this.auxfotoperfil);
+      postulante.append('foto', this.auxfoto);
     }
-
+    
     return this.http.put(
       baseUrl+`/${id}/update/foto`,  
-      postulante
+      postulante      
     );
   }
 

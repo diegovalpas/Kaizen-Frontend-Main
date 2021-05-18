@@ -16,7 +16,6 @@ export class PublicacionComponent implements OnInit {
   Experiencia = Experiencia;
   Publicacion = Publicacion;
   Remoto = Remoto;
-  idReclutador:any;
 
   Ciudades = Ciudades.sort(function (a, b) {
     if (a.text > b.text) {
@@ -38,7 +37,6 @@ export class PublicacionComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
-    this.idReclutador = this.currentUser.idReclutador;
   }
 
 
@@ -68,7 +66,7 @@ export class PublicacionComponent implements OnInit {
     descripcionPuestoTrabajo: new FormControl('', Validators.compose([
       Validators.required
     ])),
-    periodopublicidadPuestoTrabajo: new FormControl('', Validators.compose([
+    periodopublicacionPuestoTrabajo: new FormControl('', Validators.compose([
       Validators.required
     ]))
   });
@@ -83,7 +81,7 @@ export class PublicacionComponent implements OnInit {
       sueldoPuestoTrabajo: this.puestostrabajoform.controls['sueldoPuestoTrabajo'].value,
       experienciaPuestoTrabajo: this.puestostrabajoform.controls['experienciaPuestoTrabajo'].value,
       descripcionPuestoTrabajo: this.puestostrabajoform.controls['descripcionPuestoTrabajo'].value,
-      periodopublicidadPuestoTrabajo: this.puestostrabajoform.controls['periodopublicidadPuestoTrabajo'].value
+      periodopublicacionPuestoTrabajo: this.puestostrabajoform.controls['periodopublicacionPuestoTrabajo'].value
     }
 
     this.publicacionservice.Publicar(puestowork,this.currentUser.idReclutador).subscribe(
@@ -91,4 +89,8 @@ export class PublicacionComponent implements OnInit {
         console.log(data);
     });
   }
+
+
+
+
 }

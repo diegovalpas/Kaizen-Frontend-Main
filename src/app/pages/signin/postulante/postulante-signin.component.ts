@@ -43,9 +43,13 @@ export class PostulanteSigninComponent implements OnInit {
    
 
   ngOnInit(): void {
+    /*
+    *Autenticacion si ya esta logueado pero salen infinitos errores consecutivos
+    */
     this.VerificarSesion();
+  
   }
-
+  
   VerificarSesion(): void {
     if(this.tokenstorageservice.getUser()){
       this.auxUsertoken = this.tokenstorageservice.getUser()
@@ -59,7 +63,10 @@ export class PostulanteSigninComponent implements OnInit {
     }
   }
 
-  
+
+
+
+
   IngresoLogin(): void {
     
     var usuario: PostulanteSigninRequest = {

@@ -18,6 +18,7 @@ import { ListaTrabajosComponent } from './pages/puestodetrabajo/lista-trabajos/l
 
 import { HomeComponent } from './pages/puestodetrabajo/home/home.component';
 import {DetalletrabajoComponent} from './pages/puestodetrabajo/detalletrabajo/detalletrabajo.component'
+import {ListacandidatosComponent} from './pages/puestodetrabajo/listacandidatos/listacandidatos.component'
 
  
 const routes: Routes = [
@@ -32,9 +33,11 @@ const routes: Routes = [
   { path: 'update/password', component:PasswordupdateComponent},
   { path: 'reclutador/:idReclutador/publicar', component:PublicacionComponent},
   { path: 'postulante/:idPostulante/postular/puestotrabajo', component:PostulacionComponent},
-  { path: 'home/show/all', component:ListaTrabajosComponent},
+  { path: 'postulante/home/show/all', component:ListaTrabajosComponent},
   { path: 'index', component:HomeComponent},
-  { path: 'puestrotrabajo/:idPuestoTrabajo/detail', component:DetalletrabajoComponent}
+  { path: 'puestotrabajo/:idPuestoTrabajo/detail', component:DetalletrabajoComponent},
+  { path: 'listacandidatos', component:ListacandidatosComponent},
+  { path: '', component:HomeComponent}
 ];
 
 @NgModule({

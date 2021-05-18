@@ -15,7 +15,7 @@
 <body>    
     <div class="form-body">
         <div class="website-logo">
-            <a href="index.html">
+            <a href="/index">
                 <div class="logo">
                     <img class="logo-size" src="/assets/images/logo.png" alt="Logo Kaizen">
                 </div>
@@ -34,7 +34,7 @@
                         <h3>Inicia Sesión.</h3>
                         <p>Ingresa tus datos para iniciar sesión.</p>
                         <div class="page-links">
-                            <a href="loginpostulante.html" class="active">Login</a><a href="registropostulante.html">Regístrate</a>
+                            <a href="/signin/postulante" class="active">Login</a><a href="/signup/postulante">Regístrate</a>
                         </div>
                         
                         <form [formGroup]="postulanteloginForm" (ngSubmit)="IngresoLogin()">
@@ -45,7 +45,7 @@
                                 
                                 <br>
                                 <br>
-                                <a href="passwordolvidado.html">¿Olvidaste tu contraseña?</a>
+                                <a href="/password">¿Olvidaste tu contraseña?</a>
                                 <br>
                                 <br>
                                 <a href="/signup/postulante">¿No estás Registrado?, Regístrate aquí</a>

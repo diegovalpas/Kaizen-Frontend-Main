@@ -57,7 +57,7 @@
         <div class="container">
             <!-- Logo container-->
             <div>
-                <a href="/index" class="logo">
+                <a href="index.html" class="logo">
                     <img src="/assets/images/logolight.png" alt="" class="logo-light" height="40" />
                     <img src="/assets/images/logo.png" alt="" class="logo-dark" height="40" />
                 </a>
@@ -83,18 +83,18 @@
             <div id="navigation">
                 <!-- Menu de navegación -->   
                 <ul class="navigation-menu">
-                    <li><a href="/index">Inicio</a></li>
-                    <li><a href="/home/show/all">Empleos</a></li>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="listaempleos.html">Empleos</a></li>
                     <li class="has-submenu">
                         <a href="javascript:void(0)">Mi Cuenta</a><span class="menu-arrow"></span>
                         <ul class="submenu">
-                            <li><a href="/login/postulante/{{idReclutador}}/profile/basicinfo">Mi Perfil</a></li>
+                            <li><a href="perfilreclutador.html">Mi Perfil</a></li>
                             <li><a href="mispublicaciones.html">Mis Publicaciones</a></li>
                         </ul>
                     </li>
 
                     <li>
-                        <a href="">Contáctanos</a>
+                        <a href="contactanos.html">Contáctanos</a>
                     </li>
                 </ul><!--Fin del Menu de navegación -->
             </div><!-- Fin de Navegacion -->
@@ -206,9 +206,9 @@
                                             <label class="text-muted">Periodo de Publicación</label>
                                             <div class="form-button">
                                                 <input id="select-country"  type="form-control" class="form-control demo-default" list="publicacion" placeholder="Tiempo de publicación" 
-                                                    formControlName="periodopublicidadPuestoTrabajo" >
+                                                    formControlName="periodopublicacionPuestoTrabajo" >
                                                 <datalist id="publicacion">
-                                                    <option *ngFor="let publicacion of Publicacion" value="{{publicacion.text}}" >{{publicacion.text}}</option>                           
+                                                    <option *ngFor="let publicacion of Publicacion" value="{{publicacion.value}}" >{{publicacion.text}}</option>                           
                                                 </datalist>
                                             </div>
                                         </div> 

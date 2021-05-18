@@ -17,27 +17,8 @@ export class PostulacionComponent implements OnInit {
                private token: TokenStorageService) { }
 
   ngOnInit(): void {
-    this.currentUser = this.token.getUser();
   }
 
-  public puestostrabajoform = this.fb.group({     
-    
-    idpuestotrabajo: new FormControl('', Validators.compose([
-      Validators.required
-    ])), 
-  })
-
-    Postularempleo(): void {
-      
-      var work: any = {
-        idpuestotrabajo: this.puestostrabajoform.controls['idpuestotrabajo'].value,
-      }
-
-      this.postulacionservice.PostularTrabajoenDetalle(this.currentUser.idPostulante,work.idpuestotrabajo).subscribe(
-        data => {
-          console.log(data);
-      });
-    }
-
+  
 
   }

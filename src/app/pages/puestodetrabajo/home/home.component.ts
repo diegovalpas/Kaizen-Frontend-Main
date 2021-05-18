@@ -101,7 +101,7 @@ export class HomeComponent implements OnInit {
 
   verDetalle(){
     this.tokens.saveTokenjob(this.CurrentDetalleLista.idPuestoTrabajo);
-    this.route.navigate(['puestrotrabajo/'+this.CurrentDetalleLista.idPuestoTrabajo+'/detail']);
+    this.route.navigate(['puestotrabajo/'+this.CurrentDetalleLista.idPuestoTrabajo+'/detail']);
   }
   
 

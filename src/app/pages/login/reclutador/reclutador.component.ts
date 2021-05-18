@@ -6,7 +6,7 @@ import { ReclutadorBasicInfoResponse } from 'src/app/pages/signin/reclutador/rec
 import { ReclutadorService} from './reclutador.service'
 import { ReclutadorUpdate } from './reclutador-interface';
 import { NgbModal, NgbTypeahead} from '@ng-bootstrap/ng-bootstrap';
-
+import {EmpleosComponent} from 'src/app/pages/puestodetrabajo/empleos/empleos.component'
 
 
 @Component({
@@ -17,7 +17,7 @@ import { NgbModal, NgbTypeahead} from '@ng-bootstrap/ng-bootstrap';
 export class ReclutadorComponent implements OnInit {
 
     CurrentUserparam:any = [];
-  Usuario:any = {
+    Usuario:any = {
     
 
   };
@@ -51,7 +51,7 @@ export class ReclutadorComponent implements OnInit {
   }
 
   getUserparam(){
-    this.CurrentUser = this.tokens.getUser();
+    this.CurrentUser = this.tokens.getUser(); 
     
     var link = this.router.navigate(['/login/reclutador/'+this.CurrentUser.idReclutador+'/profile/basicinfo']);
 

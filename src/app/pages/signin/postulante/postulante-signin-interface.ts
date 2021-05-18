@@ -29,3 +29,7 @@ export interface PostulanteBasicInfoResponse {
     fotoperfilPostulante?: ImagenInterface;
     archivocvPostulante?: ArchivoCVInterface;
 }
+
+export interface empleoPausa {
+    idPuestoTrabajo: number;
+}

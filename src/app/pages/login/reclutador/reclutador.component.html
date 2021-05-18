@@ -88,17 +88,17 @@
                 <!-- Menu de navegación -->   
                 <ul class="navigation-menu">
                     <li><a href="/index">Inicio</a></li>
-                    <li><a href="/home/show/all">Empleos</a></li>
+                    <li><a href="/postulante/home/show/all">Empleos</a></li>
                     <li class="has-submenu">
                         <a href="javascript:void(0)">Mi Cuenta</a><span class="menu-arrow"></span>
                         <ul class="submenu">
-                            <li><a href="/login/reclutador/{{idReclutador}}/profile/basicinfo">Mi Perfil</a></li>
-                            <li><a href="">Mis Postulaciones</a></li>
+                            <li><a href="/login/reclutador/{{CurrentUser.idReclutador}}/profile/basicinfo">Mi Perfil</a></li>
+                            <li><a href="mispostulaciones.html">Mis Postulaciones</a></li>
                         </ul>
                     </li>
 
                     <li>
-                        <a href="">Contáctanos</a>
+                        <a href="contactanos.html">Contáctanos</a>
                     </li>
                 </ul><!--Fin del Menu de navegación -->
             </div><!---->
@@ -114,7 +114,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="candidates-profile-details text-center">
-                        <img src="{{ Usuario.logoempresaReclutador }}" height="150" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
+                        <img src="{{Usuario.logoempresaReclutador}}" height="150" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
                         <h5 class="text-white mb-2">Partnertech</h5>
                         <p class="text-white-50 h6 mb-2">{{CurrentUserparam.descripcionReclutador}}</p>
 
@@ -125,45 +125,56 @@
                         </button>
                         <!-- Modal Corregido -->
                         <ng-template #contenido let-modal>
-                            <div class="modal-header">
-                                <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                            <div  id="modalKaizenpostulante" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog modal-dialog-centered" style="max-width: 100%" role="document">
+                                    <div class="modal-content">                            
+                                        <div class="modal-header">
+                                            <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">                                    
+                                            <form  [formGroup]="reclutadorModalForm" (ngSubmit)="updateUserparam()">
+                                                <div class="form-group">
+                                                    <label for="exampleFormControlTextarea1">Perfil Empresarial</label>
+                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                                    formControlName="descripcionUsuario"  [(ngModel)]= "CurrentUserparam.descripcionReclutador"></textarea>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="inputAddress" class="col-sm-2 col-form-label">Dirección</label>
+                                                    <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="inputAddress" placeholder="Ingresa tu Dirección"
+                                                    formControlName="direccionUsuario" [(ngModel)]="CurrentUserparam.direccionReclutador">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="inputphone" class="col-sm-2 col-form-label">Teléfono</label>
+                                                    <div class="col-sm-10">
+                                                    <input type="tel" class="form-control" id="inputphone" placeholder="Ingresa tu número de teléfono"
+                                                    formControlName="telefonoUsuario" [(ngModel)]="CurrentUserparam.telefonoReclutador">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="inputcv" class="col-sm-2 col-form-label">Nombre del Contactante</label>
+                                                    <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="inputcv" placeholder="Ingresa el Nombre del Contactante" 
+                                                    accept=".pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                                    formControlName="nombrecontactanteUsuario" [(ngModel)]= "CurrentUserparam.nombrecontactanteReclutador">
+                                                    </div>
+                                                </div>                                            
+                                                <input type="hidden" class="form-control"  formControlName="nombreUsuario" [(ngModel)]="CurrentUserparam.nombreReclutador" required>                        
+                                                <input type="hidden" class="form-control"  formControlName="ciudadUsuario" [(ngModel)]="CurrentUserparam.ciudadReclutador" required>                      
+                                                <input type="hidden" class="form-control"  formControlName="tituloUsuario" [(ngModel)]="CurrentUserparam.tituloReclutador" required>                               
+                                                <input type="hidden" class="form-control" id="inputAddress" placeholder="Ingresa tu Correo Electrónico">
+                                                <input type="hidden" class="form-control"  formControlName="tamanioempresaUsuario" [(ngModel)]="TamanioEmpresaReclutador" required>
+                                            
+                                                <button type="submit" class="btn btn-success" >Ok!</button>
+                                            </form>                                                
+                                        </div>                                    
+                                    </div>
+                                </div>
                             </div>
-                            <div class="modal-body">
-                        
-                                <form  [formGroup]="reclutadorModalForm" (ngSubmit)="updateUserparam()">
-                                    <p>Nombre Usuario: </p>
-                                    <input type="text" class="form-control"  formControlName="nombreUsuario" [(ngModel)]="CurrentUserparam.nombreReclutador" required>
-                                    <hr>
-                                    <p>Ciudad Usuario: </p>
-                                    <input type="text" class="form-control"  formControlName="ciudadUsuario" [(ngModel)]="CurrentUserparam.ciudadReclutador" required>
-                                    <hr>
-                                    <p>Nombre Usuario: </p>
-                                    <input type="text" class="form-control"  formControlName="nombrecontactanteUsuario" [(ngModel)]= "CurrentUserparam.nombrecontactanteReclutador" required>
-                                    <hr>
-                                    <p>Descripcion Usuario: </p>
-                                    <input type="text" class="form-control"  formControlName="descripcionUsuario"  [(ngModel)]= "CurrentUserparam.descripcionReclutador" required>
-                                    <hr>
-                                    <p>Direccion Usuario: </p>
-                                    <input type="text" class="form-control"  formControlName="direccionUsuario" [(ngModel)]="CurrentUserparam.direccionReclutador" required>
-                                    <hr>
-                                    <p>Telefono Usuario: </p>
-                                    <input type="text" class="form-control"  formControlName="telefonoUsuario" [(ngModel)]="CurrentUserparam.telefonoReclutador" required>
-                                    <hr>
-                                    <p>Titulo Usuario: </p>
-                                    <input type="text" class="form-control"  formControlName="tituloUsuario" [(ngModel)]="CurrentUserparam.tituloReclutador" required>
-                                    <hr>
-                                    <p>Tamaño Empresa: </p>
-                                    <input type="text" class="form-control"  formControlName="tamanioempresaUsuario" [(ngModel)]="TamanioEmpresaReclutador" required>
-                                    <hr>
-                                        <button type="submit" class="btn btn-success" >Ok!</button>
-                                    </form>
-                                    
-                                </div>
-                                <div class="modal-footer">
-                                </div>
-                            </ng-template>
+                        </ng-template>
                         <!-- Fin Modal Corregido -->
                     </div>
                 </div>
@@ -244,27 +255,12 @@
                     <button type="button" class="btn btn-success" (click)="Salir()" >
                         Salir
                     </button>
-                </div>        
+                </div>  
+                      
             </div>        
-        
-                
-
-
             <div class="row">
-                <div class="col-lg-12 mt-4 pt-2">
-                    <h4 class="text-dark">Empleos activos :</h4>
-                </div>
+                <app-empleos></app-empleos>
             </div>
-
-            
-
-
-            <div class="row">
-                <div class="col-lg-12 mt-4 pt-2">
-                    <h4 class="text-dark">Empleos Publicados :</h4>
-                </div>
-            </div>
-
         </div>
     </section>
     <!-- Fin Perfil --> 

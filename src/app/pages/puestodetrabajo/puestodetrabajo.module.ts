@@ -13,6 +13,8 @@ import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { RouterModule} from '@angular/router';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ListacandidatosComponent } from './listacandidatos/listacandidatos.component';
+
 
 
 
@@ -23,7 +25,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     PostulacionComponent,
     ListaTrabajosComponent,
     HomeComponent,
-    DetalletrabajoComponent
+    DetalletrabajoComponent,
+    ListacandidatosComponent
   ],
   imports: [
     CommonModule,

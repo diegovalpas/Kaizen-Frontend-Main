@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {ReclutadorSigninRequest} from 'src/app/pages/signin/reclutador/reclutador-signin-interface';
+import {authInterceptorProviders} from 'src/app/util/auth.interceptor'
 import { ReclutadorUpdate } from './reclutador-interface';
 
 const baseUrl = 'https://backend-kaizentalent.herokuapp.com/api/reclutador';
+
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };

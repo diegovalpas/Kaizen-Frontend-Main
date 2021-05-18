@@ -5,6 +5,7 @@ import { PostulanteSigninRequest } from './postulante-signin-interface';
 
 const AUTH_API = 'https://backend-kaizentalent.herokuapp.com/api/postulante/signin';
 
+
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
