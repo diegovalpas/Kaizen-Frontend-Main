@@ -138,20 +138,20 @@
                                                 <div class="form-group">
                                                     <label for="exampleFormControlTextarea1">Perfil Empresarial</label>
                                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                                    formControlName="descripcionUsuario"  [(ngModel)]= "CurrentUserparam.descripcionReclutador"></textarea>
+                                                    formControlName="descripcionUsuario"  [ngModel]= "CurrentUserparam.descripcionReclutador"></textarea>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="inputAddress" class="col-sm-2 col-form-label">Dirección</label>
                                                     <div class="col-sm-10">
                                                     <input type="text" class="form-control" id="inputAddress" placeholder="Ingresa tu Dirección"
-                                                    formControlName="direccionUsuario" [(ngModel)]="CurrentUserparam.direccionReclutador">
+                                                    formControlName="direccionUsuario" [ngModel]="CurrentUserparam.direccionReclutador">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="inputphone" class="col-sm-2 col-form-label">Teléfono</label>
                                                     <div class="col-sm-10">
                                                     <input type="tel" class="form-control" id="inputphone" placeholder="Ingresa tu número de teléfono"
-                                                    formControlName="telefonoUsuario" [(ngModel)]="CurrentUserparam.telefonoReclutador">
+                                                    formControlName="telefonoUsuario" [ngModel]="CurrentUserparam.telefonoReclutador">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -159,14 +159,14 @@
                                                     <div class="col-sm-10">
                                                     <input type="text" class="form-control" id="inputcv" placeholder="Ingresa el Nombre del Contactante" 
                                                     accept=".pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                                                    formControlName="nombrecontactanteUsuario" [(ngModel)]= "CurrentUserparam.nombrecontactanteReclutador">
+                                                    formControlName="nombrecontactanteUsuario" [ngModel]= "CurrentUserparam.nombrecontactanteReclutador">
                                                     </div>
                                                 </div>                                            
-                                                <input type="hidden" class="form-control"  formControlName="nombreUsuario" [(ngModel)]="CurrentUserparam.nombreReclutador" required>                        
-                                                <input type="hidden" class="form-control"  formControlName="ciudadUsuario" [(ngModel)]="CurrentUserparam.ciudadReclutador" required>                      
-                                                <input type="hidden" class="form-control"  formControlName="tituloUsuario" [(ngModel)]="CurrentUserparam.tituloReclutador" required>                               
+                                                <input type="hidden" class="form-control"  formControlName="nombreUsuario" [ngModel]="CurrentUserparam.nombreReclutador" required>                        
+                                                <input type="hidden" class="form-control"  formControlName="ciudadUsuario" [ngModel]="CurrentUserparam.ciudadReclutador" required>                      
+                                                <input type="hidden" class="form-control"  formControlName="tituloUsuario" [ngModel]="CurrentUserparam.tituloReclutador" required>                               
                                                 <input type="hidden" class="form-control" id="inputAddress" placeholder="Ingresa tu Correo Electrónico">
-                                                <input type="hidden" class="form-control"  formControlName="tamanioempresaUsuario" [(ngModel)]="TamanioEmpresaReclutador" required>
+                                                <input type="hidden" class="form-control"  formControlName="tamanioempresaUsuario" [ngModel]="TamanioEmpresaReclutador" required>
                                             
                                                 <button type="submit" class="btn btn-success" >Ok!</button>
                                             </form>                                                

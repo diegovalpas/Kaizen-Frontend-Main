@@ -79,7 +79,7 @@
                         <td ><a style="cursor: pointer;" [class.active]=" lista == ListEmpleo" (click)="Seleccionarempleo(lista)" (click)="verDetalle()">Ir a publicación</a></td>
                         <td><a style="cursor: pointer;" [class.active]=" lista == ListEmpleo" (click)="Seleccionarempleo(lista)" (click)="saveEmpleobyPostulante()" >Ver Candidatos</a></td>
                         <td><a href="editarempleos.html" class="edit" ><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
+                            <a href="#deleteEmployeeModal" [class.active]=" lista == ListEmpleo" (click)="Seleccionarempleo(lista)" (click)="saveEmpleotokenpausa()" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
                             <a href="#pauseEmployeeModal" [class.active]=" lista == ListEmpleo" (click)="Seleccionarempleo(lista)" (click)="saveEmpleotokenpausa()" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Pausar">&#xe034;</i></a>
                         </td>
                     </tr>
@@ -132,8 +132,8 @@
                          <td><a style="cursor: pointer;" [class.active]=" lista == ListEmpleo" (click)="Seleccionarempleo(lista)" (click)="verDetalle()">Ir a publicación</a></td>
                          <td><a style="cursor: pointer;" [class.active]=" lista == ListEmpleo" (click)="Seleccionarempleo(lista)" (click)="saveEmpleobyPostulante()">Ver Candidatos</a></td>
                          <td><a href="editarempleos.html" class="edit" ><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
-                             <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
-                             <a href="#reanudarEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons play_arrow" data-toggle="tooltip" title="Reanudar">&#xe037;</i></a>
+                             <a href="#deleteEmployeeModal" [class.active]=" lista == ListEmpleo" (click)="Seleccionarempleo(lista)" (click)="saveEmpleotokenpausa()" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
+                             <a href="#reanudarEmployeeModal" [class.active]=" lista == ListEmpleo" (click)="Seleccionarempleo(lista)" (click)="saveEmpleotokenpausa()"  class="delete" data-toggle="modal"><i class="material-icons play_arrow" data-toggle="tooltip" title="Reanudar">&#xe037;</i></a>
                          </td>
                      </tr>
                  </tbody>
@@ -237,7 +237,7 @@
        <div id="deleteEmployeeModal" class="modal fade">
         <div class="modal-dialog">
          <div class="modal-content">
-          <form>
+          <form (ngSubmit)="BorrarEmpleo()">
            <div class="modal-header">      
             <h4 class="modal-title">Eliminar Publicación</h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -256,11 +256,10 @@
        </div>
        <!-- Pausar Publicación de Empleo -->
 
-       <div id="pauseEmployeeModal" class="modal fade" ngSubmit>
+       <div id="pauseEmployeeModal" class="modal fade" ngSubmit >
         <div class="modal-dialog">
          <div class="modal-content">
-          <form [formGroup]="empleomodalForm" (ngSubmit)="updatePausaEmpleo()">
-           <input type="text" name="idPuestoTrabajo" formControlName="idPuestoTrabajo" [(ngModel)]="ListEmpleo.idPuestoTrabajo">
+          <form (ngSubmit)="PausaEmpleo()">
            <div class="modal-header">      
             <h4 class="modal-title">Pausar Publicación</h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -278,12 +277,13 @@
         </div>
        </div>
 
+
        <!-- Reanudar Publicación de Empleo -->
 
        <div id="reanudarEmployeeModal" class="modal fade">
         <div class="modal-dialog">
          <div class="modal-content">
-          <form>
+          <form (ngSubmit)="ActivarEmpleo()">
            <div class="modal-header">      
             <h4 class="modal-title">Reanudar Publicación</h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

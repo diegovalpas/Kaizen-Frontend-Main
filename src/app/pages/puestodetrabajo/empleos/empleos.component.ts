@@ -64,14 +64,15 @@ export class EmpleosComponent implements OnInit {
     })
   }
 
-  updatePausaEmpleo(){
+  PausaEmpleo(){
     var trabajo:empleoPausa = {
-      idPuestoTrabajo: this.empleomodalForm.controls['idPuestoTrabajo'].value
+      idPuestoTrabajo: this.ListEmpleo.idPuestoTrabajo
     }
     this.idpt = this.token.getTokenjob()
     this.empleoservice.putPublicacionpausa(trabajo).subscribe(data => {
       data
       console.log(data);
+      window.location.reload();
     });
   }
 
@@ -94,6 +95,27 @@ export class EmpleosComponent implements OnInit {
   verDetalle(){
     this.token.saveTokenjob(this.ListEmpleo.idPuestoTrabajo);
     this.route.navigate(['puestotrabajo/'+this.ListEmpleo.idPuestoTrabajo+'/detail']);
+  }
+
+  ActivarEmpleo(){
+    var trabajo:empleoPausa = {
+      idPuestoTrabajo: this.ListEmpleo.idPuestoTrabajo
+    }
+    console.log(trabajo.idPuestoTrabajo)
+    this.idpt = this.token.getTokenjob()
+    this.empleoservice.putPublicacionactivar(trabajo).subscribe(data => {
+      data
+    });
+    window.location.reload();
+  }
+
+  BorrarEmpleo(){
+    
+    this.idpt = this.token.getTokenjob()
+    this.empleoservice.deleteEmpleo(this.idpt).subscribe(data => {
+      data
+    });
+    window.location.reload();
   }
 
 }

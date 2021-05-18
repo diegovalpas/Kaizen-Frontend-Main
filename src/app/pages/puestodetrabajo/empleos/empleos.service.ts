@@ -9,6 +9,11 @@ const noUrl = 'https://backend-kaizentalent.herokuapp.com/api/reclutador/profile
 
 const pausar = 'https://backend-kaizentalent.herokuapp.com/api/publicacion/update/estado/pausa';
 
+const activar ='https://backend-kaizentalent.herokuapp.com/api/publicacion/update/estado/activo';
+
+const borrar = 'https://backend-kaizentalent.herokuapp.com/api/publicacion';
+
+
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -43,4 +48,16 @@ export class EmpleosService {
                         idpausar,
                         httpOptions);               
   }
+  putPublicacionactivar(idactivar:any): Observable<any>{
+
+    return this.http.put(activar,
+                         idactivar,
+                         httpOptions);               
+  }
+
+  deleteEmpleo(idborrar: any) : Observable<any> {
+    return this.http.delete(`${borrar}/${idborrar}/delete`);
+  }
+
+
 }
