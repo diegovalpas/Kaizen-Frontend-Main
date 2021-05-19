@@ -134,7 +134,7 @@
                                             <div class="col-lg-3 col-md-6">
                                                 <div class="registration-form-box">
                                                     <i class="fa fa-location-arrow"></i>
-                                                    <input id="select-country"  type="form-control" class="form-control demo-default" list="ciudad" placeholder="Ciudad" 
+                                                    <input id="select-country"  type="form-control" class="form-control rounded registration-input-box" list="ciudad" placeholder="Ciudad" 
                                                     formControlName="ciudadUsuario" >
                                                     <datalist id="ciudad">
                                                         <option *ngFor="let ciudad of Ciudades" value="{{ciudad.value}}">{{ciudad.text}}</option>                           
@@ -145,8 +145,8 @@
                                             <div class="col-lg-3 col-md-6">
                                                 <div class="registration-form-box">
                                                     <i class="fa fa-list-alt"></i>
-                                                    <input id="select-country"  type="form-control" class="form-control demo-default" list="categoria" placeholder="Categoría" 
-                                                    formControlName="categoriaUsuario" >
+                                                    <input id="select-country"  type="form-control" class="form-control rounded registration-input-box" list="categoria" placeholder="Categoría" 
+                                                    formControlName="categoriaUsuario">
                                                     <datalist id="categoria">
                                                         <option *ngFor="let categoria of Categorias" value="{{categoria.value}}">{{categoria.text}}</option>                           
                                                     </datalist>
@@ -261,7 +261,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div style="margin-left: 20%; margin-top: 40px;">
+                        <div style="text-align: center;">
                             <pagination-controls (pageChange)="p = $event"></pagination-controls> 
                         </div>
                         

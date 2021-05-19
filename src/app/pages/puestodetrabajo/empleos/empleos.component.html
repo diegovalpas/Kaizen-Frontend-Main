@@ -72,16 +72,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let lista of ListEmpleo">
-                        <td>{{lista.nombrePuestoTrabajo}}</td>
-                        <td>{{lista.estadoPuestoTrabajo}}</td>
-                        <td>{{lista.cantidadPostulantes}}</td>
-                        <td ><a style="cursor: pointer;" [class.active]=" lista == ListEmpleo" (click)="Seleccionarempleo(lista)" (click)="verDetalle()">Ir a publicación</a></td>
-                        <td><a style="cursor: pointer;" [class.active]=" lista == ListEmpleo" (click)="Seleccionarempleo(lista)" (click)="saveEmpleobyPostulante()" >Ver Candidatos</a></td>
-                        <td><a href="editarempleos.html" class="edit" ><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" [class.active]=" lista == ListEmpleo" (click)="Seleccionarempleo(lista)" (click)="saveEmpleotokenpausa()" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
-                            <a href="#pauseEmployeeModal" [class.active]=" lista == ListEmpleo" (click)="Seleccionarempleo(lista)" (click)="saveEmpleotokenpausa()" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Pausar">&#xe034;</i></a>
+                    <tr *ngFor="let listactivo of ListActive">
+                        <td>{{listactivo.nombrePuestoTrabajo}}</td>
+                        <td>{{listactivo.estadoPuestoTrabajo}}</td>
+                        <td>{{listactivo.cantidadPostulantes}}</td>
+                        <td ><a style="cursor: pointer;" [class.active]="listactivo == ListEmpleoCurrent" (click)="Seleccionarempleo(listactivo)" (click)="verDetalle()" >Ir a publicación</a></td>
+                        <td><a style="cursor: pointer;" [class.active]="listactivo == ListEmpleoCurrent" (click)="Seleccionarempleo(listactivo)" (click)="verPostulantes()">Ver Candidatos</a></td>
+                        <td [class.active]="listactivo == ListEmpleoCurrent" (click)="Seleccionarempleo(listactivo)">
+                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"> <i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
+                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
+                            <a href="#pauseEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Pausar">&#xe034;</i></a>
                         </td>
+                        
                     </tr>
                     
                 </tbody>
@@ -113,7 +115,7 @@
         <br> 
         <div class="row">
             <div class="col-lg-12">
-             <table id="example" class="table table-bordered  display nowrap" cellspacing="0" width="100%">
+             <table id="example2" class="table table-bordered  display nowrap" cellspacing="0" width="100%">
                  <thead>
                      <tr>
                          <th>Nombre del Empleo </th>
@@ -125,15 +127,16 @@
                      </tr>
                  </thead>
                  <tbody>
-                     <tr *ngFor="let lista of ListEmpleopausa">
-                        <td>{{lista.nombrePuestoTrabajo}}</td>
-                        <td>{{lista.estadoPuestoTrabajo}}</td>
-                        <td>{{lista.cantidadPostulantes}}</td>
-                         <td><a style="cursor: pointer;" [class.active]=" lista == ListEmpleo" (click)="Seleccionarempleo(lista)" (click)="verDetalle()">Ir a publicación</a></td>
-                         <td><a style="cursor: pointer;" [class.active]=" lista == ListEmpleo" (click)="Seleccionarempleo(lista)" (click)="saveEmpleobyPostulante()">Ver Candidatos</a></td>
-                         <td><a href="editarempleos.html" class="edit" ><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
-                             <a href="#deleteEmployeeModal" [class.active]=" lista == ListEmpleo" (click)="Seleccionarempleo(lista)" (click)="saveEmpleotokenpausa()" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
-                             <a href="#reanudarEmployeeModal" [class.active]=" lista == ListEmpleo" (click)="Seleccionarempleo(lista)" (click)="saveEmpleotokenpausa()"  class="delete" data-toggle="modal"><i class="material-icons play_arrow" data-toggle="tooltip" title="Reanudar">&#xe037;</i></a>
+                     <tr *ngFor="let listpausa of ListPaused">
+                        <td>{{listpausa.nombrePuestoTrabajo}}</td>
+                        <td>{{listpausa.estadoPuestoTrabajo}}</td>
+                        <td>{{listpausa.cantidadPostulantes}}</td>
+                         <td><a style="cursor: pointer;" [class.active]="listpausa == ListEmpleoCurrent" (click)="Seleccionarempleo(listpausa)" (click)="verDetalle()" >Ir a publicación</a></td>
+                         <td><a style="cursor: pointer;" [class.active]="listpausa == ListEmpleoCurrent" (click)="Seleccionarempleo(listpausa)" (click)="verPostulantes()">Ver Candidatos</a></td>
+                         <td [class.active]="listpausa == ListEmpleoCurrent" (click)="Seleccionarempleo(listpausa)">
+                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"> <i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
+                             <a href="#deleteEmployeeModal"   class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
+                             <a href="#reanudarEmployeeModal"   class="delete" data-toggle="modal"><i class="material-icons play_arrow" data-toggle="tooltip" title="Reanudar">&#xe037;</i></a>
                          </td>
                      </tr>
                  </tbody>
@@ -158,7 +161,7 @@
          <br> 
          <div class="row">
              <div class="col-lg-12">
-              <table id="example" class="table table-bordered  display nowrap" cellspacing="0" width="100%">
+              <table id="example2" class="table table-bordered  display nowrap" cellspacing="0" width="100%">
                   <thead>
                       <tr>
                           <th>Nombre del Empleo </th>
@@ -170,13 +173,14 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr *ngFor="let lista of ListEmpleonoactivo">
-                         <td>{{lista.nombrePuestoTrabajo}}</td>
-                         <td>{{lista.estadoPuestoTrabajo}}</td>
-                         <td>{{lista.cantidadPostulantes}}</td>
-                          <td><a style="cursor: pointer;" [class.active]=" lista == ListEmpleo" (click)="Seleccionarempleo(lista)" (click)="verDetalle()">Ir a publicación</a></td>
-                          <td><a style="cursor: pointer;" [class.active]=" lista == ListEmpleo" (click)="Seleccionarempleo(lista)" (click)="saveEmpleobyPostulante()">Ver Candidatos</a></td>
-                          <td><a href="editarempleos.html" class="edit" ><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
+                      <tr *ngFor="let listnoactivo of ListNoActive">
+                         <td>{{listnoactivo.nombrePuestoTrabajo}}</td>
+                         <td>{{listnoactivo.estadoPuestoTrabajo}}</td>
+                         <td>{{listnoactivo.cantidadPostulantes}}</td>
+                          <td><a style="cursor: pointer;" [class.active]="listnoactivo == ListEmpleoCurrent" (click)="Seleccionarempleo(listnoactivo)" (click)="verDetalle()">Ir a publicación</a></td>
+                          <td><a style="cursor: pointer;" [class.active]="listnoactivo == ListEmpleoCurrent" (click)="Seleccionarempleo(listnoactivo)" (click)="verPostulantes()">Ver Candidatos</a></td>
+                          <td [class.active]="listnoactivo == ListEmpleoCurrent" (click)="Seleccionarempleo(listnoactivo)">
+                              <a href="editarempleos.html" class="edit" ><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
                               <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
                               <a href="#reanudarEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons play_arrow" data-toggle="tooltip" title="Reanudar">&#xe037;</i></a>
                           </td>
@@ -202,37 +206,136 @@
 
     <!-- FIN EMPLEOS PUBLICADOS -->
 
-    <!-- Modal de Editar HTML -->
     <div id="editEmployeeModal" class="modal fade">
-        <div class="modal-dialog">
-         <div class="modal-content">
-          <form>
-           <div class="modal-header">      
-            <h4 class="modal-title">Editar Publicación</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-           </div>
-           <div class="modal-body">     
-            <div class="form-group">
-             <label>Título de Empleo</label>
-             <input type="text" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label>Descripción</label>
-              <textarea class="form-control" required></textarea>
-             </div>
-            <div class="form-group">
-             <label>Requisitos</label>
-             <textarea class="form-control" required></textarea>
-            </div>    
-           </div>
-           <div class="modal-footer">
-            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-            <input type="submit" class="btn btn-info" value="Guardar">
-           </div>
-          </form>
-         </div>
-        </div>
-       </div>
+                            <div class="modal-dialog">
+                             <div class="modal-content">
+                                <form [formGroup]="puestostrabajoform" (ngSubmit)="ActualizarEmpleo()">
+                              <h4 class="text-dark mb-3">Publicar Empleo :</h4>
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <div class="form-group app-label mt-2">
+                                          <label class="text-muted">Título del puesto </label>
+                                          <input id="company-name" type="text" class="form-control resume" placeholder="" formControlName="nombrePuestoTrabajo" [ngModel]="ListEmpleoCurrent.nombrePuestoTrabajo" >
+                                      </div>
+                                  </div>
+                              </div>
+                    
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <div class="form-group app-label mt-2">
+                                          <label class="text-muted">Tipo de Jornada</label>
+                                          <div class="form-button">
+                                              <input id="select-country"  type="form-control" class="form-control demo-default" list="tpostulacion" placeholder="Tipo de Jordana" 
+                                                  formControlName="tipojornadaPuestoTrabajo"  >
+                                              <datalist id="tpostulacion">
+                                                  <option *ngFor="let tpostulacion of TipoPostulacion" value="{{tpostulacion.value}}">{{tpostulacion.text}}</option>                           
+                                              </datalist>
+                                          </div>                                            
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <div class="form-group app-label mt-2">
+                                          <label class="text-muted">Ciudad</label>
+                                          <div class="form-button">
+                                              <input id="select-country"  type="form-control" class="form-control demo-default" list="ciudad" placeholder="Ciudad" 
+                                                  formControlName="ciudadPuestoTrabajo"  >
+                                              <datalist id="ciudad">
+                                                  <option *ngFor="let ciudad of Ciudades" value="{{ciudad.value}}">{{ciudad.text}}</option>                           
+                                              </datalist>
+                                          </div>
+                                      </div>
+                                  </div>                                    
+                              </div>
+                    
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <div class="form-group app-label mt-2">
+                                          <label class="text-muted">Sueldo</label>
+                                          <input id="city" type="text" class="form-control resume" placeholder="" formControlName="sueldoPuestoTrabajo" >
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <div class="form-group app-label mt-2">
+                                          <label class="text-muted">Categoría de Empleo</label>
+                                          <div class="form-button">
+                                              <input id="select-country"  type="form-control" class="form-control demo-default" list="categoria" placeholder="Categoría" 
+                                                  formControlName="categoriaPuestoTrabajo"  >
+                                              <datalist id="categoria">
+                                                  <option *ngFor="let categoria of Categorias" value="{{categoria.value}}">{{categoria.text}}</option>                           
+                                              </datalist>
+                                          </div>
+                                      </div>
+                                  </div>                                   
+                              </div>
+                    
+                    
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <div class="form-group app-label mt-2">
+                                          <label class="text-muted">Años de Experiencia</label>
+                                          <div class="form-button">
+                                              <input id="select-country"  type="form-control" class="form-control demo-default" list="experiencia" placeholder="Experiencia" 
+                                                  formControlName="experienciaPuestoTrabajo"  >
+                                              <datalist id="experiencia">
+                                                  <option *ngFor="let experiencia of Experiencia" value="{{experiencia.value}}" >{{experiencia.text}}</option>                           
+                                              </datalist>
+                                          </div>
+                                      </div>
+                                  </div>
+                    
+                                  <div class="col-md-6">
+                                      <div class="form-group app-label mt-2">
+                                          <label class="text-muted"></label>
+                                          <div class="form-button">
+                                              <input id="select-country" type="hidden" class="form-control demo-default" list="publicacion" placeholder="Tiempo de publicación" 
+                                              formControlName="periodopublicacionPuestoTrabajo"  >
+                                              <datalist id="publicacion">
+                                                  <option *ngFor="let publicacion of Publicacion" value="{{publicacion.value}}" >{{publicacion.text}}</option>                           
+                                              </datalist>
+                                          </div>
+                                      </div> 
+                                  </div>
+                              </div>
+                    
+                    
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <div class="form-group app-label mt-2">
+                                          <label class="text-muted">Trabajo Remoto</label>
+                                          <div class="form-button">
+                                              <input id="select-country"  type="form-control" class="form-control demo-default" list="remoto" placeholder="Trabajo Remoto" 
+                                                  formControlName="trabajoremotoPuestoTrabajo" >
+                                              <datalist id="remoto">
+                                                  <option *ngFor="let remoto of Remoto" >{{remoto.text}}</option>                           
+                                              </datalist>
+                                          </div>
+                                      </div> 
+                                  </div>
+                    
+                              </div>
+                    
+                              <div class="row">
+                              </div>
+                    
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <div class="form-group app-label mt-2">
+                                          <label class="text-muted">Descripción del Empleo</label>
+                                          <textarea id="description" rows="6" class="form-control resume" placeholder="" formControlName="descripcionPuestoTrabajo" ></textarea>
+                                      </div>
+                                  </div>
+                              </div>
+                    
+                              <div class="row">
+                                  <div class="col-lg-12 mt-2">
+                                      <input href="#" class="btn btn-primary" type="submit" value="Actualizar Empleo">
+                                  </div>
+                              </div>
+                          </form>
+                             </div>
+                            </div>
+                        </div>
+    
        <!-- Delete Modal HTML -->
        <div id="deleteEmployeeModal" class="modal fade">
         <div class="modal-dialog">
@@ -256,7 +359,7 @@
        </div>
        <!-- Pausar Publicación de Empleo -->
 
-       <div id="pauseEmployeeModal" class="modal fade" ngSubmit >
+       <div id="pauseEmployeeModal" class="modal fade">
         <div class="modal-dialog">
          <div class="modal-content">
           <form (ngSubmit)="PausaEmpleo()">
@@ -304,27 +407,8 @@
     <!-- JavaScript -->
     <!-- jQuery , Popper.js, Bootstrap JS -->
    
-    
-
       
-    <script>
-    $(document).ready(function() {
-        $('#example').DataTable({
-            responsive: true
-        });
-    } );  
     
-    </script>
-
-<script>
-    $(document).ready(function() {
-        $('#example2').DataTable({
-            responsive: true
-        });
-    } );  
-    
-    </script>
-      
     <!-- Inicio del footer -->
     
     <!-- Fin del footer -->

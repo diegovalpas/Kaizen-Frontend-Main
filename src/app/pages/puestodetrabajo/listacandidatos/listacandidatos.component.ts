@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {EmpleosService} from 'src/app/pages/puestodetrabajo/empleos/empleos.service';
 import {TokenStorageService} from 'src/app/util/token-storage.service';
+import {Router} from '@angular/router'
 
 @Component({
   selector: 'app-listacandidatos',
@@ -10,19 +11,30 @@ import {TokenStorageService} from 'src/app/util/token-storage.service';
 export class ListacandidatosComponent implements OnInit {
   ListCandidatos: any = [];
   Listprofile: any = [];
+  ListCandidatosCurrent: any = [];
 
-  constructor(private empleoservice:EmpleosService, private token:TokenStorageService) { }
+  constructor(private empleoservice:EmpleosService, private token:TokenStorageService,private route:Router) { }
 
   ngOnInit(): void {
-    this.getEmpleobyPostulante();
+    this.getPostulantes();
   }
 
-  getEmpleobyPostulante(){
+  getPostulantes(){
     this.empleoservice.getPublicacionbyPostulante(this.token.getTokenjob()).subscribe(data => {
       this.ListCandidatos = data;
       this.Listprofile = this.ListCandidatos.postulantesPublicacion;
       console.log(this.ListCandidatos);
     })
+  }
+
+  Seleccionarcandidato(lista:any) {
+    this.ListCandidatosCurrent = lista;
+    console.log(this.ListCandidatosCurrent);
+    this.token.saveUsuarioPerfil(this.ListCandidatosCurrent.idPostulante);
+  }
+
+  redirect(){
+    this.route.navigate(['/perfilcandidato']);
   }
 
 }

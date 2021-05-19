@@ -13,6 +13,10 @@ const activar ='https://backend-kaizentalent.herokuapp.com/api/publicacion/updat
 
 const borrar = 'https://backend-kaizentalent.herokuapp.com/api/publicacion';
 
+const actualizar ='https://backend-kaizentalent.herokuapp.com/api/reclutador';
+
+const perfilpostu ='https://backend-kaizentalent.herokuapp.com/api/publicacion';
+
 
 
 const httpOptions = {
@@ -59,5 +63,13 @@ export class EmpleosService {
     return this.http.delete(`${borrar}/${idborrar}/delete`);
   }
 
+  putPublicacionUpdate(puestoTrabajo:any,  idreclutador:any, idactualizar:any): Observable<any>{
+    return this.http.put(`${actualizar}/${idreclutador}/publicacion/${idactualizar}/update`,
+                          puestoTrabajo,
+                          httpOptions);
+  }
 
+  getPostulantesByempleo(idpublicacion: any,idpostu:any) : Observable<any> {
+    return this.http.get(`${perfilpostu}/${idpublicacion}/postulante/${idpostu}/profile/basicinfo`);
+  }
 }

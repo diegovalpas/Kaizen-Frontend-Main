@@ -19,6 +19,7 @@ import { ListaTrabajosComponent } from './pages/puestodetrabajo/lista-trabajos/l
 import { HomeComponent } from './pages/puestodetrabajo/home/home.component';
 import {DetalletrabajoComponent} from './pages/puestodetrabajo/detalletrabajo/detalletrabajo.component'
 import {ListacandidatosComponent} from './pages/puestodetrabajo/listacandidatos/listacandidatos.component'
+import { ProfileComponent } from './pages/puestodetrabajo/profile/profile.component';
 
  
 const routes: Routes = [
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'index', component:HomeComponent},
   { path: 'puestotrabajo/:idPuestoTrabajo/detail', component:DetalletrabajoComponent},
   { path: 'listacandidatos', component:ListacandidatosComponent},
+  { path: 'perfilcandidato', component:ProfileComponent},
   { path: '', component:HomeComponent}
 ];
 

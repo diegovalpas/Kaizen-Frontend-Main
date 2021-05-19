@@ -5,6 +5,8 @@ const USER_KEY = 'auth-user';
 const JOB_KEY = 'idPuesto';
 const LOOKFOR_KEY = 'busqueda'
 
+const PROFILE_KEY = 'profile';
+
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +34,15 @@ export class TokenStorageService {
   public saveTokenjob(token: string): void {
     window.localStorage.removeItem(JOB_KEY);
     window.localStorage.setItem(JOB_KEY, token);
+  };
+
+  public saveUsuarioPerfil(token: string): void {
+    window.localStorage.removeItem(PROFILE_KEY);
+    window.localStorage.setItem(PROFILE_KEY, token);
+  };
+
+  public getUsuarioPerfil(): string | null {
+    return window.localStorage.getItem(PROFILE_KEY);
   };
 
   public getTokenjob(): string | null {

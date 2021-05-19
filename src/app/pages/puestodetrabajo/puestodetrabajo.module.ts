@@ -14,6 +14,7 @@ import { RouterModule} from '@angular/router';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ListacandidatosComponent } from './listacandidatos/listacandidatos.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -26,7 +27,8 @@ import { ListacandidatosComponent } from './listacandidatos/listacandidatos.comp
     ListaTrabajosComponent,
     HomeComponent,
     DetalletrabajoComponent,
-    ListacandidatosComponent
+    ListacandidatosComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,

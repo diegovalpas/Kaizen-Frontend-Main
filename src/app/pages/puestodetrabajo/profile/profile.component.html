@@ -1,0 +1,289 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mi Perfil - Kaizen Talent</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="José Soplin Roncal" />
+    <link rel="shortcut icon" href="/assets/images/favicon.ico">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+    <!--Material Icon -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.css" />
+    <!-- slectize css -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/selectize.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/nice-select.css" />
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/modal.css" />
+</head>
+<body>
+    <header id="topnav" class="defaultscroll scroll-active">
+        <!-- Inicio Tagline -->
+        <div class="tagline">
+            <div class="container">
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- Fin tagline-->
+
+        <!-- Inicio del Menu -->
+        <div class="container">
+            <!-- Contenedor del logo -->
+            <div>
+                <a href="index.html" class="logo">
+                    <img src="/assets/images/logolight.png" alt="" class="logo-light" height="36" />
+                    <img src="/assets/images/logo.png" alt="" class="logo-dark" height="36" />
+                </a>
+            </div>
+
+            <div class="menu-extras">
+                <div class="menu-item">
+                    <!-- Mobile menu -->
+                    <a class="navbar-toggle">
+                        <div class="lines">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </a>
+                    <!-- Fin del mobile menu-->
+                </div>
+            </div>
+    
+            <div id="navigation">
+                <!-- Menu de navegación -->   
+                <ul class="navigation-menu">
+                    <li><a href="/index">Inicio</a></li>
+                    <li><a href="/postulante/home/show/all">Empleos</a></li>
+                    <li class="has-submenu">
+                        <a href="javascript:void(0)">Mi Cuenta</a><span class="menu-arrow"></span>
+                        <ul class="submenu">
+                            <li><a href="/login/reclutador/{{CurrentUser.idPostulante}}/profile/basicinfo">Mi Perfil</a></li>
+                            <li><a href="mispostulaciones.html">Mis Postulaciones</a></li>
+                            
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="contactanos.html">Contáctanos</a>
+                    </li>
+                </ul><!--Fin del Menu de navegación -->
+            </div><!---->
+        </div><!--Fin del container-->
+        <!---->
+    </header>
+    <section class="bg-half page-next-level"> 
+        <div class="bg-overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="candidates-profile-details text-center">
+                        <img src="{{ CurrentUser.fotoperfilPostulante.urlImagen }}" height="150" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
+                        <h5 class="text-white mb-2">{{CurrentUser.nombrePostulante}}</h5>
+                        <p class="text-white-50 h6 mb-2">ESPECIALIDAD?</p>
+                        <br>
+                    </div>
+                    <!--  codigo anterior -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4 class="text-dark">Mi Perfil :</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 mt-3">
+                    <div class="border rounded p-4">
+                        <label for="">Nombre :</label><p class="text-muted">{{CurrentUser.nombrePostulante}}</p>
+                        <label for="">Apellido :</label><p class="text-muted">{{CurrentUser.apellidoPostulante}}</p>
+                        <label for="">Ciudad :</label><p class="text-muted">{{CurrentUser.ciudadPostulante}}</p>
+                        <label for="">Genero :</label><p class="text-muted">{{CurrentUser.generoPostulante}}</p>
+
+                        <ul class="list-inline pt-3 border-top mb-0">
+                            <li class="list-inline-item mr-3">
+                                <a href="" class="text-muted f-15 mb-0"><i class="mdi mdi-map-marker mr-2"></i>{{CurrentUser.direccionPostulante}}</a>
+                            </li>
+
+                            <li class="list-inline-item mr-3">
+                                <a href="" class="text-muted f-15 mb-0"><i class="mdi mdi-email mr-2"></i>{{CurrentUser.emailPostulante}}</a>
+                            </li>
+
+                            <li class="list-inline-item mr-3">
+                                <a href="" class="text-muted f-15 mb-0"><i class="mdi mdi-cellphone-iphone mr-2"></i>{{CurrentUser.telefonoPostulante}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 mt-4 pt-2">
+                    <h4 class="text-dark">Educación :</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mt-4 pt-5">
+                    <div class="border rounded candidates-profile-education text-center text-muted">
+                        <div class="profile-education-icon border rounded-pill bg-white text-primary">
+                            <i class="mdi mdi-36px mdi-school"></i>
+                        </div>
+                        <h6 class="text-uppercase f-17"><a href="#" class="text-muted">Universidad de Lima</a></h6>
+                        <p class="f-14 mb-1">Marzo 2014 - Diciembre 2020</p>
+                        <p class="pb-3 mb-0">Diploma en Finanzas Quanticas</p>
+                        
+                        <!--<p class="pt-3 border-top mb-0">:v</p>-->
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mt-4 pt-5">
+                    <div class="border rounded candidates-profile-education text-center text-muted">
+                        <div class="profile-education-icon border rounded-pill bg-white text-primary">
+                            <i class="mdi mdi-36px mdi-library"></i>
+                        </div>
+                        <h6 class="text-uppercase f-17"><a href="#" class="text-muted">Universidad del Pacífico</a></h6>
+                        <p class="f-14 mb-1">Agosto 2015 - Diciembre 2018</p>
+                        <p class="pb-3 mb-0">Maestría en finanzas quanticas</p>
+                        
+                        <!--<p class="pt-3 border-top mb-0">:v</p>-->
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mt-4 pt-5">
+                    <div class="border rounded candidates-profile-education text-center text-muted">
+                        <div class="profile-education-icon border rounded-pill bg-white text-primary">
+                            <i class="mdi mdi-36px mdi-briefcase-check"></i>
+                        </div>
+                        <h6 class="text-uppercase f-17"><a href="#" class="text-muted">Universidad de Arizona</a></h6>
+                        <p class="f-14 mb-1">Mayo 2018 - Abril 2019</p>
+                        <p class="pb-3 mb-0">Diploma en Contabilidad</p>
+                        
+                        <!--<p class="pt-3 border-top mb-0">:v</p>-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 mt-4 pt-2">
+                    <h4 class="text-dark">Experiencia Laboral :</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mt-3 mt-md-0 pt-3">
+                    <div class="border rounded job-list-box p-4">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="company-brand-logo text-center mb-4">
+                                    <img src="/assets/images/logopt.png" alt="" class="img-fluid mx-auto d-block">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-9">
+                                <div class="job-list-desc candidates-profile-exp-desc">
+                                    <h5 class="f-19 mb-2"><a href="#" class="text-dark">Partner Tech</a></h5>
+                                    <b><p class="text-muted mb-0 f-16">Frontend Developer</p></b>
+                                    <p class="text-muted mb-0 f-16">Enero 2016 - Julio 2017</p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mt-3 mt-md-0 pt-3">
+                    <div class="border rounded job-list-box p-4">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="company-brand-logo text-center mb-4">
+                                    <img src="/assets/images/logokaizen.png" alt="" class="img-fluid mx-auto d-block">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-9">
+                                <div class="job-list-desc candidates-profile-exp-desc">
+                                    <h5 class="f-19 mb-2"><a href="#" class="text-dark">Kaizen Talent</a></h5>
+                                    <b><p class="text-muted mb-0 f-16">Web Developer</p></b>
+                                    <p class="text-muted mb-0 f-16">Marzo 2015 - Agosto 2019</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>       
+        </div>
+       
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
+                    <a href="javascript:void(0)"><img src="/assets/images/logo.png" height="35" alt=""></a>
+                    <p class="mt-4">El lugar donde encontrarás tu siguiente empleo.</p>
+                    <ul class="social-icon social list-inline mb-0">
+                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
+                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="https://www.instagram.com/kaizen_talent" class="rounded"><i class="mdi mdi-instagram"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    <p class="text-white mb-4 footer-list-title">Acerca de nosotros</p>
+                    
+                    <ul class="list-unstyled footer-list">
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Nosotros</a></li>
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Responsabilidad Social</a></li>
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Trabaja con nosotros</a></li>
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    <p class="text-white mb-4 footer-list-title">Empleos</p>
+                    <ul class="list-unstyled footer-list">
+                        <li><a href="listaempleos.html" class="text-foot"><i class="mdi mdi-chevron-right"></i> Postula a un Empleo</a></li>
+                        <li><a href="loginreclutador.html" class="text-foot"><i class="mdi mdi-chevron-right"></i> Publica un empleo</a></li>
+                    </ul>
+                </div>
+            
+                <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    <p class="text-white mb-4 footer-list-title f-17">Horario Laboral</p>
+                    <ul class="list-unstyled text-foot mt-4 mb-0">
+                        <li>Lunes a Viernes de 8:30 am a 5 pm</li>
+                        <li class="mt-2">Sábados: 10:00 am a 3:00 pm</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Fin del footer -->
+    <hr>
+    <footer class="footer footer-bar">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="">
+                        <p class="mb-0">© 2021 Kaizen Talent. Diseñado por José Soplin por parte de Partner Tech.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+
+
+
+
+
+

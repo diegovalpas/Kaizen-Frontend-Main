@@ -55,8 +55,6 @@ export class ReclutadorComponent implements OnInit {
     
     var link = this.router.navigate(['/login/reclutador/'+this.CurrentUser.idReclutador+'/profile/basicinfo']);
 
-    console.log(this.CurrentUser2); 
-
     if( link!= link){
       this.router.navigate(['/signup/reclutador']);
     }else{

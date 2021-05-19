@@ -30,6 +30,6 @@ export interface PostulanteBasicInfoResponse {
     archivocvPostulante?: ArchivoCVInterface;
 }
 
-export interface empleoPausa {
+export interface idempleo {
     idPuestoTrabajo: number;
 }
