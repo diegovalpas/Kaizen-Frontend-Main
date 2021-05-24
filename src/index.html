@@ -44,7 +44,18 @@
 <body>
   <app-root></app-root>
 
-
+  <script>
+    var check = function() {
+      if (document.getElementById('password').value ==
+          document.getElementById('confirmar_password').value) {
+          document.getElementById('message').style.color = 'green';
+          document.getElementById('message').innerHTML = 'Las contraseñas Coinciden';
+      } else {
+              document.getElementById('message').style.color = 'red';
+          document.getElementById('message').innerHTML = 'Ambas contraseñas NO coinciden';
+      }
+  }
+</script>
 <style>
   table thead{
       background-color: #38ef7d;        

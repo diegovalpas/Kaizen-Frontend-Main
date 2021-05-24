@@ -180,6 +180,19 @@ export class ReclutadorComponent implements OnInit {
       }
     );
   }
+
+  EnviarLinkalEmail(){
+    
+    var usuario: any = {
+      emailUsuario: this.CurrentUser.emailReclutador
+    }
+
+    this.ReclutadorService.getEmail(usuario).subscribe(
+      data => {
+        this.tokens.saveToken(data.passwordresetToken);
+        console.log(data);
+    })
+  }
   
   autenticacion(){
 

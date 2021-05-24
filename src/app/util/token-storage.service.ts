@@ -4,7 +4,8 @@ const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
 const JOB_KEY = 'idPuesto';
 const LOOKFOR_KEY = 'busqueda'
-
+const EXP_KEY = 'exp';
+const EDU_KEY = 'education'
 const PROFILE_KEY = 'profile';
 
 
@@ -81,4 +82,22 @@ export class TokenStorageService {
 
     return {};
   }
+
+  public saveExp(exp: string): void {
+    window.localStorage.removeItem(EXP_KEY);
+    window.localStorage.setItem(EXP_KEY, exp);
+  };
+
+  public getExp(): string | null {
+    return window.localStorage.getItem(EXP_KEY);
+  };
+  //educacion
+  public saveEdu(edu: string): void {
+    window.localStorage.removeItem(EDU_KEY);
+    window.localStorage.setItem(EDU_KEY, edu);
+  };
+
+  public getEdu(): string | null {
+    return window.localStorage.getItem(EDU_KEY);
+  };
 }

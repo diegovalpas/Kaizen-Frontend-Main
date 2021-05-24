@@ -12,7 +12,7 @@ export class PasswordComponent implements OnInit {
 
   public passwordform = this.fb.group({     
     
-    emailusuario: new FormControl('', Validators.compose([
+    emailUsuario: new FormControl('', Validators.compose([
       Validators.required,
       Validators.email
     ]))     
@@ -28,16 +28,14 @@ export class PasswordComponent implements OnInit {
 
   EnviarLinkalEmail(){
     var usuario: any = {
-      emailUsuario: this.passwordform.controls['emailusuario'].value
+      emailUsuario: this.passwordform.controls['emailUsuario'].value
     }
-    this.passwordservice.getEmail(usuario.emailUsuario).subscribe(
-      data => {
-        this.tokenstorage.saveToken(data.passwordresetToken
-          );
-        console.log(data);
-    }
-    )
 
+    this.passwordservice.getEmail(usuario).subscribe(
+      data => {
+        this.tokenstorage.saveToken(data.passwordresetToken);
+        console.log(data);
+    })
   }
 
 

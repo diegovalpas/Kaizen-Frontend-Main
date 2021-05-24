@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 const baseUrl = 'https://backend-kaizentalent.herokuapp.com/api/postulante';
+const postutrabajo = 'https://backend-kaizentalent.herokuapp.com/api/postulante';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,12 @@ export class PostulacionService {
       puestotrabajo
     );
   }
+
+  getListadePostulantes(idpostu:any): Observable<any> {
+    return this.http.get(`${postutrabajo}/${idpostu}/show/postulaciones`)
+  }
+
+
 
   
 

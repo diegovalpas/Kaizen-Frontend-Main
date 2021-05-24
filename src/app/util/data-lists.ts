@@ -51,6 +51,11 @@ export interface Categorias {
     text: string;
 }
 
+export interface FechaMes {
+    value: string;
+    text: string;
+}
+
 export const Ciudades: Ciudades[] = [
     { value: 'Bagua Grande', text: 'Bagua Grande' },
     { value: 'Chachapoyas', text: 'Chachapoyas' },
@@ -206,4 +211,19 @@ export const Remoto: Remoto [] = [
 export const TipoPostulacion: TipoPostulacion[] = [
     { value: 'Part-Time', text: 'Part-Time' },
     { value: 'Full-Time', text: 'Full-Time' } 
+]
+
+export const FechaMes: FechaMes[] = [
+    { value: '01', text: 'Enero' },
+    { value: '02', text: 'Febrero' },
+    { value: '03', text: 'Marzo' },
+    { value: '04', text: 'Abril' },
+    { value: '05', text: 'Mayo' },
+    { value: '06', text: 'Junio' },
+    { value: '07', text: 'Julio' },
+    { value: '08', text: 'Agosto' },
+    { value: '09', text: 'Septiembre' },
+    { value: '10', text: 'Octubre' },
+    { value: '11', text: 'Noviembre' },
+    { value: '12', text: 'Diciembre' },
 ]

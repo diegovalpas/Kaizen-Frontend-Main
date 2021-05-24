@@ -7,6 +7,8 @@ import { ReclutadorUpdate } from './reclutador-interface';
 
 const baseUrl = 'https://backend-kaizentalent.herokuapp.com/api/reclutador';
 
+const passwordupdate = 'https://backend-kaizentalent.herokuapp.com/api/forgotpassword/sendemail';
+
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
@@ -45,6 +47,19 @@ export class ReclutadorService {
     return this.http.put(
       baseUrl+`/${id}/update/logo`,
       reclutador);
+  }
+
+  getEmail(email: any): Observable<any> {
+
+    //var emailPostulante: FormData = new FormData();
+
+    //emailPostulante.append('email', email);
+
+    return this.http.post(
+      passwordupdate,
+      email,
+      httpOptions
+    );
   }
 
 }

@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient,HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 const baseUrl = 'https://backend-kaizentalent.herokuapp.com/api/forgotpassword/sendemail';
 const AutUrl = "https://backend-kaizentalent.herokuapp.com/api/reset_password"
 const updUrl = "https://backend-kaizentalent.herokuapp.com/api/forgotpassword/update"
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +18,11 @@ export class PasswordService {
   constructor(private http:HttpClient) { }
   
   getEmail(email: any): Observable<any> {
-
-    var emailPostulante: FormData = new FormData();
-
-    emailPostulante.append('emailusuario', email);
-
+    
     return this.http.post(
       baseUrl,
-      emailPostulante
+      email,
+      httpOptions
     );
   }
 
@@ -34,13 +35,8 @@ export class PasswordService {
   }
 
 
-  updatePassword(newtoken:any,password:any){
+  updatePassword(password:any){
     
-    
-    var changepass: FormData = new FormData();
-    changepass.append('contraseña',password),
-    changepass.append('token',newtoken)
-
-    return this.http.put(updUrl, changepass)
+    return this.http.put(updUrl, password,httpOptions);
   }
 }

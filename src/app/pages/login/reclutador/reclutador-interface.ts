@@ -8,3 +8,6 @@ export interface ReclutadorUpdate {
     descripcionUsuario: string;
     tituloUsuario: string;  
 }
+export interface emailusuario{
+    emailUsuario: string;
+}

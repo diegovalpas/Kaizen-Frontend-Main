@@ -10,13 +10,18 @@ import {ActivatedRoute, Router} from '@angular/router'
 })
 export class PasswordupdateComponent implements OnInit {
   acceso:any = [];
+
   public passwordformulario = this.fb.group({     
-    
+  
     token: new FormControl('', Validators.compose([
       Validators.required,
       Validators.email
     ])),
-    contraseña: new FormControl('', Validators.compose([
+    contrasenia: new FormControl('', Validators.compose([
+      Validators.required,
+      Validators.email
+    ])),
+    contraseniavalid: new FormControl('', Validators.compose([
       Validators.required,
       Validators.email
     ]))   
@@ -39,19 +44,27 @@ export class PasswordupdateComponent implements OnInit {
 
   
   Actualizarcon(){
+
+    var validacion:any = {
+      contraseniavalid: this.passwordformulario.controls['contraseniavalid'].value
+    }
     
     var passwordchanges: any = {
-      Contra: this.passwordformulario.controls['contraseña'].value
+      contrasenia: this.passwordformulario.controls['contrasenia'].value,
+      token: this.tokenstorage.getToken()
     }
-    this.passwordservice.updatePassword(this.tokenstorage.getToken(),passwordchanges.Contra).subscribe(
-      data => {
-        this.acceso = data
-        this.acceso.contraseña = passwordchanges.Contra;
-        console.log(data);
-    })
-    this.tokenstorage.signOut();
+
+    if(passwordchanges.contrasenia === validacion.contraseniavalid){
+      this.passwordservice.updatePassword(passwordchanges).subscribe(
+        data => {
+          this.acceso = data
+          this.acceso.contraseña = passwordchanges.Contra;
+          console.log(data);
+      })
+      this.tokenstorage.signOut();
+    }else{
+      console.log("contraseñas no coinciden")
+    }
   }
 
-
-   
 }

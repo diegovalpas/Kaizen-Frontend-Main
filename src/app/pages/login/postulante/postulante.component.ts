@@ -6,6 +6,7 @@ import { PostulanteBasicInfoResponse} from 'src/app/pages/signin/postulante/post
 import { PostulanteService} from './postulante.service';
 import { NgbModal, NgbTypeahead} from '@ng-bootstrap/ng-bootstrap';
 import { PostulanteUpdate } from './postulante-interface';
+import { FechaMes } from 'src/app/util/data-lists';
 
 
 
@@ -39,6 +40,12 @@ export class PostulanteComponent implements OnInit {
   selectedlogo: any;
   currentLogo?: File;
   CurrentUser2: any;
+  ListEdu: any;
+  CurrentEducacion: any;
+  ListExp: any;
+  CurrentExperiencia: any;
+
+  FechaMess = FechaMes ;
 
   constructor(private tokens:TokenStorageService,
       private fb:FormBuilder,
@@ -50,7 +57,8 @@ export class PostulanteComponent implements OnInit {
   ngOnInit(): void {
     
     this.autenticacion();
-    
+    this.getExp();
+    this.getEdu();
     
   }
 
@@ -133,6 +141,45 @@ export class PostulanteComponent implements OnInit {
       archivocvUsuario: new FormControl(null)
     }); 
 
+    //-----------------------------------------------------------
+    public educacionModalForm = this.fb.group({    
+    
+      nombreEducacion: new FormControl('', 
+      Validators.required),
+      institucionEducacion: new FormControl('', 
+      Validators.required),
+      mesinicioEducacion: new FormControl('', 
+      Validators.required),
+      anioinicioEducacion: new FormControl('', 
+      Validators.required),
+      mesfinEducacion: new FormControl('', 
+      Validators.required),
+      aniofinEducacion: new FormControl('', 
+      Validators.required)      
+    //fecha inicio
+    }); 
+
+    //----------------------------------------------
+    public experienciaModalForm = this.fb.group({    
+    
+      nombreExperienciaLaboral: new FormControl('', 
+      Validators.required),
+    
+      empresaExperienciaLaboral: new FormControl('', 
+      Validators.required),
+      
+    //fecha inicio
+      mesinicioExperienciaLaboral: new FormControl('', 
+    Validators.required),
+      anioinicioExperienciaLaboral: new FormControl('', 
+    Validators.required),
+      mesfinExperienciaLaboral: new FormControl('', 
+    Validators.required),
+      aniofinExperienciaLaboral: new FormControl('', 
+    Validators.required)
+      
+    }); 
+
 //fin de validacion y jalar    
 seleccionarLogo(event: any): void {
   this.selectedlogo = event.target.files;
@@ -166,6 +213,102 @@ UpdateFoto(){
 }
 
 
+deleteEdu(){   
+  this.PostulanteService.borrarEducacion( this.ListEdu.idEducacion).subscribe(
+    data => {    
+      console.log(data);
+      window.location.reload();
+    });
+}
+
+Seleccionarexp(exp:any) {
+  this.ListExp = exp;
+  this.tokens.saveExp(this.ListExp.idExperienciaLaboral);
+  console.log(this.ListExp);
+}
+
+SeleccionarEdu(edu:any) {
+  this.ListEdu = edu;
+  this.tokens.saveEdu(this.ListEdu.idEducacion);
+  console.log(this.ListEdu);
+}
+
+getEdu(){
+  this.PostulanteService.mostrarEducacion(this.CurrentUser.idPostulante).subscribe(
+    data => {    
+      this.CurrentEducacion= data;  
+      console.log(data)
+    });
+}
+
+editaEdu(){
+  var educacion: any = {
+    nombreExperienciaLaboral: this.experienciaModalForm.controls['nombreExperienciaLaboral'].value,
+    mesinicioExperienciaLaboral: this.experienciaModalForm.controls['mesinicioExperienciaLaboral'].value,
+    anioinicioExperienciaLaboral: this.experienciaModalForm.controls['anioinicioExperienciaLaboral'].value,
+    mesfinExperienciaLaboral: this.experienciaModalForm.controls['mesfinExperienciaLaboral'].value,
+    aniofinExperienciaLaboral : this.experienciaModalForm.controls['aniofinExperienciaLaboral'].value,
+    empresaExperienciaLaboral: this.experienciaModalForm.controls['empresaExperienciaLaboral'].value     
+  }
+  this.PostulanteService.actualizarEducacion(this.CurrentUser.idPostulante, educacion).subscribe(
+  data => {
+    console.log(data);
+  });
+}
+
+guardarExp(){ 
+   
+  var experiencia: any = {
+    nombreExperienciaLaboral: this.experienciaModalForm.controls['nombreExperienciaLaboral'].value,
+    mesinicioExperienciaLaboral: this.experienciaModalForm.controls['mesinicioExperienciaLaboral'].value,
+    anioinicioExperienciaLaboral: this.experienciaModalForm.controls['anioinicioExperienciaLaboral'].value,
+    mesfinExperienciaLaboral: this.experienciaModalForm.controls['mesfinExperienciaLaboral'].value,
+    aniofinExperienciaLaboral : this.experienciaModalForm.controls['aniofinExperienciaLaboral'].value,
+    empresaExperienciaLaboral: this.experienciaModalForm.controls['empresaExperienciaLaboral'].value     
+  }
+
+  this.PostulanteService.guardarExperiencia(this.CurrentUser.idPostulante, experiencia).subscribe(
+    data => {    
+      data;
+      console.log(data);      
+    });    
+}
+
+
+getExp(){
+  this.PostulanteService.mostrarExperiencia( this.CurrentUser.idPostulante).subscribe(
+    data => {    
+      this.CurrentExperiencia= data;
+      console.log(data)
+    });       
+}
+
+deleteExp(){
+  this.PostulanteService.borrarExperiencia( this.ListExp.idExperienciaLaboral).subscribe(
+    data => {    
+      console.log(data);
+      window.location.reload();
+    });
+}
+
+guardarEdu(){ 
+
+    var educacion: any = {
+    nombreEducacion: this.educacionModalForm.controls['nombreEducacion'].value,
+    mesinicioEducacion:this.educacionModalForm.controls['mesinicioEducacion'].value,
+    anioinicioEducacion:this.educacionModalForm.controls['anioinicioEducacion'].value,
+    mesfinEducacion:this.educacionModalForm.controls['mesfinEducacion'].value,
+    aniofinEducacion:this.educacionModalForm.controls['aniofinEducacion'].value,
+    institucionEducacion: this.educacionModalForm.controls['institucionEducacion'].value     
+  }
+  
+  this.PostulanteService.guardarEducacion( this.CurrentUser.idPostulante, educacion).subscribe(
+    data => {     
+      this.CurrentEducacion = data;
+      console.log(data);
+    });    
+  
+}
 
 //actualizar datos 
   updateUserparam(){ 
@@ -211,8 +354,18 @@ UpdateFoto(){
 
   //fin de actualizar datos
 
-  
-  
+  EnviarLinkalEmail(){
+    var usuario: any = {
+      emailUsuario: this.CurrentUser.emailReclutador
+    }
+
+    this.PostulanteService.getEmail(usuario).subscribe(
+      data => {
+        this.tokens.saveToken(data.passwordresetToken);
+        console.log(data);
+    })
+  }
+
   autenticacion(){
 
     if(this.tokens.getToken()){
@@ -222,6 +375,8 @@ UpdateFoto(){
       this.Salir();
     } 
   }
+
+  
   
   
 
