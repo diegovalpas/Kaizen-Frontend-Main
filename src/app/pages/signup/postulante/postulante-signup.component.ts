@@ -6,7 +6,6 @@ import { Ciudades, Sexos, TiposDocumento } from '../../../util/data-lists';
 import { Router} from '@angular/router'
 import { CustomValidators } from '../../tools/custom-validators';
 
-
 @Component({
   selector: 'app-postulante-signup',
   templateUrl: './postulante-signup.component.html',
@@ -14,9 +13,18 @@ import { CustomValidators } from '../../tools/custom-validators';
 })
 export class PostulanteSignupComponent implements OnInit{
 
+  //Variables
   selectedGender:any = '';
-
-  //Lista de Ciudades ordenados por Nombre creado en util/data-lists
+  signupSuccess = false;
+  errorMessage = '';
+  selectedFotosPerfil?: FileList;
+  currentFotoPerfil?: File;
+  selectedArchivoCV?: FileList;
+  currentArchivoCV?: File;
+  
+  //Datalist
+  TiposDocumento = TiposDocumento;
+  Sexos = Sexos;
   Ciudades = Ciudades.sort(function (a, b) {
     if (a.text > b.text) {
       return 1;
@@ -31,12 +39,7 @@ export class PostulanteSignupComponent implements OnInit{
     }
   })
 
-  //Lista de Tipos de Documento
-  TiposDocumento = TiposDocumento;
-
-  //Lista de Sexos
-  Sexos = Sexos;
-
+  //Validaciones para el HTML
   public postulantesignupForm = this.fb.group({
     nombreUsuario: new FormControl('', Validators.compose([
       Validators.required,
@@ -44,32 +47,26 @@ export class PostulanteSignupComponent implements OnInit{
       Validators.maxLength(50),
       Validators.pattern("([a-zA-Z'àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð,.-]+( [a-zA-Z'àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð,.-]+)*)")
     ])),
-
     apellidoUsuario: new FormControl('', Validators.compose([
       Validators.required,
       Validators.minLength(2),
       Validators.maxLength(50),
       Validators.pattern("([a-zA-Z'àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð,.-]+( [a-zA-Z'àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð,.-]+)*)")
     ])),
-
     ciudadUsuario: new FormControl('', 
     Validators.required),
-    
     emailUsuario: new FormControl('', Validators.compose([
       Validators.required,
       Validators.email
     ])),
-
     tipodocumentoUsuario: new FormControl('', 
     Validators.required),
-    
     numerodocumentoUsuario: new FormControl('', Validators.compose([
       Validators.required,
       Validators.min(10000000),
       Validators.max(999999999999)
     ])),
-
-    //TODO: Regex Contraseña 
+    //Regex 
     contraseñaUsuario: new FormControl('', Validators.compose([
       Validators.required,
       Validators.minLength(8),
@@ -78,10 +75,9 @@ export class PostulanteSignupComponent implements OnInit{
       CustomValidators.patternValidator(/[a-z]/, {passwordsmallcase: true}),
       CustomValidators.patternValidator(/[@#$:!\^%&]/, {passwordspecialcharacter: true})
     ])),
-    
     generoUsuario: new FormControl('', 
     Validators.required),
-    
+
     imagenUsuario: new FormControl(null),
     archivocvUsuario: new FormControl(null)
   });
@@ -92,21 +88,8 @@ export class PostulanteSignupComponent implements OnInit{
 
   ngOnInit(): void {}
 
-  signupSuccess = false;
-  errorMessage = '';
-
-  selectedFotosPerfil?: FileList;
-  currentFotoPerfil?: File;
-
-  selectedArchivoCV?: FileList;
-  currentArchivoCV?: File;
-
   seleccionarFotoPerfil(event: any): void {
     this.selectedFotosPerfil = event.target.files;
-  }
-
-  seleccionarArchivoCV(event: any): void {
-    this.selectedArchivoCV = event.target.files;
   }
 
   subirFotoPerfil(): any {
@@ -121,6 +104,10 @@ export class PostulanteSignupComponent implements OnInit{
     }
   }
 
+  seleccionarArchivoCV(event: any): void {
+    this.selectedArchivoCV = event.target.files;
+  }
+
   subirArchivoCV(): any {
     if (this.selectedArchivoCV) {
       const archivocv: File | null = this.selectedArchivoCV.item(0);
@@ -131,10 +118,6 @@ export class PostulanteSignupComponent implements OnInit{
 
       return this.currentArchivoCV;
     }
-  }
-
-  RBselectedGender (event:any){
-    this.selectedGender = event.target.value;
   }
 
   guardarPostulante(): void {
@@ -156,11 +139,14 @@ export class PostulanteSignupComponent implements OnInit{
         this.signupSuccess = true;
         this.router.navigate(['/signin/postulante']);
       },
-
       err => {
         this.errorMessage = err.error.message;
         this.signupSuccess = false;
-      }
-    );
+      })
+  }
+
+  //Seleccionar RadioButton(Genero)
+  RBselectedGender (event:any){
+    this.selectedGender = event.target.value;
   }
 }

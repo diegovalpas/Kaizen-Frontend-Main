@@ -56,6 +56,86 @@ export interface FechaMes {
     text: string;
 }
 
+export const TiposDocumento: TiposDocumento[] = [
+    { value: 'DNI ', text: 'DNI - Documento Nacional de Identidad' },
+    { value: 'CE', text: 'CE - Carné de Extranjería' },
+    { value: 'Pasaporte', text: 'Pasaporte' }
+]
+
+
+export const Sexos: Sexos[] = [
+    { value: 'Femenino', text: 'Femenino', selector: 'femenin' },
+    { value: 'Masculino', text: 'Masculino', selector: 'mascul' },
+  //no contemplado  { value: 'Otros', text: 'Otros' }
+]
+
+//en minuscula se muestra repetido
+export const Tempresa: Tempresa[] = [
+    { value: '1 a 5 Empleados', text: '1 a 5 Empleados' },
+    { value: '5 a 20 Empleados', text: '5 a 20 Empleados' },
+    { value: '20 a 100 Empleados', text: '20 a 100 Empleados'},
+    { value: '100 a mas Empleados', text: '100 a mas Empleados'}
+
+]
+
+export const Categorias: Categorias[] = [
+    { value: 'Marketing Digital', text: 'Marketing Digital' },
+    { value: 'Sistemas de Información & Software', text: 'Sistemas de Información & Software' },
+    { value: 'Ingeniería', text: 'Ingeniería' },
+    { value: 'Derecho', text: 'Derecho' }
+]
+
+export const PeriodoPublicacion: PeriodoPublicacion[] = [
+    { value: '1', text: 'Ultima Hora', selector:'1' },
+    { value: '24', text: 'Ultimas 24 Horas', selector:'2' },
+    { value: '168', text: 'Ultimas 7 dias' , selector:'3'},
+    { value: '336', text: 'Ultimos 14 dias', selector:'4' },
+    { value: '720', text: 'Ultimos 30 dias', selector:'5' }
+]
+
+export const Experiencia: Experiencia[] = [
+    { value: 0 , text: 'Sin experiencia'     , selector:'6' },
+    { value: 1, text: '1 Año de Experiencia' , selector:'7' },
+    { value: 2, text: '2 Años de Experiencia', selector:'8' },
+    { value: 3, text: '3 Años de Experiencia', selector:'9' },
+    { value: 4, text: '4 Años de Experiencia', selector:'10' },
+    { value: 5, text: '5 Años de Experiencia', selector:'11' },
+    { value: 6, text: '6 Años de Experiencia', selector:'12' },
+    { value: 7, text: '7 Años a mas' , selector:'13'}
+]
+
+export const Publicacion: Publicacion [] = [
+    { value: 7, text: 'Semanal'},
+    { value: 15, text: 'Quincenal'},
+    { value: 30, text: 'Mensual'}
+]
+
+export const Remoto: Remoto [] = [
+    { value: 'Sí', text: 'Sí'},
+    { value: 'No', text: 'No'},
+    { value: 'Temporalmente por cuarentena', text: 'Temporalmente por cuarentena'}
+]
+
+export const TipoPostulacion: TipoPostulacion[] = [
+    { value: 'Part-Time', text: 'Part-Time' },
+    { value: 'Full-Time', text: 'Full-Time' } 
+]
+
+export const FechaMes: FechaMes[] = [
+    { value: '01', text: 'Enero' },
+    { value: '02', text: 'Febrero' },
+    { value: '03', text: 'Marzo' },
+    { value: '04', text: 'Abril' },
+    { value: '05', text: 'Mayo' },
+    { value: '06', text: 'Junio' },
+    { value: '07', text: 'Julio' },
+    { value: '08', text: 'Agosto' },
+    { value: '09', text: 'Septiembre' },
+    { value: '10', text: 'Octubre' },
+    { value: '11', text: 'Noviembre' },
+    { value: '12', text: 'Diciembre' },
+]
+
 export const Ciudades: Ciudades[] = [
     { value: 'Bagua Grande', text: 'Bagua Grande' },
     { value: 'Chachapoyas', text: 'Chachapoyas' },
@@ -146,84 +226,4 @@ export const Ciudades: Ciudades[] = [
     { value: 'Tumbes', text: 'Tumbes' },
     { value: 'Zarumilla', text: 'Zarumilla' },
     { value: 'Pucallpa', text: 'Pucallpa' }
-]
-
-export const TiposDocumento: TiposDocumento[] = [
-    { value: 'DNI ', text: 'DNI - Documento Nacional de Identidad' },
-    { value: 'CE', text: 'CE - Carné de Extranjería' },
-    { value: 'Pasaporte', text: 'Pasaporte' }
-]
-
-
-export const Sexos: Sexos[] = [
-    { value: 'Femenino', text: 'Femenino', selector: 'femenin' },
-    { value: 'Masculino', text: 'Masculino', selector: 'mascul' },
-  //no contemplado  { value: 'Otros', text: 'Otros' }
-]
-
-//en minuscula se muestra repetido
-export const Tempresa: Tempresa[] = [
-    { value: '1 a 5 Empleados', text: '1 a 5 Empleados' },
-    { value: '5 a 20 Empleados', text: '5 a 20 Empleados' },
-    { value: '20 a 100 Empleados', text: '20 a 100 Empleados'},
-    { value: '100 a mas Empleados', text: '100 a mas Empleados'}
-
-]
-
-export const Categorias: Categorias[] = [
-    { value: 'Marketing Digital', text: 'Marketing Digital' },
-    { value: 'Sistemas de Información & Software', text: 'Sistemas de Información & Software' },
-    { value: 'Ingeniería', text: 'Ingeniería' },
-    { value: 'Derecho', text: 'Derecho' }
-]
-
-export const PeriodoPublicacion: PeriodoPublicacion[] = [
-    { value: '1', text: 'Ultima Hora', selector:'1' },
-    { value: '24', text: 'Ultimas 24 Horas', selector:'2' },
-    { value: '168', text: 'Ultimas 7 dias' , selector:'3'},
-    { value: '336', text: 'Ultimos 14 dias', selector:'4' },
-    { value: '720', text: 'Ultimos 30 dias', selector:'5' }
-]
-
-export const Experiencia: Experiencia[] = [
-    { value: 0 , text: 'Sin experiencia'     , selector:'6' },
-    { value: 1, text: '1 Año de Experiencia' , selector:'7' },
-    { value: 2, text: '2 Años de Experiencia', selector:'8' },
-    { value: 3, text: '3 Años de Experiencia', selector:'9' },
-    { value: 4, text: '4 Años de Experiencia', selector:'10' },
-    { value: 5, text: '5 Años de Experiencia', selector:'11' },
-    { value: 6, text: '6 Años de Experiencia', selector:'12' },
-    { value: 7, text: '7 Años a mas' , selector:'13'}
-]
-
-export const Publicacion: Publicacion [] = [
-    { value: 7, text: 'Semanal'},
-    { value: 15, text: 'Quincenal'},
-    { value: 30, text: 'Mensual'}
-]
-
-export const Remoto: Remoto [] = [
-    { value: 'Sí', text: 'Sí'},
-    { value: 'No', text: 'No'},
-    { value: 'Temporalmente por cuarentena', text: 'Temporalmente por cuarentena'}
-]
-
-export const TipoPostulacion: TipoPostulacion[] = [
-    { value: 'Part-Time', text: 'Part-Time' },
-    { value: 'Full-Time', text: 'Full-Time' } 
-]
-
-export const FechaMes: FechaMes[] = [
-    { value: '01', text: 'Enero' },
-    { value: '02', text: 'Febrero' },
-    { value: '03', text: 'Marzo' },
-    { value: '04', text: 'Abril' },
-    { value: '05', text: 'Mayo' },
-    { value: '06', text: 'Junio' },
-    { value: '07', text: 'Julio' },
-    { value: '08', text: 'Agosto' },
-    { value: '09', text: 'Septiembre' },
-    { value: '10', text: 'Octubre' },
-    { value: '11', text: 'Noviembre' },
-    { value: '12', text: 'Diciembre' },
 ]

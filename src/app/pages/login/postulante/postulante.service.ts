@@ -5,24 +5,23 @@ import { PostulanteUpdate } from './postulante-interface';
 
 const edexpUrl =  'https://backend-kaizentalent.herokuapp.com/api/educacion';
 const dexpUrl =  'https://backend-kaizentalent.herokuapp.com/api/experiencialaboral';
-
 const baseUrl = 'https://backend-kaizentalent.herokuapp.com/api/postulante';
-
 const update = 'https://backend-kaizentalent.herokuapp.com/api';
-
 const passwordupdate = 'https://backend-kaizentalent.herokuapp.com/api/forgotpassword/sendemail';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class PostulanteService {
 
-  constructor(private http:HttpClient) { }
   auxfoto = new File([], '');
+
+  constructor(private http:HttpClient) { }
 
   getUserLogin(id:any): Observable<any> {
     return this.http.get(`${baseUrl}/${id}/profile/basicinfo`);
@@ -33,9 +32,8 @@ export class PostulanteService {
       baseUrl+`/${id}/update/fields`,
       usuario,
       httpOptions
-    );
+    )
   }
-
   
   updateLogo(foto:File, id:any): Observable<any> {
 
@@ -50,7 +48,7 @@ export class PostulanteService {
     return this.http.put(
       baseUrl+`/${id}/update/foto`,  
       postulante      
-    );
+    )
   }
 
   guardarEducacion(id:any, educacion:any): Observable<any> {
@@ -89,6 +87,10 @@ export class PostulanteService {
     return this.http.put(`${update}/educacion/${id}/update`, educacionr);
   }
 
+  actualizarExperiencia(id:any, experienciar:any): Observable<any>{
+    return this.http.put(`${update}/experiencialaboral/${id}/update`, experienciar);
+  }
+
   getEmail(email: any): Observable<any> {
 
     var emailPostulante: FormData = new FormData();
@@ -100,6 +102,4 @@ export class PostulanteService {
       emailPostulante
     );
   }
-
-
 }

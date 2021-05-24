@@ -5,18 +5,17 @@ import { PostulanteSignupRequest } from './postulante-signup-interface';
 
 const AUTH_API = 'https://backend-kaizentalent.herokuapp.com/api/postulante/signup';
 
-
 @Injectable({
   providedIn: 'root'
 })
 
-
 export class PostulanteSignupService {
 
-  constructor(private http: HttpClient) { }
-
+  //Variables
   auxfotoperfil = new File([], '');
   auxarchivocv = new File([], '');
+
+  constructor(private http: HttpClient) {}
 
   SignUpPostulante(usuario: PostulanteSignupRequest, fotoperfil: File, archivocv: File): Observable<any> {
     
@@ -26,6 +25,7 @@ export class PostulanteSignupService {
 
     postulante.append('usuario', postulantedata);
 
+    //Condicional de Foto de perfil
     if (fotoperfil != null) {
       postulante.append('foto', fotoperfil);
 
@@ -38,6 +38,7 @@ export class PostulanteSignupService {
       postulante.append('foto', this.auxfotoperfil);
     }
 
+    //Condicional de archivo CV
     if (archivocv != null) {
       postulante.append('archivocv', archivocv);
 
@@ -49,9 +50,6 @@ export class PostulanteSignupService {
     } else {
       postulante.append('archivocv', this.auxarchivocv);
     }
-
-    return this.http.post(
-      AUTH_API, 
-      postulante);
+    return this.http.post(AUTH_API , postulante);
   }
 }

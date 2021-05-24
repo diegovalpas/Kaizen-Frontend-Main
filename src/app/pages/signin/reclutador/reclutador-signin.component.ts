@@ -5,11 +5,6 @@ import { ReclutadorSigninRequest } from './reclutador-signin-interface';
 import { ReclutadorSigninService } from './reclutador-signin.service';
 import {Router} from '@angular/router'
 
-//import { PostulanteSigninService } from './postulante-signin.service';
-//import { PostulanteSigninRequest } from './postulante-signin-interface';
-
-
-
 @Component({
   selector: 'app-reclutador-signin',
   templateUrl: './reclutador-signin.component.html',
@@ -17,10 +12,13 @@ import {Router} from '@angular/router'
 })
 
 export class ReclutadorSigninComponent implements OnInit {
+  
+  //Variables
   currentUser:any;
   isLoggedIn:any;
-
-     
+  auxUsertoken: any;
+  
+  //Validaciones para el HTML
   public reclutadorloginForm = this.fb.group({     
     
     emailUsuario: new FormControl('', Validators.compose([
@@ -28,22 +26,19 @@ export class ReclutadorSigninComponent implements OnInit {
       Validators.email
     ])),        
   
-    //TODO: Regex Contraseña 
+    //Regex 
     contraseñaUsuario: new FormControl('', Validators.compose([
       Validators.required,
       Validators.minLength(8),
       Validators.pattern("")
     ]))   
-  
   });
-  auxUsertoken: any;
-
+  
   constructor(private tokenstorageservice:TokenStorageService
                 ,private Reclutador:ReclutadorSigninService
                 ,private fb: FormBuilder
                 ,private router:Router) {
    }
-
 
   ngOnInit(): void {
     this.VerificarSesion();
@@ -78,6 +73,5 @@ export class ReclutadorSigninComponent implements OnInit {
         console.log(data);
     });
   }
-
 }
 

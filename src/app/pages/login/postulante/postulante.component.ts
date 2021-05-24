@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/util/token-storage.service';
-import { FormBuilder,FormGroup, FormControl, Validators} from '@angular/forms';
-import { ActivatedRoute,Router, ParamMap} from '@angular/router';
+import { FormBuilder, FormControl, Validators} from '@angular/forms';
+import { ActivatedRoute,Router} from '@angular/router';
 import { PostulanteBasicInfoResponse} from 'src/app/pages/signin/postulante/postulante-signin-interface';
 import { PostulanteService} from './postulante.service';
-import { NgbModal, NgbTypeahead} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { PostulanteUpdate } from './postulante-interface';
 import { FechaMes } from 'src/app/util/data-lists';
-
-
 
 @Component({
   selector: 'app-postulante',
@@ -17,20 +15,8 @@ import { FechaMes } from 'src/app/util/data-lists';
 })
 export class PostulanteComponent implements OnInit {
   
+  //Variables
   CurrentUserparam:any = [];
-
-  Usuario : PostulanteBasicInfoResponse = {
-    nombrePostulante : '',
-    apellidoPostulante: '',
-    ciudadPostulante: '',
-    tipodocumentoPostulante: '',
-    numerodocumentoPostulante: '',
-    fecharegistroPostulante: '',
-    generoPostulante: ''
-    
-  };
-
-
   ids:any;
   CurrentUser:any;
   idPostulante:any;
@@ -45,28 +31,221 @@ export class PostulanteComponent implements OnInit {
   ListExp: any;
   CurrentExperiencia: any;
 
+  //Datalist
   FechaMess = FechaMes ;
+  
+  //Objeto con Interface
+  Usuario : PostulanteBasicInfoResponse = {
+    nombrePostulante : '',
+    apellidoPostulante: '',
+    ciudadPostulante: '',
+    tipodocumentoPostulante: '',
+    numerodocumentoPostulante: '',
+    fecharegistroPostulante: '',
+    generoPostulante: ''
+  }
+
+  //Modal para postulante
+  public postulanteModalForm = this.fb.group({
+    nombreUsuario: new FormControl('', Validators.compose([
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(50),
+      Validators.pattern("([a-zA-Z',.-]+( [a-zA-Z',.-]+)*)")
+    ])),
+    apellidoUsuario: new FormControl('', Validators.compose([
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(50),
+      Validators.pattern("([a-zA-Z',.-]+( [a-zA-Z',.-]+)*)")
+    ])),
+    ciudadUsuario: new FormControl('', 
+    Validators.required),
+    tipodocumentoUsuario: new FormControl('', 
+    Validators.required),
+    numerodocumentoUsuario: new FormControl('', Validators.compose([
+      Validators.required,
+      Validators.minLength(8),
+      Validators.maxLength(12),
+      Validators.pattern("^[0-9]*$")
+    ])),    
+    generoUsuario: new FormControl('', 
+    Validators.required),
+    direccionUsuario: new FormControl('', 
+    Validators.required),
+    descripcionUsuario: new FormControl('', 
+    Validators.required),
+    telefonoUsuario: new FormControl('', 
+    Validators.required),
+    
+    imagenUsuario: new FormControl(null),
+    archivocvUsuario: new FormControl(null)
+  });
+
+  //Educacion Modal Form
+  public educacionModalForm = this.fb.group({    
+    
+    nombreEducacion: new FormControl('', 
+    Validators.required),
+    institucionEducacion: new FormControl('', 
+    Validators.required),
+    mesinicioEducacion: new FormControl('', 
+    Validators.required),
+    anioinicioEducacion: new FormControl('', 
+    Validators.required),
+    mesfinEducacion: new FormControl('', 
+    Validators.required),
+    aniofinEducacion: new FormControl('', 
+    Validators.required)
+  }); 
+
+  //Experiencia Modal Form
+  public experienciaModalForm = this.fb.group({    
+    
+    nombreExperienciaLaboral: new FormControl('', 
+    Validators.required),
+    empresaExperienciaLaboral: new FormControl('', 
+    Validators.required),
+    mesinicioExperienciaLaboral: new FormControl('', 
+    Validators.required),
+    anioinicioExperienciaLaboral: new FormControl('', 
+    Validators.required),
+    mesfinExperienciaLaboral: new FormControl('', 
+    Validators.required),
+    aniofinExperienciaLaboral: new FormControl('', 
+    Validators.required)
+  }); 
 
   constructor(private tokens:TokenStorageService,
       private fb:FormBuilder,
       private router:Router,
       private PostulanteService:PostulanteService,
-      private route:ActivatedRoute,
       public modal:NgbModal) { }
 
   ngOnInit(): void {
-    
     this.autenticacion();
     this.getExp();
     this.getEdu();
-    
   }
 
+  seleccionarLogo(event: any): void {
+    this.selectedlogo = event.target.files;
+  }
 
-  //obtener el session storage
+  Seleccionarexp(exp:any) {
+    this.ListExp = exp;
+    this.tokens.saveExp(this.ListExp.idExperienciaLaboral);
+    console.log(this.ListExp);
+  }
+
+  SeleccionarEdu(edu:any) {
+    this.ListEdu = edu;
+    this.tokens.saveEdu(this.ListEdu.idEducacion);
+    console.log(this.ListEdu);
+  }
+
+  getEdu(){
+    this.PostulanteService.mostrarEducacion(this.CurrentUser.idPostulante).subscribe(
+      data => {    
+        this.CurrentEducacion= data;  
+        console.log(data)
+      });
+  }
+
+  guardarEdu(){ 
+
+    var educacion: any = {
+    nombreEducacion: this.educacionModalForm.controls['nombreEducacion'].value,
+    mesinicioEducacion:this.educacionModalForm.controls['mesinicioEducacion'].value,
+    anioinicioEducacion:this.educacionModalForm.controls['anioinicioEducacion'].value,
+    mesfinEducacion:this.educacionModalForm.controls['mesfinEducacion'].value,
+    aniofinEducacion:this.educacionModalForm.controls['aniofinEducacion'].value,
+    institucionEducacion: this.educacionModalForm.controls['institucionEducacion'].value     
+    }
+  
+    this.PostulanteService.guardarEducacion( this.CurrentUser.idPostulante, educacion).subscribe(
+      data => {     
+      this.CurrentEducacion = data;
+      console.log(data);
+    });    
+  }
+
+  editaEdu(){
+    var educacion: any = {
+      nombreExperienciaLaboral: this.experienciaModalForm.controls['nombreExperienciaLaboral'].value,
+      mesinicioExperienciaLaboral: this.experienciaModalForm.controls['mesinicioExperienciaLaboral'].value,
+      anioinicioExperienciaLaboral: this.experienciaModalForm.controls['anioinicioExperienciaLaboral'].value,
+      mesfinExperienciaLaboral: this.experienciaModalForm.controls['mesfinExperienciaLaboral'].value,
+      aniofinExperienciaLaboral : this.experienciaModalForm.controls['aniofinExperienciaLaboral'].value,
+      empresaExperienciaLaboral: this.experienciaModalForm.controls['empresaExperienciaLaboral'].value     
+    }
+    this.PostulanteService.actualizarEducacion(this.CurrentUser.idPostulante, educacion).subscribe(
+    data => {
+      console.log(data);
+    });
+  }
+
+  deleteEdu(){   
+    this.PostulanteService.borrarEducacion( this.ListEdu.idEducacion).subscribe(
+      data => {    
+        console.log(data);
+        window.location.reload();
+      });
+  }
+  
+  getExp(){
+    this.PostulanteService.mostrarExperiencia( this.CurrentUser.idPostulante).subscribe(
+      data => {    
+        this.CurrentExperiencia= data;
+        console.log(data)
+      });       
+  }
+
+  guardarExp(){ 
+   
+    var experiencia: any = {
+      nombreExperienciaLaboral: this.experienciaModalForm.controls['nombreExperienciaLaboral'].value,
+      mesinicioExperienciaLaboral: this.experienciaModalForm.controls['mesinicioExperienciaLaboral'].value,
+      anioinicioExperienciaLaboral: this.experienciaModalForm.controls['anioinicioExperienciaLaboral'].value,
+      mesfinExperienciaLaboral: this.experienciaModalForm.controls['mesfinExperienciaLaboral'].value,
+      aniofinExperienciaLaboral : this.experienciaModalForm.controls['aniofinExperienciaLaboral'].value,
+      empresaExperienciaLaboral: this.experienciaModalForm.controls['empresaExperienciaLaboral'].value     
+    }
+  
+    this.PostulanteService.guardarExperiencia(this.CurrentUser.idPostulante, experiencia).subscribe(
+      data => {    
+        data;
+        console.log(data);      
+      });    
+  }
+
+  updateExp(){ 
+       
+      var experiencia: any = {
+        nombreExperienciaLaboral: this.experienciaModalForm.controls['nombreExperienciaLaboral'].value,
+        mesinicioExperienciaLaboral: this.experienciaModalForm.controls['fechaxinicioMes'].value,
+        anioinicioExperienciaLaboral: this.experienciaModalForm.controls['fechaxinicioAnio'].value,  
+        mesfinExperienciaLaboral:  this.experienciaModalForm.controls['fechaxfinMes'].value,
+        aniofinExperienciaLaboral: this.experienciaModalForm.controls['fechaxfinAnio'].value,
+        empresaExperienciaLaboral: this.experienciaModalForm.controls['nombreEmpresa'].value    
+      }
+  
+      this.PostulanteService.actualizarExperiencia(this.ListExp.idExperienciaLaboral, experiencia).subscribe(
+        data => {    
+          console.log(data)
+        });    
+    }
+
+  deleteExp(){
+    this.PostulanteService.borrarExperiencia( this.ListExp.idExperienciaLaboral).subscribe(
+      data => {    
+        console.log(data);
+        window.location.reload();
+      });
+  }
+
   getUserparam(){
     this.CurrentUser = this.tokens.getUser();
-    console.log(this.CurrentUser); 
 
     var link = this.router.navigate(['/login/postulante/'+ this.CurrentUser.idPostulante +'/profile/basicinfo']);
     if( link!= link){
@@ -87,230 +266,12 @@ export class PostulanteComponent implements OnInit {
         this.Usuario.archivocvPostulante=this.CurrentUserparam.archivocvPostulante.urlArchivoCV,
         console.log(this.Usuario);  
       },
-
       error => {
         console.log(error);
       });
     }
   }
 
-  // fin del sesion storage
-
-
- 
-  //jalar y validar datos del html  
-    public postulanteModalForm = this.fb.group({
-      nombreUsuario: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(50),
-        Validators.pattern("([a-zA-Z',.-]+( [a-zA-Z',.-]+)*)")
-      ])),
-  
-      apellidoUsuario: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(50),
-        Validators.pattern("([a-zA-Z',.-]+( [a-zA-Z',.-]+)*)")
-      ])),
-  
-      ciudadUsuario: new FormControl('', 
-      Validators.required),
-        
-      tipodocumentoUsuario: new FormControl('', 
-      Validators.required),
-      
-      numerodocumentoUsuario: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.minLength(8),
-        Validators.maxLength(12),
-        Validators.pattern("^[0-9]*$")
-      ])),  
-          
-      generoUsuario: new FormControl('', 
-      Validators.required),
-
-      direccionUsuario: new FormControl('', 
-      Validators.required),
-      descripcionUsuario: new FormControl('', 
-      Validators.required),
-      telefonoUsuario: new FormControl('', 
-      Validators.required),
-      
-      imagenUsuario: new FormControl(null),
-      archivocvUsuario: new FormControl(null)
-    }); 
-
-    //-----------------------------------------------------------
-    public educacionModalForm = this.fb.group({    
-    
-      nombreEducacion: new FormControl('', 
-      Validators.required),
-      institucionEducacion: new FormControl('', 
-      Validators.required),
-      mesinicioEducacion: new FormControl('', 
-      Validators.required),
-      anioinicioEducacion: new FormControl('', 
-      Validators.required),
-      mesfinEducacion: new FormControl('', 
-      Validators.required),
-      aniofinEducacion: new FormControl('', 
-      Validators.required)      
-    //fecha inicio
-    }); 
-
-    //----------------------------------------------
-    public experienciaModalForm = this.fb.group({    
-    
-      nombreExperienciaLaboral: new FormControl('', 
-      Validators.required),
-    
-      empresaExperienciaLaboral: new FormControl('', 
-      Validators.required),
-      
-    //fecha inicio
-      mesinicioExperienciaLaboral: new FormControl('', 
-    Validators.required),
-      anioinicioExperienciaLaboral: new FormControl('', 
-    Validators.required),
-      mesfinExperienciaLaboral: new FormControl('', 
-    Validators.required),
-      aniofinExperienciaLaboral: new FormControl('', 
-    Validators.required)
-      
-    }); 
-
-//fin de validacion y jalar    
-seleccionarLogo(event: any): void {
-  this.selectedlogo = event.target.files;
-}
-
-subirLogo(): any {
-  if (this.selectedlogo) {
-    const logo: File | null = this.selectedlogo.item(0);
-    if (logo) {
-      this.currentLogo = logo;
-    }
-    return this.currentLogo;
-  }
-}
-
-UpdateFoto(){
-  
-  this.PostulanteService.updateLogo(this.subirLogo(),this.CurrentUser.idPostulante).subscribe(
-    data => { 
-      this.CurrentUser2 = data;
-      this.CurrentUser2.fotoperfilPostulante = this.currentLogo;
-      this.signupSuccess = true; 
-      window.location.reload();
-      
-    },
-    err => {
-      this.errorMessage = err.error.message;
-      this.signupSuccess = false;
-    }
-  );
-}
-
-
-deleteEdu(){   
-  this.PostulanteService.borrarEducacion( this.ListEdu.idEducacion).subscribe(
-    data => {    
-      console.log(data);
-      window.location.reload();
-    });
-}
-
-Seleccionarexp(exp:any) {
-  this.ListExp = exp;
-  this.tokens.saveExp(this.ListExp.idExperienciaLaboral);
-  console.log(this.ListExp);
-}
-
-SeleccionarEdu(edu:any) {
-  this.ListEdu = edu;
-  this.tokens.saveEdu(this.ListEdu.idEducacion);
-  console.log(this.ListEdu);
-}
-
-getEdu(){
-  this.PostulanteService.mostrarEducacion(this.CurrentUser.idPostulante).subscribe(
-    data => {    
-      this.CurrentEducacion= data;  
-      console.log(data)
-    });
-}
-
-editaEdu(){
-  var educacion: any = {
-    nombreExperienciaLaboral: this.experienciaModalForm.controls['nombreExperienciaLaboral'].value,
-    mesinicioExperienciaLaboral: this.experienciaModalForm.controls['mesinicioExperienciaLaboral'].value,
-    anioinicioExperienciaLaboral: this.experienciaModalForm.controls['anioinicioExperienciaLaboral'].value,
-    mesfinExperienciaLaboral: this.experienciaModalForm.controls['mesfinExperienciaLaboral'].value,
-    aniofinExperienciaLaboral : this.experienciaModalForm.controls['aniofinExperienciaLaboral'].value,
-    empresaExperienciaLaboral: this.experienciaModalForm.controls['empresaExperienciaLaboral'].value     
-  }
-  this.PostulanteService.actualizarEducacion(this.CurrentUser.idPostulante, educacion).subscribe(
-  data => {
-    console.log(data);
-  });
-}
-
-guardarExp(){ 
-   
-  var experiencia: any = {
-    nombreExperienciaLaboral: this.experienciaModalForm.controls['nombreExperienciaLaboral'].value,
-    mesinicioExperienciaLaboral: this.experienciaModalForm.controls['mesinicioExperienciaLaboral'].value,
-    anioinicioExperienciaLaboral: this.experienciaModalForm.controls['anioinicioExperienciaLaboral'].value,
-    mesfinExperienciaLaboral: this.experienciaModalForm.controls['mesfinExperienciaLaboral'].value,
-    aniofinExperienciaLaboral : this.experienciaModalForm.controls['aniofinExperienciaLaboral'].value,
-    empresaExperienciaLaboral: this.experienciaModalForm.controls['empresaExperienciaLaboral'].value     
-  }
-
-  this.PostulanteService.guardarExperiencia(this.CurrentUser.idPostulante, experiencia).subscribe(
-    data => {    
-      data;
-      console.log(data);      
-    });    
-}
-
-
-getExp(){
-  this.PostulanteService.mostrarExperiencia( this.CurrentUser.idPostulante).subscribe(
-    data => {    
-      this.CurrentExperiencia= data;
-      console.log(data)
-    });       
-}
-
-deleteExp(){
-  this.PostulanteService.borrarExperiencia( this.ListExp.idExperienciaLaboral).subscribe(
-    data => {    
-      console.log(data);
-      window.location.reload();
-    });
-}
-
-guardarEdu(){ 
-
-    var educacion: any = {
-    nombreEducacion: this.educacionModalForm.controls['nombreEducacion'].value,
-    mesinicioEducacion:this.educacionModalForm.controls['mesinicioEducacion'].value,
-    anioinicioEducacion:this.educacionModalForm.controls['anioinicioEducacion'].value,
-    mesfinEducacion:this.educacionModalForm.controls['mesfinEducacion'].value,
-    aniofinEducacion:this.educacionModalForm.controls['aniofinEducacion'].value,
-    institucionEducacion: this.educacionModalForm.controls['institucionEducacion'].value     
-  }
-  
-  this.PostulanteService.guardarEducacion( this.CurrentUser.idPostulante, educacion).subscribe(
-    data => {     
-      this.CurrentEducacion = data;
-      console.log(data);
-    });    
-  
-}
-
-//actualizar datos 
   updateUserparam(){ 
 
     var usuario: PostulanteUpdate = {
@@ -327,7 +288,7 @@ guardarEdu(){
 
     this.PostulanteService.update(usuario, this.CurrentUser.idPostulante).subscribe(
       data => {         
-        this.CurrentUserparam=data;
+        this.CurrentUserparam = data;
         this.CurrentUserparam.nombrePostulante = usuario.nombreUsuario;
         this.CurrentUserparam.apellidoPostulante = usuario.apellidoUsuario;
         this.CurrentUserparam.ciudadPostulante = usuario.ciudadUsuario;
@@ -337,22 +298,41 @@ guardarEdu(){
         this.CurrentUserparam.generoPostulante = usuario.generoUsuario;
         this.CurrentUserparam.descripcionPostulante = usuario.descripcionUsuario;
         this.CurrentUserparam.telefonoPostulante = usuario.telefonoUsuario;
-        console.log(this.CurrentUserparam);
-        this.signupSuccess = true; 
+        this.signupSuccess = true;
+
         window.location.reload();
-
       },
-
       err => {
         this.errorMessage = err.error.message;
         this.signupSuccess = false;
-      }
-    );
-    
-
+      })
   }
 
-  //fin de actualizar datos
+  subirFoto(): any {
+  if (this.selectedlogo) {
+    const logo: File | null = this.selectedlogo.item(0);
+    if (logo) {
+      this.currentLogo = logo;
+    }
+    return this.currentLogo;
+    }
+  }
+
+  UpdateFoto(){
+  
+  this.PostulanteService.updateLogo(this.subirFoto(),this.CurrentUser.idPostulante).subscribe(
+    data => { 
+      this.CurrentUser2 = data;
+      this.CurrentUser2.fotoperfilPostulante = this.currentLogo;
+      this.signupSuccess = true; 
+      window.location.reload();
+      
+    },
+    err => {
+      this.errorMessage = err.error.message;
+      this.signupSuccess = false;
+    });
+  }
 
   EnviarLinkalEmail(){
     var usuario: any = {
@@ -375,10 +355,6 @@ guardarEdu(){
       this.Salir();
     } 
   }
-
-  
-  
-  
 
   Salir(){
     this.tokens.signOut();

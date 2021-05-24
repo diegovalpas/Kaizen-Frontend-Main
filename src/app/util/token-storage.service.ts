@@ -1,69 +1,34 @@
 import { Injectable } from '@angular/core';
-
+/*
+*nombres de los token a usar en LocalStorage
+*/
+//Objetos guardados en LocalStorage
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
-const JOB_KEY = 'idPuesto';
-const LOOKFOR_KEY = 'busqueda'
-const EXP_KEY = 'exp';
-const EDU_KEY = 'education'
-const PROFILE_KEY = 'profile';
+const PROFILE_KEY = 'auth-profile';
 
+//Datos guardados en LocalStorage
+const LOOKFOR_KEY = 'auth-filter';
+const JOB_KEY = 'auth-job';
+const EXP_KEY = 'auth-exp';
+const EDU_KEY = 'auth-edu'
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class TokenStorageService {
- 
 
   constructor() { }
-
-  signOut(): void {
-    window.localStorage.clear();
-  }
 
   //guarda token
   public saveToken(token: string): void {
     window.localStorage.removeItem(TOKEN_KEY);
     window.localStorage.setItem(TOKEN_KEY, token);
-  };
+  }
 
   public getToken(): string | null {
     return window.localStorage.getItem(TOKEN_KEY);
-  };
-
-  public saveTokenjob(token: string): void {
-    window.localStorage.removeItem(JOB_KEY);
-    window.localStorage.setItem(JOB_KEY, token);
-  };
-
-  public saveUsuarioPerfil(token: string): void {
-    window.localStorage.removeItem(PROFILE_KEY);
-    window.localStorage.setItem(PROFILE_KEY, token);
-  };
-
-  public getUsuarioPerfil(): string | null {
-    return window.localStorage.getItem(PROFILE_KEY);
-  };
-
-  public getTokenjob(): string | null {
-    return window.localStorage.getItem(JOB_KEY);
-  };
-
-  public saveTokenBusqueda(dato: any): void {
-    window.localStorage.removeItem(LOOKFOR_KEY);
-    window.localStorage.setItem(LOOKFOR_KEY, JSON.stringify(dato));
-  };
-  
-  public getTokenBusqueda(): any {
-    const dato = window.localStorage.getItem(LOOKFOR_KEY);
-    if (dato){
-      return JSON.parse(dato);
-    }
-  };
-
-  public deleteTokenBusqueda(): any {
-    window.localStorage.removeItem(LOOKFOR_KEY);
   }
 
   //guarda usuario con token
@@ -72,7 +37,7 @@ export class TokenStorageService {
     window.localStorage.setItem(USER_KEY, JSON.stringify(user));
   }
 
-  //obtiene usuario con token
+    //obtiene usuario con token
   public getUser(): any {
     const user = window.localStorage.getItem(USER_KEY);
 
@@ -83,21 +48,65 @@ export class TokenStorageService {
     return {};
   }
 
+  //obtiene el dato del puesto de empleo
+  public saveTokenjob(token: string): void {
+    window.localStorage.removeItem(JOB_KEY);
+    window.localStorage.setItem(JOB_KEY, token);
+  }
+
+  public getTokenjob(): string | null {
+    return window.localStorage.getItem(JOB_KEY);
+  }
+
+  //obtiene los datos BasicInfo del perfil
+  public saveUsuarioPerfil(token: string): void {
+    window.localStorage.removeItem(PROFILE_KEY);
+    window.localStorage.setItem(PROFILE_KEY, token);
+  }
+  
+  public getUsuarioPerfil(): string | null {
+    return window.localStorage.getItem(PROFILE_KEY);
+  }
+
+  //Obtiene el dato de la experiencia
   public saveExp(exp: string): void {
     window.localStorage.removeItem(EXP_KEY);
     window.localStorage.setItem(EXP_KEY, exp);
-  };
+  }
 
   public getExp(): string | null {
     return window.localStorage.getItem(EXP_KEY);
-  };
-  //educacion
+  }
+
+  //Obtiene el dato de educacion
   public saveEdu(edu: string): void {
     window.localStorage.removeItem(EDU_KEY);
     window.localStorage.setItem(EDU_KEY, edu);
-  };
+  }
 
   public getEdu(): string | null {
     return window.localStorage.getItem(EDU_KEY);
-  };
+  }
+
+  //Filtrar informacion
+  public saveTokenBusqueda(dato: any): void {
+    window.localStorage.removeItem(LOOKFOR_KEY);
+    window.localStorage.setItem(LOOKFOR_KEY, JSON.stringify(dato));
+  }
+  
+  public getTokenBusqueda(): any {
+    const dato = window.localStorage.getItem(LOOKFOR_KEY);
+    if (dato){
+      return JSON.parse(dato);
+    }
+  }
+
+  public deleteTokenBusqueda(): any {
+    window.localStorage.removeItem(LOOKFOR_KEY);
+  }
+
+  //Cerrar la sesion - Quitar todos los LS
+  signOut(): void {
+    window.localStorage.clear();
+  }
 }

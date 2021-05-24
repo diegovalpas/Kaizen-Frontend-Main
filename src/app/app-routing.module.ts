@@ -6,21 +6,16 @@ import { PostulanteSignupComponent } from './pages/signup/postulante/postulante-
 import { ReclutadorSignupComponent } from './pages/signup/reclutador/reclutador-signup.component';
 import { PostulanteComponent} from './pages/login/postulante/postulante.component';
 import { ReclutadorComponent } from './pages/login/reclutador/reclutador.component';
-
 import { PasswordComponent} from './pages/password/password.component';
 import { PasswordupdateComponent} from './pages/password/passwordupdate/passwordupdate.component'
 import { AutenticacionComponent } from './pages/password/autenticacion/autenticacion.component';
-
 import { PostulacionComponent } from './pages/puestodetrabajo/postulacion/postulacion.component';
 import { PublicacionComponent} from './pages/puestodetrabajo/publicacion/publicacion.component';
-
 import { ListaTrabajosComponent } from './pages/puestodetrabajo/lista-trabajos/lista-trabajos.component';
-
 import { HomeComponent } from './pages/puestodetrabajo/home/home.component';
 import {DetalletrabajoComponent} from './pages/puestodetrabajo/detalletrabajo/detalletrabajo.component'
 import {ListacandidatosComponent} from './pages/puestodetrabajo/listacandidatos/listacandidatos.component'
 import { ProfileComponent } from './pages/puestodetrabajo/profile/profile.component';
-
  
 const routes: Routes = [
   { path: 'signin/postulante', component: PostulanteSigninComponent},
@@ -39,7 +34,7 @@ const routes: Routes = [
   { path: 'puestotrabajo/:idPuestoTrabajo/detail', component:DetalletrabajoComponent},
   { path: 'listacandidatos', component:ListacandidatosComponent},
   { path: 'perfilcandidato', component:ProfileComponent},
-  { path: '', component:HomeComponent}
+  {path: '', redirectTo:'index', pathMatch: 'full'}
 ];
 
 @NgModule({

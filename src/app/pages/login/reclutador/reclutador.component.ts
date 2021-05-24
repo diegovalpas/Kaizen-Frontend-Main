@@ -16,11 +16,8 @@ import {EmpleosComponent} from 'src/app/pages/puestodetrabajo/empleos/empleos.co
 })
 export class ReclutadorComponent implements OnInit {
 
-    CurrentUserparam:any = [];
-    Usuario:any = {
-    
-
-  };
+  CurrentUserparam:any = [];
+  Usuario:any = {};
   
   CurrentUser:any;
   CurrentUser2:any;

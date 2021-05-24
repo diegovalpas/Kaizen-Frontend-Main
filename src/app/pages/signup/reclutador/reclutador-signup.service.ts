@@ -10,8 +10,9 @@ const AUTH_API = 'https://backend-kaizentalent.herokuapp.com/api/reclutador/sign
 })
 
 export class ReclutadorSignupService {
-
-    logoFile = new File([], '');  
+  
+  //Variables
+  logoFile = new File([], '');  
 
   constructor(private http: HttpClient) { }
 
@@ -23,17 +24,12 @@ export class ReclutadorSignupService {
 
     reclutador.append('usuario', reclutadordata);
 
-//    reclutador.append('logo', logoempresa);
-
     if (logoempresa != null) {
       reclutador.append('logo', logoempresa);      
     } else {
       reclutador.append('logo', this.logoFile);
     }
-
-
-    return this.http.post(
-      AUTH_API, 
-      reclutador);
+    
+    return this.http.post(AUTH_API , reclutador);
   }
 }

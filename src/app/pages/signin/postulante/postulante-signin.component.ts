@@ -12,19 +12,23 @@ import {Router} from '@angular/router'
 })
 
 export class PostulanteSigninComponent implements OnInit {
+  
+  //Variables
   currentUser:any;
   auxUsertoken:any;
   auxusuarioid:any;
   isLoggedIn:any;
   link: any;
+  isLoginFailed = false;
+
+  //Validaciones para el HTML
   public postulanteloginForm = this.fb.group({     
     
     emailUsuario: new FormControl('', Validators.compose([
       Validators.required,
       Validators.email
     ])),        
-  
-    //TODO: Regex Contraseña 
+    //Regex
     contraseñaUsuario: new FormControl('', Validators.compose([
       Validators.required,
       Validators.minLength(8),
@@ -32,8 +36,6 @@ export class PostulanteSigninComponent implements OnInit {
     ]))   
   
   });
-
-  isLoginFailed = false;
 
   constructor(private tokenstorageservice:TokenStorageService
                 ,private Postulante:PostulanteSigninService
@@ -43,11 +45,7 @@ export class PostulanteSigninComponent implements OnInit {
    
 
   ngOnInit(): void {
-    /*
-    *Autenticacion si ya esta logueado pero salen infinitos errores consecutivos
-    */
     this.VerificarSesion();
-  
   }
   
   VerificarSesion(): void {
@@ -62,10 +60,6 @@ export class PostulanteSigninComponent implements OnInit {
     }else{
     }
   }
-
-
-
-
 
   IngresoLogin(): void {
     
@@ -85,11 +79,9 @@ export class PostulanteSigninComponent implements OnInit {
   }
 
   autenticacion(){
-    var auxuser:any = this.tokenstorageservice.getUser();
     if(this.auxusuarioid === ''){}
     else{
       this.router.navigate(['login/reclutador/'+this.auxusuarioid.idPostulante+'/profile/basicinfo'])
     } 
   }
-
 }

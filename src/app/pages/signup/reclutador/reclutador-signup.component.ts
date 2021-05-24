@@ -6,7 +6,6 @@ import { Ciudades, Tempresa } from '../../../util/data-lists';
 import { Router} from '@angular/router'
 import { CustomValidators } from '../../tools/custom-validators';
 
-
 @Component({
   selector: 'app-reclutador-signup',
   templateUrl: './reclutador-signup.component.html',
@@ -15,9 +14,14 @@ import { CustomValidators } from '../../tools/custom-validators';
 
 export class ReclutadorSignupComponent implements OnInit {
 
+  //Variables
   selectedLogo?: FileList;
   currentLogo?: File;
+  signupSuccess = false;
+  errorMessage = '';
 
+  //Datalist
+  Tempresas = Tempresa ;
   Ciudades = Ciudades.sort(function (a, b) {
     if (a.text > b.text) {
       return 1;
@@ -25,57 +29,31 @@ export class ReclutadorSignupComponent implements OnInit {
 
     if(a.text < b.text) {
       return -1;
-    }
-
-    else {
+    }else {
       return 0;
     }
   })
 
-  Tempresas = Tempresa ;
-   
-  seleccionarLogo(event: any): void{
-    this.selectedLogo = event.target.files;
-  }
-
-  subirLogo(): any {
-    if (this.selectedLogo) {
-      const fotologo: File | null = this.selectedLogo.item(0);
-
-      if (fotologo) {
-        this.currentLogo = fotologo;
-      }
-
-      return this.currentLogo;
-    }
-  }
-
-
-//validaciones
-public reclutadorsignupForm = this.fb.group({
+  //Validaciones para el HTML
+  public reclutadorsignupForm = this.fb.group({
   nombreUsuario: new FormControl('', Validators.compose([
     Validators.required,
     Validators.minLength(2),
     Validators.maxLength(50),
     Validators.pattern("([a-zA-Z'àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð,.-]+( [a-zA-Z'àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð,.-]+)*)")
   ])),
-
   ciudadUsuario: new FormControl('', 
-  Validators.required),
-    
+    Validators.required),
   emailUsuario: new FormControl('', Validators.compose([
     Validators.required,
     Validators.email
   ])),
-
   numerodocumentoUsuario: new FormControl('', Validators.compose([
     Validators.required,
     Validators.min(10000000),
     Validators.max(999999999999)
   ])),
-
-  
-  //TODO: Regex Contraseña 
+  //Regex
   contraseñaUsuario: new FormControl('', Validators.compose([
     Validators.required,
     Validators.minLength(8),
@@ -84,37 +62,25 @@ public reclutadorsignupForm = this.fb.group({
     CustomValidators.patternValidator(/[a-z]/, {passwordsmallcase: true}),
     CustomValidators.patternValidator(/[@#$:!\^%&]/, {passwordspecialcharacter: true})
   ])),
-  
   nombrecontactanteUsuario: new FormControl('', Validators.compose([
     Validators.required,
     Validators.minLength(2),
     Validators.maxLength(50),
     Validators.pattern("([a-zA-Z',.-]+( [a-zA-Z',.-]+)*)")
   ])),
-  
   tamañoempresaUsuario: new FormControl('', 
   Validators.required),  
-
   telefonoUsuario: new FormControl('', 
-  Validators.required),  
+  Validators.required),
 
-  imagenUsuario: new FormControl(null),
-
+  imagenUsuario: new FormControl(null)
 });
-
-  
 
   constructor(private fb: FormBuilder,
               private reclutadorsignupServie: ReclutadorSignupService,
               private router: Router) { }
 
-  ngOnInit(): void {
-  }
-
-  signupSuccess = false;
-  errorMessage = '';
-  
-  
+  ngOnInit(): void {}
 
   guardarReclutador(): void {
 
@@ -135,14 +101,27 @@ public reclutadorsignupForm = this.fb.group({
         this.router.navigate(['/signin/reclutador'])
         this.signupSuccess = true; 
       },
-
       err => {
         this.errorMessage = err.error.message;
         this.signupSuccess = false;
       }
-    );
+    )
   }
 
+  seleccionarLogo(event: any): void{
+    this.selectedLogo = event.target.files;
+  }
+
+  subirLogo(): any {
+
+    if (this.selectedLogo) {
+      const fotologo: File | null = this.selectedLogo.item(0);
+      if (fotologo) {
+        this.currentLogo = fotologo;
+      }
+      return this.currentLogo;
+    }
+  }
 }
 
 
