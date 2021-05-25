@@ -10,8 +10,8 @@ import {TokenStorageService} from 'src/app/util/token-storage.service'
 })
 export class PasswordComponent implements OnInit {
 
-  public passwordform = this.fb.group({     
-    
+  //Modal form que conecta el HTML
+  public passwordform = this.fb.group({
     emailUsuario: new FormControl('', Validators.compose([
       Validators.required,
       Validators.email
@@ -37,8 +37,5 @@ export class PasswordComponent implements OnInit {
         console.log(data);
     })
   }
-
-
-
 }
           

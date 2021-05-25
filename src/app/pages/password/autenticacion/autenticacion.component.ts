@@ -7,11 +7,13 @@ import { FormBuilder,FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-autenticacion',
   templateUrl: './autenticacion.component.html',
-  styleUrls: ['./autenticacion.component.css']
+  styleUrls: []
 })
 export class AutenticacionComponent implements OnInit {
 
+  //Variables
   acceso:any = [];
+
   public passwordformulario = this.fb.group({     
     
     token: new FormControl('', Validators.compose([
@@ -27,25 +29,19 @@ export class AutenticacionComponent implements OnInit {
   constructor(private passwordservice:PasswordService,
               private tokenstorage: TokenStorageService,
               private route:Router,
-              private router:ActivatedRoute,
               private fb:FormBuilder ) { }
 
   ngOnInit(): void {
     
     if(this.tokenstorage.getToken()){
       this.cargarLink();
-      //this.route.navigate(['/postulante/update']);
     }else{
       this.route.navigate(['/signin/postulante']);
     }
-   }
+  }
   
-
   cargarLink(){
     var token = this.tokenstorage.getToken();
     this.passwordservice.getPagina(token)
   }
-
-  
-
 }

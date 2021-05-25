@@ -9,10 +9,12 @@ import {ActivatedRoute, Router} from '@angular/router'
   styleUrls: []
 })
 export class PasswordupdateComponent implements OnInit {
+  
+  //Variables
   acceso:any = [];
 
-  public passwordformulario = this.fb.group({     
-  
+  //form que controla el HTML
+  public passwordformulario = this.fb.group({
     token: new FormControl('', Validators.compose([
       Validators.required,
       Validators.email
@@ -25,24 +27,20 @@ export class PasswordupdateComponent implements OnInit {
       Validators.required,
       Validators.email
     ]))   
-  });
+  })
 
   constructor(private passwordservice:PasswordService,
               private fb:FormBuilder,
               private tokenstorage:TokenStorageService,
-              private router:ActivatedRoute,
               private route:Router) { }
 
   ngOnInit(): void {
     if(this.tokenstorage.getToken()){
-
     }else{
       this.route.navigate(['/signin/postulante'])
     }
-     
   }
 
-  
   Actualizarcon(){
 
     var validacion:any = {
@@ -66,5 +64,4 @@ export class PasswordupdateComponent implements OnInit {
       console.log("contraseñas no coinciden")
     }
   }
-
 }

@@ -11,6 +11,8 @@ import {Router} from '@angular/router';
   styleUrls: []
 })
 export class PostulacionComponent implements OnInit {
+  
+  //Variables
   postulaciones: any;
   ObjPostulante:any
   ListPostulacionesCurrent: any = [];
@@ -23,7 +25,7 @@ export class PostulacionComponent implements OnInit {
   ngOnInit(): void {
     this.showPostulantes();
   }
-//'postulante/:idPostulante/postulaciones'
+
   showPostulantes(){
     this.ObjPostulante= this.token.getUser();
     this.postulacionservice.getListadePostulantes(this.ObjPostulante.idPostulante).subscribe(data => {
@@ -40,7 +42,6 @@ export class PostulacionComponent implements OnInit {
   //Ir a publicacion del trabajo
   verDetalle(){
     this.token.saveTokenjob(this.ListPostulacionesCurrent.idPuestoTrabajo);
-    
     this.route.navigate(['puestotrabajo/'+this.ListPostulacionesCurrent.idPuestoTrabajo+'/detail']);
   }
 }

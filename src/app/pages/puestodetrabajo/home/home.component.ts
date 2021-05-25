@@ -11,10 +11,14 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
   styleUrls: []
 })
 export class HomeComponent implements OnInit {
+  
+  //Variables
   p : number = 1 ;
   CurrentLista:any = [];
   CurrentDetalleLista:any;
 
+  //Datalist
+  Categorias = Categorias;
   Ciudades = Ciudades.sort(function (a, b) {
     if (a.text > b.text) {
       return 1;
@@ -29,21 +33,7 @@ export class HomeComponent implements OnInit {
     }
   })
 
-  Categorias = Categorias;
-
-  
-
-  constructor(private homeservice:HomeService, 
-              private route:Router,
-              private tokens:TokenStorageService,
-              private fb: FormBuilder) { }
-
-  ngOnInit(): void {
-    this.getListaempleos();
-  }
-
-  
-  
+  //Form que conecta el HTML
   public busquedaForm = this.fb.group({
 
     ciudadUsuario: new FormControl('', 
@@ -57,6 +47,14 @@ export class HomeComponent implements OnInit {
   
   })
 
+  constructor(private homeservice:HomeService, 
+              private route:Router,
+              private tokens:TokenStorageService,
+              private fb: FormBuilder) { }
+
+  ngOnInit(): void {
+    this.getListaempleos();
+  }
     
   getListaempleos(){
     
@@ -103,7 +101,6 @@ export class HomeComponent implements OnInit {
     this.tokens.saveTokenjob(this.CurrentDetalleLista.idPuestoTrabajo);
     this.route.navigate(['puestotrabajo/'+this.CurrentDetalleLista.idPuestoTrabajo+'/detail']);
   }
-  
 
   empezarBusqueda(): void {
 
@@ -122,17 +119,6 @@ export class HomeComponent implements OnInit {
       },      
     );
   }
-
- 
-
-
-
-
-
-
-
-
-
 }
 
 

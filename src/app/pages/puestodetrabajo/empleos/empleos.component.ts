@@ -1,19 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/util/token-storage.service';
 import { FormBuilder, FormControl, Validators} from '@angular/forms';
-import { ActivatedRoute,Router} from '@angular/router';
+import { Router} from '@angular/router';
 import {EmpleosService} from './empleos.service';
 import {idempleo} from 'src/app/pages/signin/postulante/postulante-signin-interface';
 import { Categorias,TipoPostulacion,Experiencia,Publicacion,Remoto,Ciudades } from 'src/app/util/data-lists';
-
-var jsfeat;
 
 @Component({
   selector: 'app-empleos',
   templateUrl: './empleos.component.html',
   styleUrls: []
 })
-
 
 export class EmpleosComponent implements OnInit {
 
@@ -31,18 +28,12 @@ export class EmpleosComponent implements OnInit {
   //lista de candidatos del trabajo seleccionado
   ListCandidatos:any = [];
 
-
-  
-  
-  
-  
-
+  //Datalist
   Categorias = Categorias;
   TipoPostulacion =TipoPostulacion;
   Experiencia = Experiencia;
   Publicacion = Publicacion;
   Remoto = Remoto;
-
 
   Ciudades = Ciudades.sort(function (a, b) {
     if (a.text > b.text) {
@@ -87,8 +78,7 @@ export class EmpleosComponent implements OnInit {
     periodopublicacionPuestoTrabajo: new FormControl('', Validators.compose([
       Validators.required
     ]))
-  });
-  
+  })
 
   constructor(private token:TokenStorageService, private fb:FormBuilder,
               private empleoservice:EmpleosService,private route:Router) { }
@@ -104,7 +94,6 @@ export class EmpleosComponent implements OnInit {
   
   //get Tabla de empleo activos con su respectivo API
   getEmpleoActivo(){
-    
     this.empleoservice.getActivos(this.ids.idReclutador).subscribe(data => {
       this.ListActive = data;
       console.log(this.ListActive);
@@ -113,7 +102,6 @@ export class EmpleosComponent implements OnInit {
 
   //get Tabla de empleo pausados con su respectivo API
   getEmpleoPaused(){
-   
     this.empleoservice.getPublicacionPaused(this.ids.idReclutador).subscribe(data => {
       this.ListPaused = data;
       console.log(this.ListPaused);
@@ -122,7 +110,6 @@ export class EmpleosComponent implements OnInit {
 
   //get Tabla de empleo no activos con su respectivo API
   getEmpleoNoActive(){
-    
     this.empleoservice.getPublicacionNoActive(this.ids.idReclutador).subscribe(data => {
       this.ListNoActive = data;
       console.log(this.ListNoActive);
@@ -197,5 +184,4 @@ export class EmpleosComponent implements OnInit {
     });
     window.location.reload();
   }
-
 }

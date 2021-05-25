@@ -9,6 +9,8 @@ import {Router} from '@angular/router'
   styleUrls: []
 })
 export class ListacandidatosComponent implements OnInit {
+  
+  //Variables
   ListCandidatos: any = [];
   Listprofile: any = [];
   ListCandidatosCurrent: any = [];
@@ -23,13 +25,11 @@ export class ListacandidatosComponent implements OnInit {
     this.empleoservice.getPublicacionbyPostulante(this.token.getTokenjob()).subscribe(data => {
       this.ListCandidatos = data;
       this.Listprofile = this.ListCandidatos.postulantesPublicacion;
-      console.log(this.ListCandidatos);
     })
   }
 
   Seleccionarcandidato(lista:any) {
     this.ListCandidatosCurrent = lista;
-    console.log(this.ListCandidatosCurrent);
     this.token.saveUsuarioPerfil(this.ListCandidatosCurrent.idPostulante);
   }
 

@@ -12,14 +12,14 @@ import { Ciudades, Categorias, Experiencia, PeriodoPublicacion } from '../../../
 
 export class ListaTrabajosComponent implements OnInit {
 
-  //Asignamos
+  //Variables
   selectedExperience:any = '';
   selectedFecha:any = '';
-
   CurrentDatos: any = [];
   CurrentEmpleo : any;
   p : number =1 ;
 
+  //Datalist
   Categorias = Categorias;
   Experiencias = Experiencia;
   PeriodoPublicaciones = PeriodoPublicacion;
@@ -47,10 +47,6 @@ export class ListaTrabajosComponent implements OnInit {
     Validators.required)
   })
 
-   //variables de Local Storage
-   
-
-
   constructor( private listatrabajosservice: ListaTrabajosService,
                private fb: FormBuilder,
                private tokens: TokenStorageService) { }
@@ -59,11 +55,10 @@ export class ListaTrabajosComponent implements OnInit {
     this.verListaDeTrabajos();
   }
 
-  //Usamos los datos del local para el html
+  
   getDatos() : void{
      if(this.tokens.getTokenBusqueda() != null){
       this.CurrentDatos = this.tokens.getTokenBusqueda();  
-      console.log(this.CurrentDatos);
      }else{
        this.CurrentDatos.puestotrabajo = '';
        this.CurrentDatos.ciudad = '';
@@ -73,12 +68,10 @@ export class ListaTrabajosComponent implements OnInit {
 
   RBfechaChange (event:any){
     this.selectedFecha = event.target.value;
-    console.log(this.selectedFecha);
   }
 
   RBexperienceChange (event:any){
     this.selectedExperience = event.target.value;
-    console.log(this.selectedExperience);
   }
 
   verListaDeTrabajos(){
@@ -88,14 +81,13 @@ export class ListaTrabajosComponent implements OnInit {
         data => {
           this.CurrentEmpleo = data;   
           console.log(this.CurrentEmpleo);  
-      });
-    } else 
+      })
+    }else 
       this.listatrabajosservice.ListaDeTrabajos().subscribe(
         data => {
           this.CurrentEmpleo = data;   
           console.log(this.CurrentEmpleo);
-        });  
-    
+    })
   }
 
   BusquedaPorParametros() {
@@ -114,12 +106,9 @@ export class ListaTrabajosComponent implements OnInit {
         this.selectedExperience).subscribe(
          data => {
             this.CurrentEmpleo = data;   
-            console.log(this.CurrentEmpleo);  
-        });
-      
+        })
     } else {
       this.verListaDeTrabajos();
-      
     }
     this.tokens.deleteTokenBusqueda();
   }

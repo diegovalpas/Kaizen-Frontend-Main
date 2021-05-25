@@ -11,6 +11,8 @@ import { FormBuilder,FormControl, Validators } from '@angular/forms';
   styleUrls: []
 })
 export class DetalletrabajoComponent implements OnInit {
+  
+  //Variables
   isButtonVisible = false;
   PostulanteActual:any ;
   currentDetalleLista:any = [];

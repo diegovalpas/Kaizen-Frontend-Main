@@ -10,7 +10,11 @@ import { Ciudades, Categorias, TipoPostulacion, Experiencia,Publicacion, Remoto}
   styleUrls: []
 })
 export class PublicacionComponent implements OnInit {
+  
+  //Variables
   currentUser: any;
+  
+  //Datalist
   Categorias = Categorias;
   TipoPostulacion =TipoPostulacion;
   Experiencia = Experiencia;
@@ -31,15 +35,7 @@ export class PublicacionComponent implements OnInit {
     }
   })
 
-  constructor( private fb: FormBuilder,
-               private publicacionservice: PublicacionService,
-               private token: TokenStorageService) { }
-
-  ngOnInit(): void {
-    this.currentUser = this.token.getUser();
-  }
-
-
+  //Formulario que conecta con el HTML
   public puestostrabajoform = this.fb.group({     
     
     nombrePuestoTrabajo: new FormControl('', Validators.compose([
@@ -71,6 +67,14 @@ export class PublicacionComponent implements OnInit {
     ]))
   });
 
+  constructor( private fb: FormBuilder,
+               private publicacionservice: PublicacionService,
+               private token: TokenStorageService) { }
+
+  ngOnInit(): void {
+    this.currentUser = this.token.getUser();
+  }
+
   Publicarempleo(): void {
     var puestowork: any = {
       nombrePuestoTrabajo: this.puestostrabajoform.controls['nombrePuestoTrabajo'].value,
@@ -89,8 +93,4 @@ export class PublicacionComponent implements OnInit {
         console.log(data);
     });
   }
-
-
-
-
 }
