@@ -25,7 +25,7 @@ export interface PostulanteBasicInfoResponse {
     tipodocumentoPostulante: string;
     numerodocumentoPostulante: string;
     fecharegistroPostulante: any; //date
-    generoPostulante: string;
+    descripcionPostulante: string;
     fotoperfilPostulante?: ImagenInterface;
     archivocvPostulante?: ArchivoCVInterface;
 }

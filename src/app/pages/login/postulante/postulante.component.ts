@@ -42,7 +42,7 @@ export class PostulanteComponent implements OnInit {
     tipodocumentoPostulante: '',
     numerodocumentoPostulante: '',
     fecharegistroPostulante: '',
-    generoPostulante: ''
+    descripcionPostulante: '',
   }
 
   //Modal para postulante
@@ -115,6 +115,10 @@ export class PostulanteComponent implements OnInit {
     aniofinExperienciaLaboral: new FormControl('', 
     Validators.required)
   }); 
+  anio: any;
+  anioinicio: any;
+  mesinicio: any;
+  mesfinal: any;
 
   constructor(private tokens:TokenStorageService,
       private fb:FormBuilder,
@@ -135,12 +139,144 @@ export class PostulanteComponent implements OnInit {
   Seleccionarexp(exp:any) {
     this.ListExp = exp;
     this.tokens.saveExp(this.ListExp.idExperienciaLaboral);
+
+    var mesinicioseparador = this.ListExp.periodoinicioExperienciaLaboral
+    var mesfinseparador = this.ListExp.periodofinExperienciaLaboral
+    this.mesinicio = mesinicioseparador.slice(0,-5)
+    this.mesfinal = mesfinseparador.slice(0,-5)
+
+    switch (this.mesinicio) 
+        {
+            case 'Enero':  this.mesinicio = "01";
+                     break;
+            case 'Febrero':  this.mesinicio = "02";
+                     break;
+            case 'Marzo':  this.mesinicio = "03";
+                     break;
+            case 'Abril':  this.mesinicio = "04";
+                     break;
+            case 'Mayo':  this.mesinicio = "05";
+                     break;
+            case 'Junio':  this.mesinicio = "06";
+                     break;
+            case 'Julio':  this.mesinicio = "07";
+                     break;                  
+            case 'Agosto':  this.mesinicio = "08";
+                     break;
+            case 'Septiembre':  this.mesinicio = "09";
+                     break;
+            case 'Octubre':  this.mesinicio = "10";
+                     break;
+            case 'Noviembre':  this.mesinicio = "11";
+                     break;
+            case 'Diciembre':  this.mesinicio = "12";
+                     break;            
+        }
+        switch (this.mesfinal) 
+        {
+            case 'Enero':  this.mesfinal = "01";
+                     break;
+            case 'Febrero':  this.mesfinal = "02";
+                     break;
+            case 'Marzo':  this.mesfinal = "03";
+                     break;
+            case 'Abril':  this.mesfinal = "04";
+                     break;
+            case 'Mayo':  this.mesfinal = "05";
+                     break;
+            case 'Junio':  this.mesfinal = "06";
+                     break;
+            case 'Julio':  this.mesfinal = "07";
+                     break;                  
+            case 'Agosto':  this.mesfinal = "08";
+                     break;
+            case 'Septiembre':  this.mesfinal = "09";
+                     break;
+            case 'Octubre':  this.mesfinal = "10";
+                     break;
+            case 'Noviembre':  this.mesfinal = "11";
+                     break;
+            case 'Diciembre':  this.mesfinal = "12";
+                     break;            
+        }  
+    
+      var cadenainicio = this.ListExp.periodoinicioExperienciaLaboral;
+      var cadenafin = this.ListExp.periodofinExperienciaLaboral;
+      this.anioinicio = cadenainicio.slice(-4);
+      this.anio = cadenafin.slice(-4);
+    
     console.log(this.ListExp);
   }
 
   SeleccionarEdu(edu:any) {
     this.ListEdu = edu;
     this.tokens.saveEdu(this.ListEdu.idEducacion);
+
+    var mesinicioseparador = this.ListEdu.periodoinicioEducacion
+    var mesfinseparador = this.ListEdu.periodofinEducacion
+    this.mesinicio = mesinicioseparador.slice(0,-5)
+    this.mesfinal = mesfinseparador.slice(0,-5)
+
+    switch (this.mesinicio) 
+        {
+            case 'Enero':  this.mesinicio = "01";
+                     break;
+            case 'Febrero':  this.mesinicio = "02";
+                     break;
+            case 'Marzo':  this.mesinicio = "03";
+                     break;
+            case 'Abril':  this.mesinicio = "04";
+                     break;
+            case 'Mayo':  this.mesinicio = "05";
+                     break;
+            case 'Junio':  this.mesinicio = "06";
+                     break;
+            case 'Julio':  this.mesinicio = "07";
+                     break;                  
+            case 'Agosto':  this.mesinicio = "08";
+                     break;
+            case 'Septiembre':  this.mesinicio = "09";
+                     break;
+            case 'Octubre':  this.mesinicio = "10";
+                     break;
+            case 'Noviembre':  this.mesinicio = "11";
+                     break;
+            case 'Diciembre':  this.mesinicio = "12";
+                     break;            
+        }
+        switch (this.mesfinal) 
+        {
+            case 'Enero':  this.mesfinal = "01";
+                     break;
+            case 'Febrero':  this.mesfinal = "02";
+                     break;
+            case 'Marzo':  this.mesfinal = "03";
+                     break;
+            case 'Abril':  this.mesfinal = "04";
+                     break;
+            case 'Mayo':  this.mesfinal = "05";
+                     break;
+            case 'Junio':  this.mesfinal = "06";
+                     break;
+            case 'Julio':  this.mesfinal = "07";
+                     break;                  
+            case 'Agosto':  this.mesfinal = "08";
+                     break;
+            case 'Septiembre':  this.mesfinal = "09";
+                     break;
+            case 'Octubre':  this.mesfinal = "10";
+                     break;
+            case 'Noviembre':  this.mesfinal = "11";
+                     break;
+            case 'Diciembre':  this.mesfinal = "12";
+                     break;            
+        }  
+    
+      var cadenainicio = this.ListEdu.periodoinicioEducacion;
+      var cadenafin = this.ListEdu.periodofinEducacion;
+      this.anioinicio = cadenainicio.slice(-4);
+      this.anio = cadenafin.slice(-4);
+
     console.log(this.ListEdu);
   }
 
@@ -167,22 +303,23 @@ export class PostulanteComponent implements OnInit {
       data => {     
       this.CurrentEducacion = data;
       console.log(data);
+      window.location.reload();
     });    
   }
 
   editaEdu(){
     var educacion: any = {
-      nombreExperienciaLaboral: this.experienciaModalForm.controls['nombreExperienciaLaboral'].value,
-      mesinicioExperienciaLaboral: this.experienciaModalForm.controls['mesinicioExperienciaLaboral'].value,
-      anioinicioExperienciaLaboral: this.experienciaModalForm.controls['anioinicioExperienciaLaboral'].value,
-      mesfinExperienciaLaboral: this.experienciaModalForm.controls['mesfinExperienciaLaboral'].value,
-      aniofinExperienciaLaboral : this.experienciaModalForm.controls['aniofinExperienciaLaboral'].value,
-      empresaExperienciaLaboral: this.experienciaModalForm.controls['empresaExperienciaLaboral'].value     
+      nombreEducacion: this.educacionModalForm.controls['nombreEducacion'].value,
+      mesinicioEducacion: this.educacionModalForm.controls['mesinicioEducacion'].value,
+      anioinicioEducacion: this.educacionModalForm.controls['anioinicioEducacion'].value,
+      mesfinEducacion: this.educacionModalForm.controls['mesfinEducacion'].value,
+      aniofinEducacion : this.educacionModalForm.controls['aniofinEducacion'].value,
+      institucionEducacion: this.educacionModalForm.controls['institucionEducacion'].value     
     }
-    this.PostulanteService.actualizarEducacion(this.CurrentUser.idPostulante, educacion).subscribe(
+    this.PostulanteService.actualizarEducacion(this.ListEdu.idEducacion, educacion).subscribe(
     data => {
       console.log(data);
-    });
+    })
   }
 
   deleteEdu(){   
@@ -215,7 +352,8 @@ export class PostulanteComponent implements OnInit {
     this.PostulanteService.guardarExperiencia(this.CurrentUser.idPostulante, experiencia).subscribe(
       data => {    
         data;
-        console.log(data);      
+        console.log(data);
+        window.location.reload();    
       });    
   }
 
@@ -223,17 +361,18 @@ export class PostulanteComponent implements OnInit {
        
       var experiencia: any = {
         nombreExperienciaLaboral: this.experienciaModalForm.controls['nombreExperienciaLaboral'].value,
-        mesinicioExperienciaLaboral: this.experienciaModalForm.controls['fechaxinicioMes'].value,
-        anioinicioExperienciaLaboral: this.experienciaModalForm.controls['fechaxinicioAnio'].value,  
-        mesfinExperienciaLaboral:  this.experienciaModalForm.controls['fechaxfinMes'].value,
-        aniofinExperienciaLaboral: this.experienciaModalForm.controls['fechaxfinAnio'].value,
-        empresaExperienciaLaboral: this.experienciaModalForm.controls['nombreEmpresa'].value    
+        mesinicioExperienciaLaboral: this.experienciaModalForm.controls['mesinicioExperienciaLaboral'].value,
+        anioinicioExperienciaLaboral: this.experienciaModalForm.controls['anioinicioExperienciaLaboral'].value,  
+        mesfinExperienciaLaboral:  this.experienciaModalForm.controls['mesfinExperienciaLaboral'].value,
+        aniofinExperienciaLaboral: this.experienciaModalForm.controls['aniofinExperienciaLaboral'].value,
+        empresaExperienciaLaboral: this.experienciaModalForm.controls['empresaExperienciaLaboral'].value    
       }
   
       this.PostulanteService.actualizarExperiencia(this.ListExp.idExperienciaLaboral, experiencia).subscribe(
         data => {    
           console.log(data)
-        });    
+          window.location.reload()
+        })
     }
 
   deleteExp(){
@@ -257,18 +396,17 @@ export class PostulanteComponent implements OnInit {
         this.CurrentUserparam = data;
         this.Usuario.nombrePostulante = this.CurrentUserparam.nombrePostulante,
         this.Usuario.apellidoPostulante = this.CurrentUserparam.apellidoPostulante,
-        this.Usuario.ciudadPostulante = this.CurrentUserparam.ciudadPostulante,
         this.Usuario.numerodocumentoPostulante = this.CurrentUserparam.numerodocumentoPostulante,
         this.Usuario.tipodocumentoPostulante = this.CurrentUserparam.tipodocumentoPostulante,
-        this.Usuario.generoPostulante = this.CurrentUserparam.generoPostulante,
+        this.Usuario.descripcionPostulante = this.CurrentUserparam.descripcionPostulante,
         this.Usuario.fecharegistroPostulante = this.CurrentUserparam.fecharegistroPostulante,
         this.Usuario.fotoperfilPostulante = this.CurrentUserparam.fotoperfilPostulante.urlImagen,
         this.Usuario.archivocvPostulante=this.CurrentUserparam.archivocvPostulante.urlArchivoCV,
-        console.log(this.Usuario);  
+        console.log(this.CurrentUserparam);  
       },
       error => {
         console.log(error);
-      });
+      })
     }
   }
 

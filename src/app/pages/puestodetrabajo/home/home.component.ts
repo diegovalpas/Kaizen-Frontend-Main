@@ -94,7 +94,6 @@ export class HomeComponent implements OnInit {
 
   Seleccionarempleo(empleo:any) {
     this.CurrentDetalleLista = empleo;
-    console.log(this.CurrentDetalleLista)
   }
 
   verDetalle(){

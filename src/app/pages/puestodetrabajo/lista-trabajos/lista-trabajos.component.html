@@ -251,7 +251,7 @@
                                                 <span class="badge badge-success">{{empleo.tipojornadaPuestoTrabajo}}</span>
 
                                                 <div class="mt-3">
-                                                    <a href="detalletrabajo.html" class="btn btn-sm btn-primary">Ver Detalle</a>
+                                                    <a [class.active] = "empleo == CurrentDetalleLista" (click)="Seleccionarempleo(empleo)" (click)="verDetalle()" class="btn btn-sm btn-primary">Ver Detalle</a>
                                                 </div>
                                             </div>
                                         </div>

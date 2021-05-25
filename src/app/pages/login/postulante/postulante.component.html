@@ -138,7 +138,7 @@
                                                     <input type="text" class="form-control" formControlName="numerodocumentoUsuario" [(ngModel)]="Usuario.numerodocumentoPostulante" id="docnumber" placeholder="Ingresa tu numero de documento">
                                                     </div>
                                             </div>
-                                            <input type="hidden" class="form-control"  formControlName="generoUsuario" [(ngModel)]="Usuario.generoPostulante" required>
+                                            
                                             <div class="form-group row">
                                                     <label for="direccionpos" class="col-sm-2 col-form-label">Direccion</label>
                                                     <div class="col-sm-10">
@@ -180,9 +180,7 @@
                     <div class="border rounded p-4">
                         <label for="">Nombre :</label><p class="text-muted">{{Usuario.nombrePostulante}}</p>
                         <label for="">Apellido :</label><p class="text-muted">{{Usuario.apellidoPostulante}}</p>
-                        <label for="">Ciudad :</label><p class="text-muted">{{Usuario.ciudadPostulante}}</p>
-                        <label for="">Genero :</label><p class="text-muted">{{Usuario.generoPostulante}}</p>
-
+                        <label for="">Descripcion :</label><p class="text-muted">{{Usuario.descripcionPostulante}}</p>
                         <ul class="list-inline pt-3 border-top mb-0">
                             <li class="list-inline-item mr-3">
                                 <a href="" class="text-muted f-15 mb-0"><i class="mdi mdi-map-marker mr-2"></i>{{CurrentUserparam.direccionPostulante}}</a>
@@ -247,9 +245,9 @@
                                                 <div class="form-group row">
                                                     <label for="inputphone" class="col-sm-2 col-form-label">Fecha de Inicio</label>
                                                     <div class="col-sm-10" class="input-group" style="width: 80%;">
-                                                        <div class="form-group">
+                                                        
                                                             <input type="form-control" class="form-control form-control-lg" formControlName="mesinicioEducacion" name="fechaM" placeholder="Mes" required>
-                                                        </div>
+                                                        
                                                         <input type="number"  min="1900" class="form-control" style="width: 20%;" placeholder="Año" formControlName="anioinicioEducacion" id="fechainicioAño" required>                                                   
                                                     </div> 
                                                 </div>
@@ -257,9 +255,9 @@
                                                 <div class="form-group row">
                                                     <label for="docnumber" class="col-sm-2 col-form-label">Fecha de Fin</label>
                                                     <div class="col-sm-10" class="input-group" style="width: 80%;">
-                                                        <div class="form-group">
+                                                        
                                                         <input type="form-control" class="form-control form-control-lg" formControlName="mesfinEducacion" name="fechaM" placeholder="Mes" required>
-                                                        </div>
+                                                        
                                                         <input type="number"  min="1900" class="form-control" style="width: 20%;" placeholder="Año" formControlName="aniofinEducacion" id="fechafinAño" required>                                                       
                                                     </div>
                                                 </div>
@@ -268,6 +266,64 @@
                                                     <label for="direccionpos" class="col-sm-2 col-form-label">Centro de Estudio</label>
                                                     <div class="col-sm-10">
                                                         <input type="text" class="form-control" formControlName="institucionEducacion" id="institucionEducacion" placeholder="Ingresa el centro de estudio" required>
+                                                    </div>
+                                                </div>    
+
+                                        </div>   
+                                        <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary" >Guardar Estudio</button>
+                                        </div>  
+                                    </form>
+                                </div>
+                            </div>
+                        </div>                                               
+                    </ng-template>
+                    <ng-template #educacioneditar let-modal>
+                        <div class="fullscreen-modal " id="educacionModal" >
+                            <div class="modal-dialog modal-dialog-centered" style="max-width: 100%" role="document" >
+                                <div class="modal-content" >
+                                    <form  [formGroup]="educacionModalForm" (ngSubmit)="editaEdu()">
+
+                                        <div class="modal-header">
+                                            <h4 >Editar Educación</h4>
+                                            <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        
+                                        <div class="modal-body">                               
+                                            
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Nombre de Educación</label>                                               
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" formControlName="nombreEducacion" id="nombreEducacion" placeholder="Ingrese el nombre" [ngModel]="ListEdu.nombreEducacion"  required> 
+                                                    </div>
+                                                </div>
+                                                                                               
+                                                <div class="form-group row">
+                                                    <label for="inputphone" class="col-sm-2 col-form-label">Fecha de Inicio</label>
+                                                    <div class="col-sm-10" class="input-group" style="width: 80%;">
+                                                        
+                                                        <input type="number" min="1" max="12" class="form-control form-control-lg" formControlName="mesinicioEducacion" name="fechaM" placeholder="Mes" [ngModel]="mesinicio" required>
+                                                        
+                                                        <input type="number"  min="1900" class="form-control" style="width: 20%;" placeholder="Año" formControlName="anioinicioEducacion" id="fechainicioAño" [ngModel]="anioinicio" required>                                                   
+                                                    </div> 
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="docnumber" class="col-sm-2 col-form-label">Fecha de Fin</label>
+                                                    <div class="col-sm-10" class="input-group" style="width: 80%;">
+                                                        
+                                                        <input type="number" min="1" max="12" class="form-control form-control-lg" formControlName="mesfinEducacion" name="fechaM" placeholder="Mes" [ngModel]="mesfinal" required>
+                                                        
+                                                        <input type="number"  min="1900" class="form-control" style="width: 20%;" placeholder="Año" formControlName="aniofinEducacion" id="fechafinAño" [ngModel]="anio" required>                                                       
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="direccionpos" class="col-sm-2 col-form-label">Centro de Estudio</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" formControlName="institucionEducacion" id="institucionEducacion" placeholder="Ingresa el centro de estudio" [ngModel]="ListEdu.institucionEducacion" required>
                                                     </div>
                                                 </div>    
 
@@ -297,7 +353,7 @@
                         <p class="pb-3 mb-0">{{edu.nombreEducacion}}</p>
                         <br> 
                         <button [class.active]=" edu == ListEdu" (click)="SeleccionarEdu(edu)" (click)="deleteEdu()" type="submit" class="btn btn-primary" style="width:100px" >Eliminar</button>
-                        <button [class.active]=" edu == ListEdu" (click)="SeleccionarEdu(edu)" (click)="modal.open(educacion)" type="submit" class="btn btn-primary" style="width:100px" >Editar</button>                           
+                        <button [class.active]=" edu == ListEdu" (click)="SeleccionarEdu(edu)" (click)="modal.open(educacioneditar)" type="submit" class="btn btn-primary" style="width:100px" >Editar</button>                           
 
                         <!--<p class="pt-3 border-top mb-0">:v</p>-->
                     </div>
@@ -359,7 +415,63 @@
 
                                         </div>   
                                         <div class="modal-footer">
-                                                <button type="submit" class="btn btn-primary" >Guardar Estudio</button>
+                                                <button type="submit" class="btn btn-primary" >Guardar Experiencia</button>
+                                        </div>
+
+                                       
+                                    </form>
+                                </div>
+                            </div>
+                        </div>                                               
+                    </ng-template>
+                    <ng-template #experienciaeditar let-modal>
+                        <div class="fullscreen-modal " id="educacionModal" >
+                            <div class="modal-dialog modal-dialog-centered" style="max-width: 100%" role="document" >
+                                <div class="modal-content" >
+                                    <form  [formGroup]="experienciaModalForm" (ngSubmit)="updateExp()">
+
+                                        <div class="modal-header">
+                                            <h4 >Editar Experiencia</h4>
+                                            <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        
+                                        <div class="modal-body">                               
+                                            
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Nombre de experiencia laboral</label>                                               
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" formControlName="nombreExperienciaLaboral" id="nombreExperienciaLaboral" placeholder="Ingrese el nombre" [ngModel]="ListExp.nombreExperienciaLaboral" required>
+                                                    </div>
+                                                </div>
+                                                                                               
+                                                <div class="form-group row">
+                                                    <label for="inputphone" class="col-sm-2 col-form-label">Fecha de Inicio</label>
+                                                    <div class="col-sm-10" class="input-group" style="width: 80%;">
+                                                        <input type="number"  max="12" min="1" class="form-control" style="width: 20%;" placeholder="Mes" formControlName="mesinicioExperienciaLaboral" id="fechaxinicioMes" [ngModel]="mesinicio" required>
+                                                        <input type="number"  min="1900" class="form-control" style="width: 20%;" placeholder="Año" formControlName="anioinicioExperienciaLaboral" id="fechaxinicioAño" [ngModel]="anioinicio" required>                                                       
+                                                    </div> 
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="docnumber" class="col-sm-2 col-form-label">Fecha de Fin</label>
+                                                    <div class="col-sm-10" class="input-group" style="width: 80%;">
+                                                        <input type="number"  max="12" min="1" class="form-control" style="width: 20%;" placeholder="Mes" formControlName="mesfinExperienciaLaboral" id="fechaxfinMes" [ngModel]="mesfinal" required>
+                                                        <input type="number"  min="1900" class="form-control" style="width: 20%;" placeholder="Año" formControlName="aniofinExperienciaLaboral" id="fechaxfinAño" [ngModel]="anio" required>                                                       
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="direccionpos" class="col-sm-2 col-form-label">nombre Expresa Laboral</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" formControlName="empresaExperienciaLaboral" id="nombreEmpresa" placeholder="Empresa" [ngModel]="ListExp.empresaExperienciaLaboral" required>
+                                                    </div>
+                                                </div>    
+
+                                        </div>   
+                                        <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary" >Guardar Experiencia</button>
                                         </div>
 
                                        
@@ -389,7 +501,8 @@
                                     <p>{{exp.periodoinicioExperienciaLaboral}} - {{exp.periodofinExperienciaLaboral}}</p>                                  
                                 </div>     
                                 <br>
-                                <button [class.active]=" exp == ListExp" (click)="Seleccionarexp(exp)" (click)="deleteExp()" type="submit" class="btn btn-primary" style="width:100px" >Eliminar</button>                           
+                                <button [class.active]=" exp == ListExp" (click)="Seleccionarexp(exp)" (click)="deleteExp()" type="submit" class="btn btn-primary" style="width:100px" >Eliminar</button>
+                                <button [class.active]=" exp == ListExp" (click)="Seleccionarexp(exp)" (click)="modal.open(experienciaeditar)" type="submit" class="btn btn-primary" style="width:100px" >Editar</button>                            
                             </div>
                             
                         </div>

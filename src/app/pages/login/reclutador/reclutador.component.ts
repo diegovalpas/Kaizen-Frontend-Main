@@ -61,22 +61,19 @@ export class ReclutadorComponent implements OnInit {
       this.ReclutadorService.get(this.CurrentUser.idReclutador).subscribe(
       data => {
         this.CurrentUserparam = data,
-        
         this.Usuario.nombreReclutador = this.CurrentUserparam.nombreReclutador,
-        this.Usuario.ciudadReclutador = this.CurrentUserparam.ciudadReclutador,
+        //this.Usuario.ciudadReclutador = this.CurrentUserparam.ciudadReclutador,
         this.Usuario.nombrecontactanteReclutador = this.CurrentUserparam.nombrecontactanteReclutador,
         this.Usuario.descripcionReclutador = this.CurrentUserparam.descripcionReclutador, 
         this.Usuario.direccionReclutador = this.CurrentUserparam.direccionReclutador,
         this.Usuario.telefonoReclutador = this.CurrentUserparam.telefonoReclutador,
         this.Usuario.tituloReclutador = this.CurrentUserparam.tituloReclutador
-        
         this.Usuario.logoempresaReclutador = this.CurrentUserparam.logoempresaReclutador.urlImagen,
         console.log(this.Usuario);
       },
-
       error => {
         console.log(error);
-      });
+      })
     }
   }
 

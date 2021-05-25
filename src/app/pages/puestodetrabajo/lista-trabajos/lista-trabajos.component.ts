@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/util/token-storage.service';
 import { FormBuilder, FormControl, Validators} from '@angular/forms';
 import { ListaTrabajosService} from './lista-trabajos.service';
+import { Router } from '@angular/router';
 import { Ciudades, Categorias, Experiencia, PeriodoPublicacion } from '../../../util/data-lists';
 
 @Component({
@@ -18,6 +19,7 @@ export class ListaTrabajosComponent implements OnInit {
   CurrentDatos: any = [];
   CurrentEmpleo : any;
   p : number =1 ;
+  CurrentDetalleLista: any;
 
   //Datalist
   Categorias = Categorias;
@@ -46,10 +48,10 @@ export class ListaTrabajosComponent implements OnInit {
     categoriaUsuario: new FormControl('', 
     Validators.required)
   })
-
+ 
   constructor( private listatrabajosservice: ListaTrabajosService,
                private fb: FormBuilder,
-               private tokens: TokenStorageService) { }
+               private tokens: TokenStorageService, private route: Router) { }
 
   ngOnInit(): void {
     this.verListaDeTrabajos();
@@ -111,6 +113,15 @@ export class ListaTrabajosComponent implements OnInit {
       this.verListaDeTrabajos();
     }
     this.tokens.deleteTokenBusqueda();
+  }
+
+  Seleccionarempleo(empleo:any) {
+    this.CurrentDetalleLista = empleo;
+  }
+
+  verDetalle(){
+    this.tokens.saveTokenjob(this.CurrentDetalleLista.idPuestoTrabajo);
+    this.route.navigate(['puestotrabajo/'+this.CurrentDetalleLista.idPuestoTrabajo+'/detail']);
   }
 
   EliminarFiltros(){

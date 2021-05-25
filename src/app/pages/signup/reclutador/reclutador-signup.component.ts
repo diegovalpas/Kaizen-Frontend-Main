@@ -99,7 +99,8 @@ export class ReclutadorSignupComponent implements OnInit {
       data => { 
         console.log(data);
         this.router.navigate(['/signin/reclutador'])
-        this.signupSuccess = true; 
+        this.signupSuccess = true;
+        debugger
       },
       err => {
         this.errorMessage = err.error.message;
