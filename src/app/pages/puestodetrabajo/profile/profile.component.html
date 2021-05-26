@@ -84,9 +84,9 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="candidates-profile-details text-center">
-                        <img src="{{ CurrentUser.fotoperfilPostulante.urlImagen }}" height="150" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
+                        <img src="{{CurrentUser.fotoperfilPostulante.urlImagen}}" height="150" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
                         <h5 class="text-white mb-2">{{CurrentUser.nombrePostulante}}</h5>
-                        <p class="text-white-50 h6 mb-2">ESPECIALIDAD?</p>
+                        <p class="text-white-50 h6 mb-2">{{CurrentUser.nombrePostulante}}</p>
                         <br>
                     </div>
                     <!--  codigo anterior -->
@@ -107,8 +107,6 @@
                     <div class="border rounded p-4">
                         <label for="">Nombre :</label><p class="text-muted">{{CurrentUser.nombrePostulante}}</p>
                         <label for="">Apellido :</label><p class="text-muted">{{CurrentUser.apellidoPostulante}}</p>
-                        <label for="">Ciudad :</label><p class="text-muted">{{CurrentUser.ciudadPostulante}}</p>
-                        <label for="">Genero :</label><p class="text-muted">{{CurrentUser.generoPostulante}}</p>
 
                         <ul class="list-inline pt-3 border-top mb-0">
                             <li class="list-inline-item mr-3">
@@ -126,52 +124,28 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12 mt-4 pt-2">
-                    <h4 class="text-dark">Educación :</h4>
-                </div>
-            </div>
 
             <div class="row">
-                <div class="col-lg-4 col-md-6 mt-4 pt-5">
+                <div class="col-lg-12 mt-4 pt-2">
+                    <h4 class="text-dark">Educacion :</h4>
+                </div>
+            </div>
+                        
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mt-4 pt-5" *ngFor="let edu of CurrentEducacion">
                     <div class="border rounded candidates-profile-education text-center text-muted">
                         <div class="profile-education-icon border rounded-pill bg-white text-primary">
                             <i class="mdi mdi-36px mdi-school"></i>
                         </div>
-                        <h6 class="text-uppercase f-17"><a href="#" class="text-muted">Universidad de Lima</a></h6>
-                        <p class="f-14 mb-1">Marzo 2014 - Diciembre 2020</p>
-                        <p class="pb-3 mb-0">Diploma en Finanzas Quanticas</p>
+                        <h6 class="text-uppercase f-17"><a href="#" class="text-muted"> {{edu.institucionEducacion}} </a></h6>
+                        <p>{{edu.periodoinicioEducacion}} - {{edu.periodofinEducacion}}</p>
                         
-                        <!--<p class="pt-3 border-top mb-0">:v</p>-->
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 mt-4 pt-5">
-                    <div class="border rounded candidates-profile-education text-center text-muted">
-                        <div class="profile-education-icon border rounded-pill bg-white text-primary">
-                            <i class="mdi mdi-36px mdi-library"></i>
-                        </div>
-                        <h6 class="text-uppercase f-17"><a href="#" class="text-muted">Universidad del Pacífico</a></h6>
-                        <p class="f-14 mb-1">Agosto 2015 - Diciembre 2018</p>
-                        <p class="pb-3 mb-0">Maestría en finanzas quanticas</p>
-                        
-                        <!--<p class="pt-3 border-top mb-0">:v</p>-->
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 mt-4 pt-5">
-                    <div class="border rounded candidates-profile-education text-center text-muted">
-                        <div class="profile-education-icon border rounded-pill bg-white text-primary">
-                            <i class="mdi mdi-36px mdi-briefcase-check"></i>
-                        </div>
-                        <h6 class="text-uppercase f-17"><a href="#" class="text-muted">Universidad de Arizona</a></h6>
-                        <p class="f-14 mb-1">Mayo 2018 - Abril 2019</p>
-                        <p class="pb-3 mb-0">Diploma en Contabilidad</p>
-                        
+                        <p class="pb-3 mb-0">{{edu.nombreEducacion}}</p>                       
                         <!--<p class="pt-3 border-top mb-0">:v</p>-->
                     </div>
                 </div>
             </div>
+
 
             <div class="row">
                 <div class="col-lg-12 mt-4 pt-2">
@@ -179,50 +153,28 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-6 mt-3 mt-md-0 pt-3">
+            <div class="row" >
+                <div class="col-md-6 mt-3 mt-md-0 pt-3"  *ngFor="let exp of CurrentExperiencia"   >
                     <div class="border rounded job-list-box p-4">
                         <div class="row">
                             <div class="col-lg-3">
                                 <div class="company-brand-logo text-center mb-4">
-                                    <img src="/assets/images/logopt.png" alt="" class="img-fluid mx-auto d-block">
+                                    <img src="{{exp.logoEmpresa.urlImagen}}" alt="" class="img-fluid mx-auto d-block">
                                 </div>
                             </div>
 
                             <div class="col-lg-9">
                                 <div class="job-list-desc candidates-profile-exp-desc">
-                                    <h5 class="f-19 mb-2"><a href="#" class="text-dark">Partner Tech</a></h5>
-                                    <b><p class="text-muted mb-0 f-16">Frontend Developer</p></b>
-                                    <p class="text-muted mb-0 f-16">Enero 2016 - Julio 2017</p>
-                                    
-                                </div>
+                                    <h5 class="f-19 mb-2"><a href="#" class="text-dark"> {{exp.empresaExperienciaLaboral}} </a></h5>
+                                    <b><p class="text-muted mb-0 f-16"> {{exp.nombreExperienciaLaboral}} </p></b>
+                                    <p>{{exp.periodoinicioExperienciaLaboral}} - {{exp.periodofinExperienciaLaboral}}</p>                                  
+                                </div>     
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 mt-3 mt-md-0 pt-3">
-                    <div class="border rounded job-list-box p-4">
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <div class="company-brand-logo text-center mb-4">
-                                    <img src="/assets/images/logokaizen.png" alt="" class="img-fluid mx-auto d-block">
-                                </div>
-                            </div>
-
-                            <div class="col-lg-9">
-                                <div class="job-list-desc candidates-profile-exp-desc">
-                                    <h5 class="f-19 mb-2"><a href="#" class="text-dark">Kaizen Talent</a></h5>
-                                    <b><p class="text-muted mb-0 f-16">Web Developer</p></b>
-                                    <p class="text-muted mb-0 f-16">Marzo 2015 - Agosto 2019</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>       
+                    </div>                    
+                </div>                
+            </div>
         </div>
-       
     </section>
 
     <footer class="footer">

@@ -4,6 +4,7 @@ import { FormBuilder,FormGroup, FormControl, Validators} from '@angular/forms';
 import { ActivatedRoute,Router, ParamMap} from '@angular/router';
 import { EmpleosService} from 'src/app/pages/puestodetrabajo/empleos/empleos.service';
 import { NgbModal, NgbTypeahead} from '@ng-bootstrap/ng-bootstrap';
+import {ProfileService} from './profile.service'
 
 
 @Component({
@@ -13,8 +14,10 @@ import { NgbModal, NgbTypeahead} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ProfileComponent implements OnInit {
 
-  tokenid:any;
+  iduser:any;
   CurrentUser:any = [];
+  CurrentEducacion: any ;
+  CurrentExperiencia: any = [];
 
   /*Usuario : PostulanteBasicInfoResponse = {
     nombrePostulante : '',
@@ -24,19 +27,18 @@ export class ProfileComponent implements OnInit {
     numerodocumentoPostulante: '',
     fecharegistroPostulante: '',
     generoPostulante: ''
-    
   };*/
 
 
   constructor(private tokens:TokenStorageService,
-    private fb:FormBuilder,
-    private router:Router,
     private empleoservice:EmpleosService,
-    private route:ActivatedRoute,
+    private ProfileService:ProfileService,
     public modal:NgbModal) { }
 
   ngOnInit(): void {
     this.getpostulantexempleo();
+    this.getEdu();
+    this.getExp();
   }
 
   getpostulantexempleo(){
@@ -44,6 +46,24 @@ export class ProfileComponent implements OnInit {
       this.CurrentUser = data;
       console.log(this.CurrentUser);
     })
+  }
+
+  getEdu(){
+
+    this.ProfileService.getEducacion(this.tokens.getTokenjob(), this.tokens.getUsuarioPerfil()).subscribe(
+      data => {    
+        this.CurrentEducacion= data;  
+        console.log(data)
+      });
+  }
+
+  getExp(){
+
+    this.ProfileService.getExperiencia(this.tokens.getTokenjob(), this.tokens.getUsuarioPerfil()).subscribe(
+      data => {    
+        this.CurrentExperiencia= data;  
+        console.log(data)
+      });
   }
 
 }

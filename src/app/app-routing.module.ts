@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'login/reclutador/:idReclutador/profile/basicinfo', component:ReclutadorComponent},
   { path: 'password', component:PasswordComponent},
   { path: 'api/reset_password/:newtoken', component:AutenticacionComponent},
-  { path: 'usuario/password/update', component:PasswordupdateComponent},
+  { path: 'password/update', component:PasswordupdateComponent},
   { path: 'reclutador/:idReclutador/publicar', component:PublicacionComponent},
   { path: 'postulante/:idPostulante/postulaciones', component:PostulacionComponent},
   { path: 'postulante/home/show/all', component:ListaTrabajosComponent},
