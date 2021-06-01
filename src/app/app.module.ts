@@ -6,24 +6,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SigninModule } from './pages/signin/signin.module';
 import { SignupModule } from './pages/signup/signup.module';
-import { LoginModule } from './pages/login/login.module';
-
 import { authInterceptorProviders } from './util/auth.interceptor';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { PasswordModule } from './pages/password/password.module';
-
-import { PuestodetrabajoModule } from './pages/puestodetrabajo/puestodetrabajo.module'
-
-import { NgxPaginationModule } from 'ngx-pagination';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-
-
-
+import { ProfileModule } from './pages/profile/profile.module';
+import { ResetPasswordModule } from './pages/reset_password/reset-password.module';
+import { EmpleoDetailModule } from './pages/empleo-detail/empleo-detail.module';
+import { IndexModule } from './pages/index/index.module';
+import { NavbarModule } from './pages/nav-bars/nav-bars.module';
+import { ListaTrabajosModule } from './pages/lista-trabajos/lista-trabajos.module';
 
 @NgModule({
   declarations: [
-    AppComponent, 
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,11 +26,12 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     SigninModule,
     SignupModule,
-    LoginModule,
-    NgbModule,
-    PasswordModule,
-    PuestodetrabajoModule,
-    NgxPaginationModule,
+    ProfileModule,
+    IndexModule,
+    NavbarModule,
+    ListaTrabajosModule,
+    EmpleoDetailModule,
+    ResetPasswordModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

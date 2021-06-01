@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 /*
 *nombres de los token a usar en LocalStorage
 */
@@ -21,7 +22,10 @@ export class TokenStorageService {
 
   constructor() { }
 
-  //guarda token
+  signOut(): void {
+    window.localStorage.clear();
+  }
+
   public saveToken(token: string): void {
     window.localStorage.removeItem(TOKEN_KEY);
     window.localStorage.setItem(TOKEN_KEY, token);
@@ -31,13 +35,11 @@ export class TokenStorageService {
     return window.localStorage.getItem(TOKEN_KEY);
   }
 
-  //guarda usuario con token
   public saveUser(user: any): void {
     window.localStorage.removeItem(USER_KEY);
     window.localStorage.setItem(USER_KEY, JSON.stringify(user));
   }
 
-    //obtiene usuario con token
   public getUser(): any {
     const user = window.localStorage.getItem(USER_KEY);
 
@@ -48,28 +50,8 @@ export class TokenStorageService {
     return {};
   }
 
-  //obtiene el dato del puesto de empleo
-  public saveTokenjob(token: string): void {
-    window.localStorage.removeItem(JOB_KEY);
-    window.localStorage.setItem(JOB_KEY, token);
-  }
-
-  public getTokenjob(): string | null {
-    return window.localStorage.getItem(JOB_KEY);
-  }
-
-  //obtiene los datos BasicInfo del perfil
-  public saveUsuarioPerfil(token: string): void {
-    window.localStorage.removeItem(PROFILE_KEY);
-    window.localStorage.setItem(PROFILE_KEY, token);
-  }
-  
-  public getUsuarioPerfil(): string | null {
-    return window.localStorage.getItem(PROFILE_KEY);
-  }
-
-  //Obtiene el dato de la experiencia
-  public saveExp(exp: string): void {
+   //Obtiene el dato de la experiencia
+   public saveExp(exp: string): void {
     window.localStorage.removeItem(EXP_KEY);
     window.localStorage.setItem(EXP_KEY, exp);
   }
@@ -101,12 +83,27 @@ export class TokenStorageService {
     }
   }
 
+    //obtiene los datos BasicInfo del perfil
+    public saveUsuarioPerfil(token: string): void {
+      window.localStorage.removeItem(PROFILE_KEY);
+      window.localStorage.setItem(PROFILE_KEY, token);
+    }
+    
+    public getUsuarioPerfil(): string | null {
+      return window.localStorage.getItem(PROFILE_KEY);
+    }
+
   public deleteTokenBusqueda(): any {
     window.localStorage.removeItem(LOOKFOR_KEY);
   }
 
-  //Cerrar la sesion - Quitar todos los LS
-  signOut(): void {
-    window.localStorage.clear();
+  //obtiene el dato del puesto de empleo
+  public saveTokenjob(token: string): void {
+    window.localStorage.removeItem(JOB_KEY);
+    window.localStorage.setItem(JOB_KEY, token);
+  }
+
+  public getTokenjob(): string | null {
+    return window.localStorage.getItem(JOB_KEY);
   }
 }

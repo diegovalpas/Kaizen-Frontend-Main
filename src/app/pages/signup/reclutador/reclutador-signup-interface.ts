@@ -6,5 +6,4 @@ export interface ReclutadorSignupRequest {
     contraseñaUsuario: string;
     nombrecontactanteUsuario: string;
     tamañoempresaUsuario: string;
-    telefonoUsuario: string;
 }

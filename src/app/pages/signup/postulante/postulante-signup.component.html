@@ -16,11 +16,10 @@
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
 
     <!-- Css Base -->
-    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="/assets/css/bootstrap.min.css" rel="stylesheet">!-->
 	<link href="/assets/css/menu.css" rel="stylesheet">
     <link href="/assets/css/styleregistro.css" rel="stylesheet">
 	<link href="/assets/css/vendors.css" rel="stylesheet">
-
 </head>
 
 <body>	
@@ -70,10 +69,10 @@
                                     formControlName="nombreUsuario"
 									[ngClass]="{
 										'is-invalid': postulantesignupForm.controls['nombreUsuario'].invalid && 
-									                  (postulantesignupForm.controls['nombreUsuario'].dirty || 
+									                 (postulantesignupForm.controls['nombreUsuario'].dirty || 
 													  postulantesignupForm.controls['nombreUsuario'].touched) , 
 										  'is-valid': postulantesignupForm.controls['nombreUsuario'].valid}">
-                                    <div class="invalid-feedback">
+									<div class="invalid-feedback">
                                         <span class="text-danger" *ngIf="postulantesignupForm.controls['nombreUsuario'].hasError('required')">
                                             No puede dejar este campo vacío
                                         </span>
@@ -94,6 +93,7 @@
                                         </span>
                                     </div>
 	                            </div>
+								
 								<div class="form-group">
 	                                <label for="apellidoUsuario">Apellidos</label>
 	                                <input type="text" name="apellidoUsuario" id="apellidoUsuario" class="form-control required"
@@ -126,7 +126,7 @@
 	                            </div>
 	                            <div class="form-group">
 	                                <label for="emailUsuario">Correo electrónico</label>
-	                                <input name="emailUsuario" id="emailUsuario" class="form-control required"
+	                                <input type="text" name="emailUsuario" id="emailUsuario" class="form-control required"
                                     formControlName="emailUsuario"
 									[ngClass]="{
 										'is-invalid': postulantesignupForm.controls['emailUsuario'].invalid && 
@@ -185,17 +185,18 @@
                                     </div> 
 	                            </div>
 								<label>Género</label>
-								<div class="form-group radio_input" >
-								    <label class="container_radio mr-3" *ngFor="let sexo of Sexos">{{sexo.text}}
-								        <input type="radio" class="custom-control-input required" id="{{sexo.selector}}" name="sexUsuario" value="{{sexo.value}}" (change)="RBselectedGender($event)">
+								<div class="form-group radio_input">
+								    <label class="container_radio mr-3" *ngFor="let sexos of Sexos"> {{sexos.text}}
+								        <input type="radio" name="generoUsuario" value="{{sexos.text}}"
+                                        formControlName="generoUsuario" class="required">
 								        <span class="checkmark"></span>
 								    </label>
 								</div>
 	                            <div class="form-group add_bottom_30 add_top_20">
 	                                <label>Sube tu Currículum<br><small>(Archivos aceptados: .pdf, .doc/docx - Máximo tamaño : 3MB)</small></label>
 	                                <div class="fileupload">
-	                                    <input type="file" class="required" formControlName="archivocvUsuario" name="archivocvUsuario" 
-										accept=".pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" 
+	                                    <input type="file" accept=".pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                        formControlName="imagenUsuario"
 										(change)="seleccionarArchivoCV($event)">
 	                                </div>
 	                            </div>
@@ -206,49 +207,73 @@
 								<h3 class="main_question">Completa los siguientes campos</h3>
 								<div class="form-group add_top_30">
 									<div class="styled-select">
-										<input type="form-control" class="form-control" list="ciudad" placeholder="Ciudad" 
-                                  		  formControlName="ciudadUsuario">
-                                    	<datalist id="ciudad">
-											<option *ngFor="let ciudad of Ciudades" value="{{ciudad.value}}">{{ciudad.text}}</option>                             
-                                  		</datalist>
+										<select class="form-control required" id="ciudadUsuario" name="ciudadUsuario" 
+										formControlName="ciudadUsuario">
+											<option value="">Selecciona la ciudad</option>
+											<option *ngFor="let ciudad of Ciudades" value="{{ciudad.value}}">{{ciudad.text}}</option>
+										</select>
+								    </div>
+                                </div>
+								<div class="form-group add_top_20">
+									<div class="styled-select">
+										<select class="form-control required" id="tipodocumentoUsuario" name="tipodocumentoUsuario" 
+										formControlName="tipodocumentoUsuario">
+											<option value="">Selecciona su tipo de documento</option>
+											<option *ngFor="let tipodocumento of TiposDocumento" value="{{tipodocumento.value}}">{{tipodocumento.text}}</option>
+										</select>
 									</div>
-									<div class="form-group add_top_20">
-										<div class="styled-select">
-											<input type="form-control" class="form-control form-control-lg" list="tipodocumento" placeholder="Tipo Documento" 
-                                    		formControlName="tipodocumentoUsuario">
-                                    		<datalist id="tipodocumento">
-                                       			 <option *ngFor="let tipodocumento of TiposDocumento" value="{{tipodocumento.value}}">{{tipodocumento.text}}</option>                               
-                                   		    </datalist>
-										</div>
+								</div>
+								<div class="form-group add_top_20">
+									<label for="numerodocumentoUsuario">Número de Documento</label>
+	                                <input type="number" id="numerodocumentoUsuario" class="form-control required"
+									formControlName="numerodocumentoUsuario"
+									[ngClass]="{
+										'is-invalid': postulantesignupForm.controls['numerodocumentoUsuario'].invalid && 
+									                  (postulantesignupForm.controls['numerodocumentoUsuario'].dirty || 
+													  postulantesignupForm.controls['numerodocumentoUsuario'].touched) , 
+										  'is-valid': postulantesignupForm.controls['numerodocumentoUsuario'].valid}">
+									<div class="invalid-feedback">
+										<span class="text-danger" *ngIf="postulantesignupForm.controls['numerodocumentoUsuario'].hasError('required')">
+											No puede dejar este campo vacío
+										</span>
 									</div>
-									<div class="form-group add_top_20">
-										<label for="nrodocumento">Número de Documento</label>
-										<input type="number" formControlName="numerodocumentoUsuario" name="nrodocumento" id="nrodocumento" class="form-control required" minlength="5">
+									<div class="invalid-feedback">
+										<span class="text-danger" *ngIf="postulantesignupForm.controls['numerodocumentoUsuario'].hasError('min')">
+											Debe contener como mínimo 8 dígitos
+										</span>
 									</div>
-									<div class="form-group add_bottom_30 add_top_20">
+									<div class="invalid-feedback">
+										<span class="text-danger" *ngIf="postulantesignupForm.controls['numerodocumentoUsuario'].hasError('max')">
+											No puede sobrepasarse de los 12 dígitos
+										</span>
+									</div>
+								</div>
+								<div class="form-group add_bottom_30 add_top_20">
 										<label>Sube tu foto de perfil<br><small>(Archivos aceptados: .png, .jpeg - Máximo tamaño : 3MB)</small></label>
 										<div class="fileupload">
-											<input type="file" formControlName="imagenUsuario" name="imagenUsuario" accept="image/png,image/jpeg" class="required" (change)="seleccionarFotoPerfil($event)">
+											<input type="file" name="fileupload" accept="image/png,image/jpeg"
+                                            formControlName="imagenUsuario"
+										    (change)="seleccionarFotoPerfil($event)">
 										</div>
-									</div>
-									<div class="text-center">
+								</div>
+								<div class="text-center">
 	                                    <div class="form-group terms">
 	                                        <label class="container_check">Por favor acepta nuestros <a href="#" data-toggle="modal" data-target="#terms-txt">Términos y condiciones</a> antes de Registrarte
 	                                            <input type="checkbox" name="terms" value="Yes" class="required">
 	                                            <span class="checkmark"></span>
 	                                        </label>
 	                                    </div>
-	                                </div>
-								</div>								
+	                            </div>								
 	                        </div>
 	                        <!-- /step last-->
 
 	                    </div>
 	                    <!-- Inicio Botones de navegación -->
 	                    <div id="bottom-wizard">
-	                        <button type="button" name="backward" class="backward" disabled>Retroceder</button>
+	                        <button type="button" name="backward" class="backward">Retroceder</button>
 	                        <button type="button" name="forward" class="forward">Siguiente</button>
-	                        <button type="submit" name="process" class="submit">Enviar</button>
+	                        <button type="submit" name="process" class="submit"
+                            [disabled]="postulantesignupForm.invalid">Enviar</button>
 	                    </div>
 	                    <!-- Botones de navegación -->
 	                </form>

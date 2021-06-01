@@ -8,4 +8,3 @@ export interface PostulanteSignupRequest {
     contraseñaUsuario: string;
     generoUsuario: string;
 }
-

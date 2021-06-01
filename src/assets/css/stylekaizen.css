@@ -1265,11 +1265,11 @@ input.sm-content {
 
 .alert.alert-primary {
     background-color: #e2f0ff;
-    border-color: #3a86d6;
+    border-color: #00da3b;
 }
 
 .alert.alert-primary hr {
-    border-top-color: #3a86d6;
+    border-top-color: #00da3b;
 }
 
 .alert.alert-secondary {

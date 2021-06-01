@@ -4,17 +4,17 @@ import { ReclutadorSignupRequest } from './reclutador-signup-interface';
 import { Observable } from 'rxjs';
 
 const AUTH_API = 'https://backend-kaizentalent.herokuapp.com/api/reclutador/signup';
+//const AUTH_API = 'http://localhost:8080/api/reclutador/signup';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ReclutadorSignupService {
-  
-  //Variables
-  logoFile = new File([], '');  
 
   constructor(private http: HttpClient) { }
+
+  auxlogo = new File([], '');
 
   SignUpReclutador(usuario: ReclutadorSignupRequest, logoempresa: File): Observable<any> {
 
@@ -25,11 +25,13 @@ export class ReclutadorSignupService {
     reclutador.append('usuario', reclutadordata);
 
     if (logoempresa != null) {
-      reclutador.append('logo', logoempresa);      
+      reclutador.append('logo', logoempresa);
     } else {
-      reclutador.append('logo', this.logoFile);
+      reclutador.append('logo', this.auxlogo);
     }
     
-    return this.http.post(AUTH_API , reclutador);
+    return this.http.post(
+      AUTH_API, 
+      reclutador);
   }
 }

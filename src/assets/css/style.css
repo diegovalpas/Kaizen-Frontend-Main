@@ -473,7 +473,8 @@ button:not(:disabled) {
 }
 
 .alert.alert-primary {
-  background-color: #6e89e1;
+  /*background-color: #204cad;*/
+  background-color: #2f56d4e5;
   border-color: #2f55d4;
 }
 

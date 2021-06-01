@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Publicar Empleo - Kaizen Talent</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="José Soplin Roncal" />
+
+    <link rel="shortcut icon" href="/assets/images/favicon.ico">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+
+    <!--Material Icons -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/materialdesignicons.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.css" />
+
+    <!-- Selectize CSS -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/selectize.css" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/nice-select.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+
+</head>
+
+<body>
+    <!--Navbar-->
+    <app-navigation></app-navigation>
+
+    <!-- Inicio -->
+    <section class="bg-half page-next-level"> 
+        <div class="bg-overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="text-center text-white">
+                        <h4 class="text-uppercase title mb-4">Publicar Empleo</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Fin Inicio -->
+
+    <!-- Inicio Publicar Empleo -->
+    <section class="section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="rounded shadow bg-white p-4">
+                        <div class="custom-form">
+                            <div id="message3"></div>
+                            <form method="post" action="php/contactanos.php" name="contact-form" id="contact-form3" 
+                                  [formGroup]="puestostrabajoform" (ngSubmit)="Publicarempleo()">
+                                <h4 class="text-dark mb-3">Publicar Empleo :</h4>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Título del puesto </label>
+                                            <input id="company-name" type="text" class="form-control resume" placeholder="" formControlName="nombrePuestoTrabajo">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Tipo de Jornada</label>
+                                            <div class="form-button">
+                                                <input type="form-control" class="form-control demo-default" list="tpostulacion" placeholder="Tipo de Jordana" 
+                                                    formControlName="tipojornadaPuestoTrabajo" >
+                                                <datalist id="tpostulacion">
+                                                    <option *ngFor="let tpostulacion of TipoPostulacion" value="{{tpostulacion.value}}">{{tpostulacion.text}}</option>                           
+                                                </datalist>
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Ciudad</label>
+                                            <div class="form-button">
+                                                <input type="form-control" class="form-control demo-default" list="ciudad" placeholder="Ciudad" 
+                                                    formControlName="ciudadPuestoTrabajo" >
+                                                <datalist id="ciudad">
+                                                    <option *ngFor="let ciudad of Ciudades" value="{{ciudad.value}}">{{ciudad.text}}</option>                           
+                                                </datalist>
+                                            </div>
+                                        </div>
+                                    </div>                                    
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Sueldo</label>
+                                            <input id="city" type="text" class="form-control resume" placeholder="" formControlName="sueldoPuestoTrabajo">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Categoría de Empleo</label>
+                                            <div class="form-button">
+                                                <input type="form-control" class="form-control demo-default" list="categoria" placeholder="Categoría" 
+                                                    formControlName="categoriaPuestoTrabajo" >
+                                                <datalist id="categoria">
+                                                    <option *ngFor="let categoria of Categorias" value="{{categoria.value}}">{{categoria.text}}</option>                           
+                                                </datalist>
+                                            </div>
+                                        </div>
+                                    </div>                                   
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Años de Experiencia</label>
+                                            <div class="form-button">
+                                                <input type="form-control" class="form-control demo-default" list="experiencia" placeholder="Experiencia" 
+                                                    formControlName="experienciaPuestoTrabajo" >
+                                                <datalist id="experiencia">
+                                                    <option *ngFor="let experiencia of Experiencia" value="{{experiencia.value}}" >{{experiencia.text}}</option>                           
+                                                </datalist>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Periodo de Publicación</label>
+                                            <div class="form-button">
+                                                <input type="form-control" class="form-control demo-default" list="publicacion" placeholder="Tiempo de publicación" 
+                                                    formControlName="periodopublicacionPuestoTrabajo" >
+                                                <datalist id="publicacion">
+                                                    <option *ngFor="let publicacion of Publicacion" value="{{publicacion.value}}" >{{publicacion.text}}</option>                           
+                                                </datalist>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Trabajo Remoto</label>
+                                            <div class="form-button">
+                                                <input type="form-control" class="form-control demo-default" list="remoto" placeholder="Trabajo Remoto" 
+                                                    formControlName="trabajoremotoPuestoTrabajo" >
+                                                <datalist id="remoto">
+                                                    <option *ngFor="let remoto of Remoto" >{{remoto.text}}</option>                           
+                                                </datalist>
+                                            </div>
+                                        </div> 
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Descripción del Empleo</label>
+                                            <textarea id="description" rows="6" class="form-control resume" placeholder="" formControlName="descripcionPuestoTrabajo" ></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12 mt-2">
+                                        <input href="#" class="btn btn-primary" type="submit" value="Publicar Empleo">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Fin Publicar Empleo -->
+
+    <!-- Inicio del footer -->
+    <app-footer></app-footer>
+
+    <!-- Subir -->
+    <a href="#" class="back-to-top rounded text-center" id="back-to-top"> 
+        <i class="mdi mdi-chevron-up d-block"> </i> 
+    </a>
+    <!-- Fin Subir -->
+    
+
+</body>
+</html>

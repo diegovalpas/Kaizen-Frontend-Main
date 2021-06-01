@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mis Postulaciones - Kaizen Talent</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="José Soplin Roncal" />
+
+    <link rel="shortcut icon" href="/assets/images/favicon.ico">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+
+    <!--Material Icon -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/materialdesignicons.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.css" />
+
+    <!-- selectize css -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/selectize.css" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/nice-select.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/empleosreclutador.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+
+</head>
+
+<body>
+
+    <!-- Barra navegación -->
+    <app-navigation></app-navigation>
+    
+    <!-- Inicio Mis Postulaciones -->
+    <section class="bg-half page-next-level"> 
+        <div class="bg-overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="text-center text-white">
+                        <h4 class="text-uppercase title mb-4">Mis Postulaciones</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Fin Mis Postulaciones -->
+
+    <!-- Inicio Contenido -->
+    <section class="section">
+        <div class="container">  
+            <div class="peluchin">
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h2><b>Mis Postulaciones</b></h2>
+                            </div>
+                            <div class="col-sm-6">  
+                            </div>
+                        </div>
+                    </div>
+
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <span class="custom-checkbox">
+                                        <input type="checkbox" id="selectAll">
+                                        <label for="selectAll"></label>
+                                    </span>
+                                </th>
+                                <th>
+                                    <h6>Título del Empleo</h6>
+                                </th>
+                                <th>
+                                    <h6>Empresa</h6>
+                                </th>
+                                <th>
+                                    <h6></h6>
+                                </th>
+                                <th>
+                                    <h6>Enlace</h6>
+                                </th>
+                                <th>
+                                    <h6></h6>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            <tr *ngFor="let postu of postulaciones | paginate: { itemsPerPage: 5, currentPage: p}" >
+                                <td>
+                                    <span class="custom-checkbox">
+                                        <input type="checkbox" id="checkbox1" name="options[]" value="1" >
+                                        <label for="checkbox1"></label>
+                                    </span>
+                                </td>
+                                <td>{{postu.nombreEmpresa}}</td>
+                                <td>{{postu.nombrePuestoTrabajo}}</td> <!--Nombre de la empresa a postular-->
+                                <td></td>
+                                <td style="cursor: pointer;" [class.active]="postu == ListPostulacionesCurrent" (click)="Seleccionarpostulacion(postu)" (click)="verDetalle()" >
+                                    <a>Ir a publicación</a>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="clearfix">
+
+
+                        <div style="text-align: right;">
+                            <pagination-controls (pageChange)="p = $event"   ></pagination-controls> 
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>             
+        </div>
+    </section>
+    <!-- Fin Perfil --> 
+
+    <!-- Inicio del footer -->
+    <app-footer></app-footer>
+    <!-- Javascript -->
+    
+</body>
+</html>

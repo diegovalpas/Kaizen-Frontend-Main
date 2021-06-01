@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Perfil Empresarial - Kaizen Talent</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="José Soplin Roncal" />
+
+    <link rel="shortcut icon" href="/assets/images/favicon.ico">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+
+    <!--Material Icon -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/materialdesignicons.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.css" />
+
+    <!-- selectize css -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/selectize.css" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/nice-select.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/modal.css" />
+    
+</head>
+
+<body>
+    <!-- Barra navegación -->
+    <app-navigation></app-navigation>
+    
+    <!-- Inicio Perfil -->
+    <section class="bg-half page-next-level"> 
+        <div class="bg-overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="candidates-profile-details text-center">
+                        <img src="{{basicInfo.logoempresaReclutador.urlImagen}}" height="150" alt="{{basicInfo.logoempresaReclutador.nombreImagen}}" class="d-block mx-auto shadow rounded-pill mb-4">
+                        <h5 class="text-white mb-2">{{basicInfo.nombreReclutador}}</h5>
+                        <p class="text-white-50 h6 mb-2">{{basicInfo.tituloReclutador}}</p>
+
+                        <!-- Boton Modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalKaizenpostulante">
+                        Editar perfil
+                        </button>
+                        <a [routerLink]="" (click)="PasswordRequest()"> Editar contraseña</a>
+                        <!-- Modal Corregido -->
+                        <form [formGroup]="reclutadorbasicinfoupdateForm" (ngSubmit)="updateBasicInfo()">
+                            <div class="modal fullscreen-modal fade" id="modalKaizenpostulante" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog modal-dialog-centered" style="max-width: 100%" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Editar Perfil</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="descripcionUsuario">Perfil Empresarial</label>
+                                                <textarea class="form-control" id="descripcionUsuario" rows="3"
+                                                formControlName="descripcionUsuario"
+                                                [ngClass]="{
+                                                    'is-invalid': reclutadorbasicinfoupdateForm.controls['descripcionUsuario'].invalid && 
+                                                                 (reclutadorbasicinfoupdateForm.controls['descripcionUsuario'].dirty || 
+                                                                  reclutadorbasicinfoupdateForm.controls['descripcionUsuario'].touched) , 
+                                                              '': reclutadorbasicinfoupdateForm.controls['descripcionUsuario'].valid}"
+                                                [ngModel]="basicInfo.descripcionReclutador"></textarea>
+                                                <div class="invalid-feedback">
+                                                    <span class="text-danger" *ngIf="reclutadorbasicinfoupdateForm.controls['descripcionUsuario'].hasError('minlength')">
+                                                        Debe contener al menos 5 caracteres 
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="direccionUsuario" class="col-sm-2 col-form-label">Dirección</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="direccionUsuario" placeholder="Ingresa tu Dirección"
+                                                    formControlName="direccionUsuario"
+                                                    [ngClass]="{
+                                                        'is-invalid': reclutadorbasicinfoupdateForm.controls['direccionUsuario'].invalid && 
+                                                                     (reclutadorbasicinfoupdateForm.controls['direccionUsuario'].dirty || 
+                                                                      reclutadorbasicinfoupdateForm.controls['direccionUsuario'].touched) , 
+                                                                  '': reclutadorbasicinfoupdateForm.controls['direccionUsuario'].valid}"
+                                                    [ngModel]="basicInfo.direccionReclutador">
+                                                    <div class="invalid-feedback">
+                                                        <span class="text-danger" *ngIf="reclutadorbasicinfoupdateForm.controls['direccionUsuario'].hasError('minlength')">
+                                                             Debe contener al menos 5 caracteres 
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="telefonoUsuario" class="col-sm-2 col-form-label">Teléfono</label>
+                                                <div class="col-sm-10">
+                                                    <input type="tel" class="form-control" id="telefonoUsuario" placeholder="Ingresa tu número de teléfono"
+                                                    formControlName="telefonoUsuario"
+                                                    [ngClass]="{
+                                                        'is-invalid': reclutadorbasicinfoupdateForm.controls['telefonoUsuario'].invalid && 
+                                                                     (reclutadorbasicinfoupdateForm.controls['telefonoUsuario'].dirty || 
+                                                                      reclutadorbasicinfoupdateForm.controls['telefonoUsuario'].touched) , 
+                                                                  '': reclutadorbasicinfoupdateForm.controls['telefonoUsuario'].valid}"
+                                                    [ngModel]="basicInfo.telefonoReclutador">
+                                                    <div class="invalid-feedback">
+                                                        <span class="text-danger" *ngIf="reclutadorbasicinfoupdateForm.controls['telefonoUsuario'].hasError('min')">
+                                                             Debe contener como mínimo 7 dígitos
+                                                        </span>
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        <span class="text-danger" *ngIf="reclutadorbasicinfoupdateForm.controls['telefonoUsuario'].hasError('max')">
+                                                            No puede sobrepasarse de los 9 dígitos
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="nombrecontactanteUsuario" class="col-sm-2 col-form-label">Nombre del Contactante</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="nombrecontactanteUsuario" placeholder="Ingresa el Nombre del Contactante"
+                                                    formControlName="nombrecontactanteUsuario"
+                                                    [ngClass]="{
+                                                        'is-invalid': reclutadorbasicinfoupdateForm.controls['nombrecontactanteUsuario'].invalid && 
+                                                                     (reclutadorbasicinfoupdateForm.controls['nombrecontactanteUsuario'].dirty || 
+                                                                      reclutadorbasicinfoupdateForm.controls['nombrecontactanteUsuario'].touched) , 
+                                                                  '': reclutadorbasicinfoupdateForm.controls['nombrecontactanteUsuario'].valid}"
+                                                    [ngModel]="basicInfo.nombrecontactanteReclutador">
+                                                    <div class="invalid-feedback">
+                                                        <span class="text-danger" *ngIf="reclutadorbasicinfoupdateForm.controls['nombrecontactanteUsuario'].hasError('minlength')">
+                                                             Debe contener como mínimo 6 caracteres
+                                                        </span>
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        <span class="text-danger" *ngIf="reclutadorbasicinfoupdateForm.controls['nombrecontactanteUsuario'].hasError('maxlength')">
+                                                             Debe contener como máximo 60 caracteres
+                                                        </span>
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        <span class="text-danger" *ngIf="reclutadorbasicinfoupdateForm.controls['nombrecontactanteUsuario'].hasError('pattern')">
+                                                            Caracteres no permitidos
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- Fin Modal Corregido -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Fin Perfil -->
+
+    <!-- Inicio Contenido -->
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4 class="text-dark">Perfil Empresarial :</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 mt-3">
+                    <div class="border rounded p-4">
+                        <p class="text-muted">{{basicInfo.descripcionReclutador}}</p>
+
+                        <p class="text-muted"></p>
+                        
+                        <ul class="list-inline pt-3 border-top mb-0">
+                            <li class="list-inline-item mr-3">
+                                <a class="text-muted f-15 mb-0"><i class="mdi mdi-map-marker mr-2"></i>{{basicInfo.direccionReclutador}}</a>
+                            </li>
+
+                            <li class="list-inline-item mr-3">
+                                <a class="text-muted f-15 mb-0"><i class="mdi mdi-email mr-2"></i>{{basicInfo.emailReclutador}}</a>
+                            </li>
+
+                            <li class="list-inline-item mr-3">
+                                <a class="text-muted f-15 mb-0"><i class="mdi mdi-cellphone-iphone mr-2"></i>{{basicInfo.telefonoReclutador}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+           <app-list-empleos></app-list-empleos>
+
+        </div>
+    </section>
+    <!-- Fin Perfil --> 
+
+    <!-- Inicio del footer -->
+    <app-footer></app-footer>
+
+    <!-- Volver Arriba -->
+    <a href="#" class="back-to-top rounded text-center" id="back-to-top"> 
+        <i class="mdi mdi-chevron-up d-block"> </i> 
+    </a>
+    <!-- Volver Arriba -->
+</body>
+</html>

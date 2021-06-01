@@ -1,17 +1,4 @@
 $(document).ready(function() {
-        $('#example').DataTable({
-            responsive: true
-        });
-});
-
-
-$(document).ready(function() {
-    $('#example2').DataTable({
-        responsive: true
-    });
-});  
-
-$(document).ready(function() {
 
    
     // inspired by http://jsfiddle.net/arunpjohny/564Lxosz/1/
@@ -29,7 +16,7 @@ $(document).ready(function() {
     });
  
     
-   
+    
     
     
  $( '.table-responsive-stack' ).each(function() {

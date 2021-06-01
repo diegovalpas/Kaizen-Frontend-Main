@@ -1,87 +1,85 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { TokenStorageService} from 'src/app/util/token-storage.service';
+import { TokenStorageService } from '../../../util/token-storage.service';
 import { PostulanteSigninService } from './postulante-signin.service';
-import { PostulanteSigninRequest, PostulanteSigninResponse } from './postulante-signin-interface';
-import {Router} from '@angular/router'
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { PostulanteSignin } from './postulante-signin-interface';
 
 @Component({
   selector: 'app-postulante-signin',
   templateUrl: './postulante-signin.component.html',
-  styles: []
+  styles: [`
+  .alert-default {
+    color: transparent;
+    background-color: transparent;
+    border-color: transparent;
+    margin-top: -20px;
+  
+  }
+
+  .alert-invalid {
+    color: #ffffff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+    text-align: center;
+    margin-top: 20px;
+  }
+`],
 })
 
 export class PostulanteSigninComponent implements OnInit {
-  
-  //Variables
-  currentUser:any;
-  auxUsertoken:any;
-  auxusuarioid:any;
-  isLoggedIn:any;
-  link: any;
-  isLoginFailed = false;
 
-  //Validaciones para el HTML
-  public postulanteloginForm = this.fb.group({     
+  loggedPostulante: any;
+
+  errorMessage = '';
+
+  alert: any = {};
+
+  public postulanteSigninForm = this.fb.group({
     
     emailUsuario: new FormControl('', Validators.compose([
       Validators.required,
       Validators.email
-    ])),        
-    //Regex
-    contraseñaUsuario: new FormControl('', Validators.compose([
-      Validators.required,
-      Validators.minLength(8),
-      Validators.pattern("")
-    ]))   
-  
+    ])), 
+
+    contraseñaUsuario: new FormControl('', 
+    Validators.required)
   });
 
-  constructor(private tokenstorageservice:TokenStorageService
-                ,private Postulante:PostulanteSigninService
-                ,private fb: FormBuilder
-                ,private router:Router) {
-   }
-   
+  constructor(private tokenstorageService : TokenStorageService, 
+              private postulanteService : PostulanteSigninService, 
+              private fb : FormBuilder,
+              private router: Router) { }
 
   ngOnInit(): void {
-    this.VerificarSesion();
+    this.AlertDefault();
   }
+
   
-  VerificarSesion(): void {
-    if(this.tokenstorageservice.getUser()){
-      this.auxUsertoken = this.tokenstorageservice.getUser()
-      if(this.auxUsertoken.idReclutador !== undefined){
-        this.router.navigate(['login/reclutador/'+this.auxUsertoken.idReclutador+'/profile/basicinfo']);
-      }
-      if(this.auxUsertoken.idPostulante !== undefined){
-        this.router.navigate(['login/postulante/'+this.auxUsertoken.idPostulante+'/profile/basicinfo']);
-      }
-    }else{
-    }
+  AlertDefault() {
+    this.alert.type = 'default';
   }
 
-  IngresoLogin(): void {
-    
-    var usuario: PostulanteSigninRequest = {
-      emailUsuario: this.postulanteloginForm.controls['emailUsuario'].value,
-      contraseñaUsuario: this.postulanteloginForm.controls['contraseñaUsuario'].value
+  SigninPostulante() : void{
+    var postulante: PostulanteSignin = {
+
+      emailUsuario: this.postulanteSigninForm.controls['emailUsuario'].value,
+      contraseñaUsuario: this.postulanteSigninForm.controls['contraseñaUsuario'].value
     }
 
-    this.Postulante.SignInPostulante(usuario).subscribe(
+    this.postulanteService.SignInPostulante(postulante).subscribe(
       data => {
-        this.tokenstorageservice.saveToken(data.token);
-        this.tokenstorageservice.saveUser(data);
-        this.currentUser = this.tokenstorageservice.getUser();
-        this.router.navigate(['/login/postulante/'+ this.currentUser.idPostulante +'/profile/basicinfo'])
-        
-    });
-  }
+        this.tokenstorageService.saveToken(data.token);
+        this.tokenstorageService.saveUser(data);
+        this.loggedPostulante = this.tokenstorageService.getUser();
+        this.router.navigate(['/postulante/' + this.loggedPostulante.idPostulante + '/profile']);
+      },
 
-  autenticacion(){
-    if(this.auxusuarioid === ''){}
-    else{
-      this.router.navigate(['login/reclutador/'+this.auxusuarioid.idPostulante+'/profile/basicinfo'])
-    } 
+      err => {
+        console.log(err);
+        this.alert.type = 'invalid';  
+        this.alert.message = 'Email o Contraseña incorrecta';
+      }
+    )
   }
 }

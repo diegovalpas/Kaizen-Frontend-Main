@@ -1,4 +1,4 @@
-(function ($) {
+jQuery(document).ready(function() {
 
 	"use strict";
 	
@@ -55,7 +55,6 @@
 	});
 
 	//open/close the menu and cover layers
-	
 	toggleNav.on('click', function(){
 		if(!toggleNav.hasClass('close-nav')) {
 			//it means navigation is not visible yet - open it and animate navigation layer
@@ -129,4 +128,4 @@
 	}
 	
 	
-})(window.jQuery); 
+});

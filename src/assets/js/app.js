@@ -1,9 +1,9 @@
 /*
-Autor: José Soplin Roncal
+Autor: José Soplin Roncal y Diego Campos Sandoval
 */
 
 
-(function ($) {
+jQuery(document).ready(function() {
 
     'use strict';
 
@@ -46,6 +46,4 @@ Autor: José Soplin Roncal
         $("html, body").animate({ scrollTop: 0 }, 3000);
         return false;
     });
-
-
-})(jQuery)
+});
