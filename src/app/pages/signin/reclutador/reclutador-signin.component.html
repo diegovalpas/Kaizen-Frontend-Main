@@ -71,6 +71,9 @@
                                     </span>
                                 </div>
                             </div>
+
+                            <ngb-alert [type]="alert.type" [dismissible]="false">{{ alert.message }}</ngb-alert>
+                            
                             <div class="form-button">
                                 <button id="submit" type="submit" class="ibtn" [disabled]="!reclutadorSigninForm.valid">Iniciar Sesión</button>
                                 <br>

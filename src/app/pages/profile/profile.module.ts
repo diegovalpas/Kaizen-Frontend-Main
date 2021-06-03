@@ -12,6 +12,7 @@ import { EstudiosComponent } from './postulante/estudios/estudios.component';
 import { ExperienciaLaboralComponent } from './postulante/experiencia-laboral/experiencia-laboral.component';
 import { PostulacionesComponent } from './postulante/postulaciones/postulaciones.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ProfileCandidatoComponent } from './reclutador/list-candidatos/profile-candidato/profile-candidato.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ListEmpleosComponent,
     EstudiosComponent,
     ExperienciaLaboralComponent,
-    PostulacionesComponent
+    PostulacionesComponent,
+    ProfileCandidatoComponent
   ],
   imports: [
     CommonModule,

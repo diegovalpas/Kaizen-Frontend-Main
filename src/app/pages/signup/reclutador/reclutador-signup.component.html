@@ -66,7 +66,7 @@
 	                            <h3 class="main_question">Completa los siguientes campos</h3>
 								<div class="form-group add_top_30">
 									<label for="nombreUsuario">Nombre de la Empresa</label>
-									<input type="text" name="nombreUsuario" id="nombreUsuario" class="form-control required"
+									<input autocomplete="off" type="text" name="nombreUsuario" id="nombreUsuario" class="form-control required"
 									formControlName="nombreUsuario"
 									[ngClass]="{
 										'is-invalid': reclutadorsignupForm.controls['nombreUsuario'].invalid && 
@@ -96,7 +96,7 @@
 								</div>
 								<div class="form-group">
 	                                <label for="numerodocumentoUsuario">RUC</label>
-	                                <input type="number" id="numerodocumentoUsuario" class="form-control required"
+	                                <input type="number" (input)="eventWriteMail()" autocomplete="off" id="numerodocumentoUsuario" class="form-control required"
 									formControlName="numerodocumentoUsuario"
 									[ngClass]="{
 										'is-invalid': reclutadorsignupForm.controls['numerodocumentoUsuario'].invalid && 
@@ -121,7 +121,7 @@
 	                            </div>
 								<div class="form-group">
 	                                <label for="emailUsuario">Correo electrónico</label>
-	                                <input id="emailUsuario" class="form-control required"
+	                                <input (input)="eventWriteMail()" id="emailUsuario" class="form-control required"
 									formControlName="emailUsuario"
 									[ngClass]="{
 										'is-invalid': reclutadorsignupForm.controls['emailUsuario'].invalid && 
@@ -141,7 +141,7 @@
 	                            </div>
 								<div class="form-group">
 	                                <label for="contraseñaUsuario">Contraseña</label>
-	                                <input type="password" id="contraseñaUsuario" class="form-control required"
+	                                <input type="password" autocomplete="off" id="contraseñaUsuario" class="form-control required"
 									formControlName="contraseñaUsuario"
 									[ngClass]="{
 										'is-invalid': reclutadorsignupForm.controls['contraseñaUsuario'].invalid && 
@@ -215,7 +215,7 @@
 								</div>
 								<div class="form-group add_top_20">
 									<label for="nombrecontactante">Nombre Completo del Contactante</label>
-									<input type="text" id="nombrecontactante" class="form-control required"
+									<input type="text" autocomplete="off" id="nombrecontactante" class="form-control required"
 									formControlName="nombrecontactanteUsuario"
 									[ngClass]="{
 										'is-invalid': reclutadorsignupForm.controls['nombrecontactanteUsuario'].invalid && 
@@ -246,20 +246,20 @@
 								<div class="text-center">
 	                                    <div class="form-group terms">
 	                                        <label class="container_check">Por favor acepta nuestros <a href="#" data-toggle="modal" data-target="#terms-txt">Términos y condiciones</a> antes de Registrarte
-	                                            <input type="checkbox" name="terms" value="si" class="required">
-	                                            <span class="checkmark"></span>
+	                                            <input formControlName="checki" type="checkbox" name="cheki" class="required" value="marcado" required>
+	                                            <span class="checkmark" ></span>
 	                                        </label>
 	                                    </div>
 								</div>								
 	                        </div>
+							<p style="font-size: 10px; color: red;">{{message}}</p>
 	                    </div>
 
 	                    <!-- Inicio Botones de navegación -->
 	                    <div id="bottom-wizard">
 	                        <button type="button" name="backward" class="backward">Retroceder</button>
 	                        <button type="button" name="forward" class="forward">Siguiente</button>
-	                        <button type="submit" name="process" class="submit" 
-							[disabled]="reclutadorsignupForm.invalid">Enviar</button>
+	                        <button #botonenviar type="submit" (click)="showMessage()" name="botonenviar" class="submit">Enviar</button>
 	                    </div>
 	                    <!-- Botones de navegación -->
 	                </form>

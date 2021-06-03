@@ -62,13 +62,13 @@
                                             <div class="col-lg-3 col-md-6">
                                                 <div class="registration-form-box">
                                                     <i class="fa fa-briefcase"></i>
-                                                    <input type="text" id="exampleInputName1" class="form-control rounded registration-input-box" placeholder="Palabras Clave" formControlName="palabraClave">
+                                                    <input type="text" autocomplete="off" id="exampleInputName1" class="form-control rounded registration-input-box" placeholder="Palabras Clave" formControlName="palabraClave">
                                                 </div>
                                             </div>
                                             <div class="col-lg-3 col-md-6">
                                                 <div class="registration-form-box">
                                                     <i class="fa fa-location-arrow"></i>                                                  
-                                                    <input type="form-control" class="form-control rounded registration-input-box" list="ciudad" name="ciudad" placeholder="Ciudad" formControlName="ciudadUsuario" >
+                                                    <input type="form-control" style="cursor: default;" class="form-control rounded registration-input-box" list="ciudad" name="ciudad" placeholder="Ciudad" formControlName="ciudadUsuario" >
                                                     <datalist id="ciudad">
                                                         <option *ngFor="let ciudad of Ciudades" value="{{ciudad.value}}">{{ciudad.text}}</option>       
                                                     </datalist>
@@ -77,7 +77,7 @@
                                             <div class="col-lg-3 col-md-6">
                                                 <div class="registration-form-box">
                                                     <i class="fa fa-list-alt"></i>                                                    
-                                                    <input type="form-control" class="form-control rounded registration-input-box" list="Categorias" name="Categorias" placeholder="Categorias" formControlName="categoriaUsuario" >
+                                                    <input type="form-control" style="cursor: default;" class="form-control rounded registration-input-box" list="Categorias" name="Categorias" placeholder="Categorias" formControlName="categoriaUsuario" >
                                                     <datalist id="Categorias">
                                                         <option *ngFor="let categoria of Categorias" value="{{categoria.value}}">{{categoria.text}}</option>       
                                                     </datalist>

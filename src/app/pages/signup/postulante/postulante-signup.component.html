@@ -126,7 +126,7 @@
 	                            </div>
 	                            <div class="form-group">
 	                                <label for="emailUsuario">Correo electrónico</label>
-	                                <input type="text" name="emailUsuario" id="emailUsuario" class="form-control required"
+	                                <input type="text" (input)="eventWriteMail()" name="emailUsuario" id="emailUsuario" class="form-control required"
                                     formControlName="emailUsuario"
 									[ngClass]="{
 										'is-invalid': postulantesignupForm.controls['emailUsuario'].invalid && 
@@ -188,7 +188,7 @@
 								<div class="form-group radio_input">
 								    <label class="container_radio mr-3" *ngFor="let sexos of Sexos"> {{sexos.text}}
 								        <input type="radio" name="generoUsuario" value="{{sexos.text}}"
-                                        formControlName="generoUsuario" class="required">
+                                        (change)="RBselectedGender($event)" class="required">
 								        <span class="checkmark"></span>
 								    </label>
 								</div>
@@ -224,8 +224,13 @@
 									</div>
 								</div>
 								<div class="form-group add_top_20">
+									<label for="fechanacimientoUsuario">Fecha Nacimiento</label>
+	                                <input type="text" id="fechanacimientoUsuario" class="form-control required"
+									formControlName="fechanacimientoUsuario">								
+								</div>
+								<div class="form-group add_top_20">
 									<label for="numerodocumentoUsuario">Número de Documento</label>
-	                                <input type="number" id="numerodocumentoUsuario" class="form-control required"
+	                                <input type="number" (input)="eventWriteMail()" id="numerodocumentoUsuario" class="form-control required"
 									formControlName="numerodocumentoUsuario"
 									[ngClass]="{
 										'is-invalid': postulantesignupForm.controls['numerodocumentoUsuario'].invalid && 
@@ -259,11 +264,12 @@
 								<div class="text-center">
 	                                    <div class="form-group terms">
 	                                        <label class="container_check">Por favor acepta nuestros <a href="#" data-toggle="modal" data-target="#terms-txt">Términos y condiciones</a> antes de Registrarte
-	                                            <input type="checkbox" name="terms" value="Yes" class="required">
+	                                            <input type="checkbox" formControlName="checki" name="checki" value="Yes" class="required" required>
 	                                            <span class="checkmark"></span>
 	                                        </label>
 	                                    </div>
-	                            </div>								
+	                            </div>
+								<p style="font-size: 10px; color: red;">{{message}}</p>								
 	                        </div>
 	                        <!-- /step last-->
 
@@ -272,8 +278,7 @@
 	                    <div id="bottom-wizard">
 	                        <button type="button" name="backward" class="backward">Retroceder</button>
 	                        <button type="button" name="forward" class="forward">Siguiente</button>
-	                        <button type="submit" name="process" class="submit"
-                            [disabled]="postulantesignupForm.invalid">Enviar</button>
+	                        <button type="submit" name="process" class="submit" (click)="showMessage()">Enviar</button>
 	                    </div>
 	                    <!-- Botones de navegación -->
 	                </form>

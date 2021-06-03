@@ -13,6 +13,16 @@ import { Router } from '@angular/router';
 })
 export class PostulanteSignupComponent implements OnInit{
 
+  //variables
+  message:any;
+  signupSuccess = false;
+  errorMessage :any;
+  selectedFotosPerfil?: FileList;
+  currentFotoPerfil?: File;
+  selectedArchivoCV?: FileList;
+  currentArchivoCV?: File;
+  selectedGender: any;
+
   //Lista de Ciudades ordenados por Nombre creado en util/data-lists
   Ciudades = Ciudades.sort(function (a, b) {
     if (a.text > b.text) {
@@ -75,9 +85,11 @@ export class PostulanteSignupComponent implements OnInit{
       CustomValidators.patternValidator(/[a-z]/, {passwordsmallcase: true}),
       CustomValidators.patternValidator(/[@#$:\^%&]/, {passwordspecialcharacter: true})
     ])),
-    
-    generoUsuario: new FormControl('', 
+
+    checki: new FormControl('', 
     Validators.required),
+
+    fechanacimientoUsuario: new FormControl(null),
     
     imagenUsuario: new FormControl(null),
 
@@ -90,21 +102,17 @@ export class PostulanteSignupComponent implements OnInit{
 
   ngOnInit(): void {}
 
-  signupSuccess = false;
-  errorMessage = '';
-
-  selectedFotosPerfil?: FileList;
-  currentFotoPerfil?: File;
-
-  selectedArchivoCV?: FileList;
-  currentArchivoCV?: File;
-
   seleccionarFotoPerfil(event: any): void {
     this.selectedFotosPerfil = event.target.files;
   }
 
   seleccionarArchivoCV(event: any): void {
     this.selectedArchivoCV = event.target.files;
+  }
+
+  //Seleccionar RadioButton(Genero)
+  RBselectedGender (event:any){
+    this.selectedGender = event.target.value;
   }
 
   subirFotoPerfil(): any {
@@ -131,6 +139,16 @@ export class PostulanteSignupComponent implements OnInit{
     }
   }
 
+  eventWriteMail() :void {
+    this.message = null;
+  }
+
+  showMessage(){
+    if(this.errorMessage == null){
+      this.message = 'Se esta cargando la solicitud';
+    }
+  }
+
   guardarPostulante(): void {
 
     var usuario: PostulanteSignupRequest = {
@@ -141,22 +159,24 @@ export class PostulanteSignupComponent implements OnInit{
       tipodocumentoUsuario: this.postulantesignupForm.controls['tipodocumentoUsuario'].value,
       numerodocumentoUsuario: this.postulantesignupForm.controls['numerodocumentoUsuario'].value,
       contraseñaUsuario: this.postulantesignupForm.controls['contraseñaUsuario'].value,
-      generoUsuario: this.postulantesignupForm.controls['generoUsuario'].value
+      generoUsuario: this.selectedGender,
+      fechanacimientoUsuario: this.postulantesignupForm.controls['fechanacimientoUsuario'].value
     }
 
     if (this.postulantesignupForm.invalid) {
+      this.message = null;
       return;
     }
 
     this.postulantesignupService.SignUpPostulante(usuario, this.subirFotoPerfil(), this.subirArchivoCV()).subscribe(
       data => { 
-        console.log(data);
         this.signupSuccess = true;
         this.router.navigate(['/signin/postulante']); 
       },
 
       err => {
         this.errorMessage = err.error.message;
+        this.message = this.errorMessage;
         this.signupSuccess = false;
       }
     );

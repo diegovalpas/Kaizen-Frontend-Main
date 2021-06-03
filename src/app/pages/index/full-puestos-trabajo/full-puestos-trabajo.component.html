@@ -1,5 +1,5 @@
 
-<div *ngFor="let empleo of CurrentLista | paginate: { itemsPerPage: 5, currentPage: p }">
+<div *ngFor="let empleo of CurrentLista | paginate: { itemsPerPage: 8, currentPage: p }">
     <div class="row"  >
         <div class="col-lg-12">
             <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
@@ -52,7 +52,7 @@
                         </div>
                         <div class="col-md-2">
                             <div>
-                                <a [class.active]=" empleo == CurrentDetalleLista" (click)="Seleccionarempleo(empleo)" (click)="verDetalle()" class="text- primary">Ver detalle <i class="mdi mdi-chevron-double-right"></i></a>
+                                <a [class.active]=" empleo == CurrentDetalleLista" style="cursor: pointer;" (click)="Seleccionarempleo(empleo)" (click)="verDetalle()" class="text- primary">Ver detalle <i class="mdi mdi-chevron-double-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -61,6 +61,6 @@
         </div>
     </div>    
 </div>
-<div style="text-align: center;">
+<div style="text-align: center;margin-top: 25px">
     <pagination-controls (pageChange)="p = $event"></pagination-controls> 
 </div>

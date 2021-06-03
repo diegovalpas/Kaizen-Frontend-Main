@@ -14,6 +14,8 @@ import { ListaTrabajosComponent } from './pages/lista-trabajos/lista-trabajos.co
 import { PostempleoComponent } from './pages/profile/reclutador/postempleo/postempleo.component';
 import { ListCandidatosComponent } from './pages/profile/reclutador/list-candidatos/list-candidatos.component';
 import { PostulacionesComponent } from './pages/profile/postulante/postulaciones/postulaciones.component';
+import { ProfileCandidatoComponent } from './pages/profile/reclutador/list-candidatos/profile-candidato/profile-candidato.component';
+import { ListEmpleosComponent } from './pages/profile/reclutador/list-empleos/list-empleos.component';
 
 const routes: Routes = [
   { path: 'signin/postulante', component: PostulanteSigninComponent, data: { title: 'Iniciar Sesión – Kaizen Talent' } },
@@ -27,7 +29,9 @@ const routes: Routes = [
   { path: 'puestotrabajo/:idPuestoTrabajo/detail', component:EmpleoDetailComponent},
   { path: 'password/update', component: PasswordUpdateComponent },
   { path: 'home/show/all', component:ListaTrabajosComponent },
+  { path: 'publicaciones', component:ListEmpleosComponent },
   { path: 'candidatos', component:ListCandidatosComponent},
+  { path: 'perfilcandidato', component:ProfileCandidatoComponent},
   { path: 'postulante/:idPostulante/postulaciones', component:PostulacionesComponent},
   { path: 'reclutador/:idReclutador/publicar', component:PostempleoComponent },
   { path: 'password/request', component: PasswordRequestComponent, data: {title: 'Recupera tu contraseña - Kaizen Talent '}}

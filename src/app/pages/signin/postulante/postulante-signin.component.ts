@@ -29,10 +29,9 @@ import { PostulanteSignin } from './postulante-signin-interface';
 
 export class PostulanteSigninComponent implements OnInit {
 
+  //variables
   loggedPostulante: any;
-
   errorMessage = '';
-
   alert: any = {};
 
   public postulanteSigninForm = this.fb.group({

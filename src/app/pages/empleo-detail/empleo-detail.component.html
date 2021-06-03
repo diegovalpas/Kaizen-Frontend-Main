@@ -110,14 +110,14 @@
                                 <div class="float-left mr-2">
                                     <i class="mdi mdi-currency-usd text-muted"></i>
                                 </div>
-                                <p class="text-muted mb-2">: {{currentDetalleLista.sueldoPuestoTrabajo}}</p>
+                                <p class="text-muted mb-2">: S/. {{currentDetalleLista.sueldoPuestoTrabajo}}</p>
                             </div>
                             <!-- Considerar experiencia "1 año" como la entrada de datos del back-end (Concatenado) Ejemplo : Experiencia mínima de 'valor'-->
                             <div class="job-details-desc-item">
                                 <div class="float-left mr-2">
                                     <i class="mdi mdi-security text-muted"></i>
                                 </div>
-                                <p class="text-muted mb-2">: {{currentDetalleLista.experienciaPuestoTrabajo}}</p>
+                                <p class="text-muted mb-2">: Experiencia minima de {{currentDetalleLista.experienciaPuestoTrabajo}} años</p>
                             </div>
 
                             <!--<div class="job-details-desc-item">
@@ -131,8 +131,8 @@
 
                     <div class="job-detail border rounded mt-4" *ngIf="this.isButtonVisible">
                         <a (click)="Postularempleo()" class="btn btn-primary btn-block">Postular</a>
-                    </div>      
-                                       
+                    </div> 
+                    <p style="color: red; text-align: center; border: none;">{{message}}</p>   
                 </div>
             </div>
         </div>

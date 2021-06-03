@@ -14,6 +14,9 @@ export class ListCandidatosComponent implements OnInit {
   ListCandidatos: any = [];
   Listprofile: any = [];
   ListCandidatosCurrent: any = [];
+  p:any = 1;
+  Fotopostulante: any;
+  Cvpostulante: any;
 
   constructor(private reclutadorservice:ReclutadorProfileService, private token:TokenStorageService,private route:Router) { }
 
@@ -25,6 +28,9 @@ export class ListCandidatosComponent implements OnInit {
     this.reclutadorservice.getPublicacionbyPostulante(this.token.getTokenjob()).subscribe(data => {
       this.ListCandidatos = data;
       this.Listprofile = this.ListCandidatos.postulantesPublicacion;
+      this.Fotopostulante = this.Listprofile.fotoPostulante.urlImagen;
+      this.Cvpostulante = this.Listprofile.cvPostulante.urlImagen;
+      console.log(this.Listprofile);
     })
   }
 

@@ -13,7 +13,13 @@ import { ReclutadorSignupService } from './reclutador-signup.service';
 })
 export class ReclutadorSignupComponent implements OnInit {
 
- 
+  //mensajito
+  message:any;
+  signupSuccess = false;
+  errorMessage:any;
+  selectedLogo?: FileList;
+  currentLogo?: File;
+
   //Lista de Ciudades ordenados por Nombre creado en util/data-lists
   Ciudades = Ciudades.sort(function (a, b) {
     if (a.text > b.text) {
@@ -73,6 +79,9 @@ export class ReclutadorSignupComponent implements OnInit {
     tamañoempresaUsuario: new FormControl('', 
     Validators.required),
 
+    checki: new FormControl('', 
+    Validators.required),
+
     imagenUsuario: new FormControl(null)
   }); 
 
@@ -80,16 +89,22 @@ export class ReclutadorSignupComponent implements OnInit {
               private reclutadorsignupServie: ReclutadorSignupService,
               private router: Router) { }
 
-  ngOnInit() {}
-
-  signupSuccess = false;
-  errorMessage = '';
-
-  selectedLogo?: FileList;
-  currentLogo?: File;
+  ngOnInit() {
+    
+  }
 
   seleccionarLogo(event: any): void {
     this.selectedLogo = event.target.files;
+  }
+
+  eventWriteMail() :void {
+    this.message = null;
+  }
+
+  showMessage(){
+    if(this.errorMessage == null){
+      this.message = 'Se esta cargando la solicitud';
+    }
   }
 
   subirLogo(): any {
@@ -113,24 +128,24 @@ export class ReclutadorSignupComponent implements OnInit {
       numerodocumentoUsuario: this.reclutadorsignupForm.controls['numerodocumentoUsuario'].value,
       contraseñaUsuario: this.reclutadorsignupForm.controls['contraseñaUsuario'].value,
       nombrecontactanteUsuario: this.reclutadorsignupForm.controls['nombrecontactanteUsuario'].value,
-      tamañoempresaUsuario: this.reclutadorsignupForm.controls['tamañoempresaUsuario'].value
+      tamañoempresaUsuario: this.reclutadorsignupForm.controls['tamañoempresaUsuario'].value,
     }
 
     if (this.reclutadorsignupForm.invalid) {
+      this.message = null;
       return;
-    }
+    } 
 
     this.reclutadorsignupServie.SignUpReclutador(usuario, this.subirLogo()).subscribe(
       data => { 
-        console.log(data);
-        this.signupSuccess = true;
-        this.router.navigate(['/signin/reclutador']); 
+         this.signupSuccess = true;
+         this.router.navigate(['/signin/reclutador']); 
       },
-
       err => {
         this.errorMessage = err.error.message;
+        this.message = this.errorMessage;
         this.signupSuccess = false;
       }
-    );
+    ) 
   }
 }

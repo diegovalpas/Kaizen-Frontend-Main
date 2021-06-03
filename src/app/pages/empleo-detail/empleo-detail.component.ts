@@ -16,11 +16,11 @@ export class EmpleoDetailComponent implements OnInit {
   PostulanteActual:any ;
   currentDetalleLista:any = [];
   auxUsertoken: any;
+  message:any;
 
   constructor(private EmpleoDetailService:EmpleoDetailService,
     private tokens:TokenStorageService, 
-    private route:Router,
-    private fb:FormBuilder) { }
+    private route:Router) { }
 
   ngOnInit(): void {
     this.PostulanteActual = this.tokens.getUser();
@@ -45,7 +45,6 @@ export class EmpleoDetailComponent implements OnInit {
     }
   }
 
-
   getdetalleEmpleo(){
     
     this.EmpleoDetailService.getdetalleLista(this.tokens.getTokenjob()).subscribe(
@@ -60,13 +59,16 @@ export class EmpleoDetailComponent implements OnInit {
 
   Postularempleo(){
     if(this.PostulanteActual.idPostulante != null || this.PostulanteActual.idPostulante != undefined  ){
-            this.EmpleoDetailService.PostularTrabajoenDetalle(this.PostulanteActual.idPostulante,this.currentDetalleLista.idPuestoTrabajo).subscribe(
+        this.EmpleoDetailService.PostularTrabajoenDetalle(this.PostulanteActual.idPostulante,this.currentDetalleLista.idPuestoTrabajo).subscribe(
         data => {
           console.log(data);
-      });
+          this.message = 'Postulacion exitosa'
+      },
+      error => {
+        this.message = ''+error.error.message;
+      })
     }else{
-      var aviso = "Debe ser postulante para realizar esta acción || debes de iniciar sesion";
-      console.log(aviso);
+      this.message = 'Ingresar sesion | Debe ser un postulante'
       this.route.navigate(['/signin/postulante']);
     }
   }

@@ -85,7 +85,6 @@ export class PostulanteProfileComponent implements OnInit {
         this.basicInfo.tituloPostulante = this.basicinfoData.tituloPostulante,
         this.basicInfo.fotoperfilPostulante = this.basicinfoData.fotoperfilPostulante,
         this.basicInfo.archivocvPostulante = this.basicinfoData.archivocvPostulante
-        
         console.log(this.basicInfo);
       }
     );

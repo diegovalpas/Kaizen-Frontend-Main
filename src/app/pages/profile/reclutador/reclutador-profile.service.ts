@@ -53,6 +53,10 @@ export class ReclutadorProfileService {
     return this.http.get(`${pauseUrl}?id=${idpau}`);
   }
 
+  getPostulantesByempleo(idpublicacion: any,idpostu:any) : Observable<any> {
+    return this.http.get(`${getPostbyEmpleo}/${idpublicacion}/postulante/${idpostu}/profile/basicinfo`);
+  }
+
   putPublicacionpausa(idpausar:any): Observable<any>{
 
     return this.http.put(pausar,
@@ -99,5 +103,13 @@ export class ReclutadorProfileService {
     return this.http.put(
       BASE_URL+`/${id}/update/logo`,
       reclutador);
+  }
+
+  getEducacion(idpub:any, idpost:any): Observable<any> {
+    return this.http.get(`${getPostbyEmpleo}/${idpub}/postulante/${idpost}/profile/educacion`);
+  }
+
+  getExperiencia(idpub:any, idpost:any): Observable<any> {
+    return this.http.get(`${getPostbyEmpleo}/${idpub}/postulante/${idpost}/profile/experiencialaboral`);
   }
 }

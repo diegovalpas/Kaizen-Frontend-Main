@@ -8,11 +8,30 @@ import { ReclutadorSignin } from './reclutador-signin-interface';
 @Component({
   selector: 'app-reclutador-signin',
   templateUrl: './reclutador-signin.component.html',
-  styles: []
+  styles: [`
+  .alert-default {
+    color: transparent;
+    background-color: transparent;
+    border-color: transparent;
+    margin-top: -20px;
+  
+  }
+
+  .alert-invalid {
+    color: #ffffff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+    text-align: center;
+    margin-top: 20px;
+  }
+`]
 })
 export class ReclutadorSigninComponent implements OnInit {
 
+  //variables
   loggedReclutador: any;
+  alert: any = {};
+  errorMessage = '';
 
   public reclutadorSigninForm = this.fb.group({
     
@@ -30,7 +49,13 @@ export class ReclutadorSigninComponent implements OnInit {
               private fb : FormBuilder,
               private router: Router) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.AlertDefault();
+  }
+
+  AlertDefault() {
+    this.alert.type = 'default';
+  }
 
   SigninReclutador() : void{
     var reclutador: ReclutadorSignin = {
@@ -45,6 +70,10 @@ export class ReclutadorSigninComponent implements OnInit {
         this.tokenstorageService.saveUser(data);
         this.loggedReclutador = this.tokenstorageService.getUser();
         this.router.navigate(['/reclutador/' + this.loggedReclutador.idReclutador + '/profile']);
+      },
+      err => {
+        this.alert.type = 'invalid';  
+        this.alert.message = 'Email o Contraseña incorrecta';
       }
     )
   }
