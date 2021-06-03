@@ -14,6 +14,13 @@ export class NavigationComponent implements OnInit {
   auxUsertoken:any;
   redirect:any;
 
+
+  isCollapse = false;
+  toggleState() { // manejador del evento
+    let foo = this.isCollapse;
+    this.isCollapse = foo === false ? true : false; 
+  }
+
   constructor(private tokens:TokenStorageService,private route:Router) { }
 
   ngOnInit(): void {
@@ -35,6 +42,8 @@ export class NavigationComponent implements OnInit {
         this.route.navigate(['/signin/postulante']);
     }
   }
+
+  
 
   condicional(){
     if(this.tokens.getUser()){
@@ -63,6 +72,10 @@ export class NavigationComponent implements OnInit {
     if(this.tokens.getToken() === null || this.tokens.getToken() === undefined){
         this.route.navigate(['/signin/postulante']);
     }
+  }
+  
+  Subirpagina(){
+    window.scrollTo(0, 0);
   }
 
 }

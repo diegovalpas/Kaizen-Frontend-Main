@@ -42,6 +42,16 @@
 <body>
   <app-root></app-root>  
   <noscript>Please enable JavaScript to continue using this application.</noscript>
+
+  <script>
+    $(document).ready(function() {
+        $('#example2').DataTable({
+            responsive: true
+        });
+    } );  
+    
+    </script>
+
   <script>
     var check = function() {
       if (document.getElementById('password').value ==
@@ -52,7 +62,7 @@
               document.getElementById('message').style.color = 'red';
           document.getElementById('message').innerHTML = 'Ambas contraseñas NO coinciden';
       }
-  }
+    }
 </script>
 </body>
 </html>

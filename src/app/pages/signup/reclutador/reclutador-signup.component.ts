@@ -5,6 +5,7 @@ import { Ciudades, TamañoEmpresas } from 'src/app/pages/tools/data-lists';
 import { CustomValidators } from '../../tools/custom-validators';
 import { ReclutadorSignupRequest } from './reclutador-signup-interface';
 import { ReclutadorSignupService } from './reclutador-signup.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-reclutador-signup',
@@ -101,10 +102,8 @@ export class ReclutadorSignupComponent implements OnInit {
     this.message = null;
   }
 
-  showMessage(){
-    if(this.errorMessage == null){
-      this.message = 'Se esta cargando la solicitud';
-    }
+  LoadPage(){
+    $('#start').css('cursor', 'wait');
   }
 
   subirLogo(): any {
@@ -133,17 +132,20 @@ export class ReclutadorSignupComponent implements OnInit {
 
     if (this.reclutadorsignupForm.invalid) {
       this.message = null;
+      $('#start').css('cursor', 'default');
       return;
     } 
 
     this.reclutadorsignupServie.SignUpReclutador(usuario, this.subirLogo()).subscribe(
       data => { 
          this.signupSuccess = true;
-         this.router.navigate(['/signin/reclutador']); 
+         this.router.navigate(['/signin/reclutador']);
+         $('#start').css('cursor', 'default'); 
       },
       err => {
         this.errorMessage = err.error.message;
         this.message = this.errorMessage;
+        $('#start').css('cursor', 'default');
         this.signupSuccess = false;
       }
     ) 

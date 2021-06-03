@@ -6,6 +6,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { BasicInfoReclutadorProfile } from './reclutador-profile-interface';
 import { PasswordRequestService } from '../../reset_password/password-request/password-request.service';
 import { PasswordRequest } from '../../reset_password/password-request/password-request-interface';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-reclutador-profile',

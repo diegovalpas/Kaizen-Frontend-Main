@@ -5,6 +5,7 @@ import { PostulanteSignupRequest } from './postulante-signup-interface';
 import { Ciudades, Sexos, TiposDocumento } from '../../tools/data-lists';
 import { CustomValidators } from '../../tools/custom-validators';
 import { Router } from '@angular/router';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-postulante-signup',
@@ -143,10 +144,8 @@ export class PostulanteSignupComponent implements OnInit{
     this.message = null;
   }
 
-  showMessage(){
-    if(this.errorMessage == null){
-      this.message = 'Se esta cargando la solicitud';
-    }
+  LoadPage(){
+    $('#start').css('cursor', 'wait');
   }
 
   guardarPostulante(): void {
@@ -165,18 +164,21 @@ export class PostulanteSignupComponent implements OnInit{
 
     if (this.postulantesignupForm.invalid) {
       this.message = null;
+      $('#start').css('cursor', 'default');
       return;
     }
 
     this.postulantesignupService.SignUpPostulante(usuario, this.subirFotoPerfil(), this.subirArchivoCV()).subscribe(
       data => { 
         this.signupSuccess = true;
-        this.router.navigate(['/signin/postulante']); 
+        $('#start').css('cursor', 'default');
+        this.router.navigate(['/signin/postulante']);
       },
 
       err => {
         this.errorMessage = err.error.message;
         this.message = this.errorMessage;
+        $('#start').css('cursor', 'default');
         this.signupSuccess = false;
       }
     );

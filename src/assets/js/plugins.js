@@ -10,7 +10,7 @@
     // Menu
     $('.navbar-toggle').on('click', function (event) {
         $(this).toggleClass('open');
-        $('#navigation').slideToggle(400);
+        
     });
     
     $('.navigation-menu>li').slice(-1).addClass('last-elements');
@@ -50,6 +50,17 @@
         }, 1500, 'easeInOutExpo');
         event.preventDefault();
     });
+
+    //mostrarMenuDiego
+    addEventListener('DOMcontentLoaded', () =>{
+        const boton = document.querySelector('.navbar-toggle')
+        if(boton){
+            boton.addEventListener('click', () => {
+                const menu_items = document.querySelector('.navigation-menu')
+                menu_items.classList.toggle('open')
+            })
+        }
+    })
 
     //Sticky
     $(window).scroll(function() {
