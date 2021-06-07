@@ -1,148 +1,148 @@
 <div class="row">
-    <div class="col-lg-12 mt-4 pt-2">
-        <h4 class="text-dark">Experiencia Laboral :</h4>
-        <button type="button" class="btn btn-primary" (click)="modal.open(experiencia)">
-            Experiencia Laboral
-        </button>
-        <ng-template #experiencia let-modal>
-            <div class="fullscreen-modal " id="educacionModal" >
-                <div class="modal-dialog modal-dialog-centered" style="max-width: 100%" role="document" >
-                    <div class="modal-content" >
-                        <form  [formGroup]="experienciaModalForm" (ngSubmit)="guardarExp()">
+                <div class="col-lg-12 mt-4 pt-2">
+                    <h4 class="text-dark">Experiencia Laboral :</h4>
+                    <button type="button" class="btn btn-primary" (click)="modal.open(experiencia)">
+                        Experiencia Laboral
+                    </button>
+                    <ng-template #experiencia let-modal>
+                        <div class="fullscreen-modal " id="educacionModal" >
+                            <div class="modal-dialog modal-dialog-centered" style="max-width: 100%" role="document" >
+                                <div class="modal-content" >
+                                    <form  [formGroup]="experienciaModalForm" (ngSubmit)="guardarExp()">
 
-                            <div class="modal-header">
-                                <h4 >Agregar Experiencia</h4>
-                                <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                                        <div class="modal-header">
+                                            <h4 >Agregar Experiencia</h4>
+                                            <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        
+                                        <div class="modal-body">                               
+                                            
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Nombre de experiencia laboral</label>                                               
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" formControlName="nombreExperienciaLaboral" id="nombreExperienciaLaboral" placeholder="Ingrese el nombre" required>
+                                                    </div>
+                                                </div>
+                                                                                               
+                                                <div class="form-group row">
+                                                    <label for="inputphone" class="col-sm-2 col-form-label">Fecha de Inicio</label>
+                                                    <div class="col-sm-10" class="input-group" style="width: 80%;">
+                                                        <input type="number"  max="12" min="1" class="form-control" style="width: 20%;" placeholder="Mes" formControlName="mesinicioExperienciaLaboral" id="fechaxinicioMes" required>
+                                                        <input type="number"  min="1900" class="form-control" style="width: 20%;" placeholder="Año" formControlName="anioinicioExperienciaLaboral" id="fechaxinicioAño" required>                                                       
+                                                    </div> 
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="docnumber" class="col-sm-2 col-form-label">Fecha de Fin</label>
+                                                    <div class="col-sm-10" class="input-group" style="width: 80%;">
+                                                        <input type="number"  max="12" min="1" class="form-control" style="width: 20%;" placeholder="Mes" formControlName="mesfinExperienciaLaboral" id="fechaxfinMes" required>
+                                                        <input type="number"  min="1900" class="form-control" style="width: 20%;" placeholder="Año" formControlName="aniofinExperienciaLaboral" id="fechaxfinAño" required>                                                       
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="direccionpos" class="col-sm-2 col-form-label">nombre Expresa Laboral</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" formControlName="empresaExperienciaLaboral" id="nombreEmpresa" placeholder="Empresa" required>
+                                                    </div>
+                                                </div>    
+
+                                        </div>   
+                                        <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary" >Guardar Experiencia</button>
+                                        </div>
+
+                                       
+                                    </form>
+                                </div>
                             </div>
-                            
-                            <div class="modal-body">                               
-                                
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Nombre de experiencia laboral</label>                                               
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" formControlName="nombreExperienciaLaboral" id="nombreExperienciaLaboral" placeholder="Ingrese el nombre" required>
-                                        </div>
-                                    </div>
-                                                                                   
-                                    <div class="form-group row">
-                                        <label for="inputphone" class="col-sm-2 col-form-label">Fecha de Inicio</label>
-                                        <div class="col-sm-10" class="input-group" style="width: 80%;">
-                                            <input type="number"  max="12" min="1" class="form-control" style="width: 20%;" placeholder="Mes" formControlName="mesinicioExperienciaLaboral" id="fechaxinicioMes" required>
-                                            <input type="number"  min="1900" class="form-control" style="width: 20%;" placeholder="Año" formControlName="anioinicioExperienciaLaboral" id="fechaxinicioAño" required>                                                       
-                                        </div> 
-                                    </div>
+                        </div>                                               
+                    </ng-template>
+                    <ng-template #experienciaeditar let-modal>
+                        <div class="fullscreen-modal " id="educacionModal" >
+                            <div class="modal-dialog modal-dialog-centered" style="max-width: 100%" role="document" >
+                                <div class="modal-content" >
+                                    <form  [formGroup]="experienciaModalForm" (ngSubmit)="updateExp()">
 
-                                    <div class="form-group row">
-                                        <label for="docnumber" class="col-sm-2 col-form-label">Fecha de Fin</label>
-                                        <div class="col-sm-10" class="input-group" style="width: 80%;">
-                                            <input type="number"  max="12" min="1" class="form-control" style="width: 20%;" placeholder="Mes" formControlName="mesfinExperienciaLaboral" id="fechaxfinMes" required>
-                                            <input type="number"  min="1900" class="form-control" style="width: 20%;" placeholder="Año" formControlName="aniofinExperienciaLaboral" id="fechaxfinAño" required>                                                       
+                                        <div class="modal-header">
+                                            <h4 >Editar Experiencia</h4>
+                                            <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
-                                    </div>
+                                        
+                                        <div class="modal-body">                               
+                                            
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Nombre de experiencia laboral</label>                                               
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" formControlName="nombreExperienciaLaboral" id="nombreExperienciaLaboral" placeholder="Ingrese el nombre" [ngModel]="ListExp.nombreExperienciaLaboral" required>
+                                                    </div>
+                                                </div>
+                                                                                               
+                                                <div class="form-group row">
+                                                    <label for="inputphone" class="col-sm-2 col-form-label">Fecha de Inicio</label>
+                                                    <div class="col-sm-10" class="input-group" style="width: 80%;">
+                                                        <input type="number"  max="12" min="1" class="form-control" style="width: 20%;" placeholder="Mes" formControlName="mesinicioExperienciaLaboral" id="fechaxinicioMes" [ngModel]="mesinicio" required>
+                                                        <input type="number"  min="1900" class="form-control" style="width: 20%;" placeholder="Año" formControlName="anioinicioExperienciaLaboral" id="fechaxinicioAño" [ngModel]="anioinicio" required>                                                       
+                                                    </div> 
+                                                </div>
 
-                                    <div class="form-group row">
-                                        <label for="direccionpos" class="col-sm-2 col-form-label">nombre Expresa Laboral</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" formControlName="empresaExperienciaLaboral" id="nombreEmpresa" placeholder="Empresa" required>
+                                                <div class="form-group row">
+                                                    <label for="docnumber" class="col-sm-2 col-form-label">Fecha de Fin</label>
+                                                    <div class="col-sm-10" class="input-group" style="width: 80%;">
+                                                        <input type="number"  max="12" min="1" class="form-control" style="width: 20%;" placeholder="Mes" formControlName="mesfinExperienciaLaboral" id="fechaxfinMes" [ngModel]="mesfinal" required>
+                                                        <input type="number"  min="1900" class="form-control" style="width: 20%;" placeholder="Año" formControlName="aniofinExperienciaLaboral" id="fechaxfinAño" [ngModel]="anio" required>                                                       
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="direccionpos" class="col-sm-2 col-form-label">nombre Expresa Laboral</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" formControlName="empresaExperienciaLaboral" id="nombreEmpresa" placeholder="Empresa" [ngModel]="ListExp.empresaExperienciaLaboral" required>
+                                                    </div>
+                                                </div>    
+
+                                        </div>   
+                                        <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary" >Guardar Experiencia</button>
                                         </div>
-                                    </div>    
 
-                            </div>   
-                            <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary" >Guardar Experiencia</button>
+                                       
+                                    </form>
+                                </div>
                             </div>
+                        </div>                                               
+                    </ng-template>
 
-                           
-                        </form>
-                    </div>
                 </div>
-            </div>                                               
-        </ng-template>
-        <ng-template #experienciaeditar let-modal>
-            <div class="fullscreen-modal " id="educacionModal" >
-                <div class="modal-dialog modal-dialog-centered" style="max-width: 100%" role="document" >
-                    <div class="modal-content" >
-                        <form  [formGroup]="experienciaModalForm" (ngSubmit)="updateExp()">
-
-                            <div class="modal-header">
-                                <h4 >Editar Experiencia</h4>
-                                <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            
-                            <div class="modal-body">                               
-                                
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Nombre de experiencia laboral</label>                                               
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" formControlName="nombreExperienciaLaboral" id="nombreExperienciaLaboral" placeholder="Ingrese el nombre" [ngModel]="ListExp.nombreExperienciaLaboral" required>
-                                        </div>
-                                    </div>
-                                                                                   
-                                    <div class="form-group row">
-                                        <label for="inputphone" class="col-sm-2 col-form-label">Fecha de Inicio</label>
-                                        <div class="col-sm-10" class="input-group" style="width: 80%;">
-                                            <input type="number"  max="12" min="1" class="form-control" style="width: 20%;" placeholder="Mes" formControlName="mesinicioExperienciaLaboral" id="fechaxinicioMes" [ngModel]="mesinicio" required>
-                                            <input type="number"  min="1900" class="form-control" style="width: 20%;" placeholder="Año" formControlName="anioinicioExperienciaLaboral" id="fechaxinicioAño" [ngModel]="anioinicio" required>                                                       
-                                        </div> 
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="docnumber" class="col-sm-2 col-form-label">Fecha de Fin</label>
-                                        <div class="col-sm-10" class="input-group" style="width: 80%;">
-                                            <input type="number"  max="12" min="1" class="form-control" style="width: 20%;" placeholder="Mes" formControlName="mesfinExperienciaLaboral" id="fechaxfinMes" [ngModel]="mesfinal" required>
-                                            <input type="number"  min="1900" class="form-control" style="width: 20%;" placeholder="Año" formControlName="aniofinExperienciaLaboral" id="fechaxfinAño" [ngModel]="anio" required>                                                       
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="direccionpos" class="col-sm-2 col-form-label">nombre Expresa Laboral</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" formControlName="empresaExperienciaLaboral" id="nombreEmpresa" placeholder="Empresa" [ngModel]="ListExp.empresaExperienciaLaboral" required>
-                                        </div>
-                                    </div>    
-
-                            </div>   
-                            <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary" >Guardar Experiencia</button>
-                            </div>
-
-                           
-                        </form>
-                    </div>
-                </div>
-            </div>                                               
-        </ng-template>
-
-    </div>
-</div>
-
-<div class="row" >
-    <div class="col-md-6 mt-3 mt-md-0 pt-3"  *ngFor="let exp of CurrentExperiencia"   >
-        <div class="border rounded job-list-box p-4">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="company-brand-logo text-center mb-4">
-                        <img src="{{exp.logoEmpresa.urlImagen}}" alt="" class="img-fluid mx-auto d-block">
-                    </div>
-                </div>
-
-                <div class="col-lg-9">
-                    <div class="job-list-desc candidates-profile-exp-desc">
-                        <h5 class="f-19 mb-2"><a href="#" class="text-dark"> {{exp.empresaExperienciaLaboral}} </a></h5>
-                        <b><p class="text-muted mb-0 f-16"> {{exp.nombreExperienciaLaboral}} </p></b>
-                        <p>{{exp.periodoinicioExperienciaLaboral}} - {{exp.periodofinExperienciaLaboral}}</p>                                  
-                    </div>     
-                    <br>
-                    <button [class.active]=" exp == ListExp" (click)="Seleccionarexp(exp)" (click)="deleteExp()" type="submit" class="btn btn-primary" style="width:100px" >Eliminar</button>
-                    <button [class.active]=" exp == ListExp" (click)="Seleccionarexp(exp)" (click)="modal.open(experienciaeditar)" type="submit" class="btn btn-primary" style="width:100px" >Editar</button>                            
-                </div>
-                
             </div>
-        </div>                    
-    </div>                
-</div> 
+
+            <div class="row" >
+                <div class="col-md-6 mt-3 mt-md-0 pt-3"  *ngFor="let exp of CurrentExperiencia"   >
+                    <div class="border rounded job-list-box p-4">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="company-brand-logo text-center mb-4">
+                                    <img src="{{exp.logoEmpresa.urlImagen}}" alt="" class="img-fluid mx-auto d-block">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-9">
+                                <div class="job-list-desc candidates-profile-exp-desc">
+                                    <h5 class="f-19 mb-2"><a href="#" class="text-dark"> {{exp.empresaExperienciaLaboral}} </a></h5>
+                                    <b><p class="text-muted mb-0 f-16"> {{exp.nombreExperienciaLaboral}} </p></b>
+                                    <p>{{exp.periodoinicioExperienciaLaboral}} - {{exp.periodofinExperienciaLaboral}}</p>                                  
+                                </div>     
+                                <br>
+                                <button [class.active]=" exp == ListExp" (click)="Seleccionarexp(exp)" (click)="deleteExp()" type="submit" class="btn btn-primary" style="width:100px" >Eliminar</button>
+                                <button [class.active]=" exp == ListExp" (click)="Seleccionarexp(exp)" (click)="modal.open(experienciaeditar)" type="submit" class="btn btn-primary" style="width:100px" >Editar</button>                            
+                            </div>
+                            
+                        </div>
+                    </div>                    
+                </div>                
+            </div> 
 

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const urlFull = 'https://backend-kaizentalent.herokuapp.com/api/index/show/puestostrabajo/by/fulltime';
 const urlLookFor = 'https://backend-kaizentalent.herokuapp.com/api/index/send/filterparameters';
-const urlPart = 'https://backend-kaizentalent.herokuapp.com/api/index/show/puestostrabajo/by/parttime';
 const baseUrl = 'https://backend-kaizentalent.herokuapp.com/api/index/show/puestostrabajo/all';
+const urlFull = 'https://backend-kaizentalent.herokuapp.com/api/index/show/puestostrabajo/by/fulltime';
+
+const urlPart = 'https://backend-kaizentalent.herokuapp.com/api/index/show/puestostrabajo/by/parttime';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,6 @@ const baseUrl = 'https://backend-kaizentalent.herokuapp.com/api/index/show/puest
 export class IndexService {
 
   constructor(private http:HttpClient) { }
-
-  getListaparamsfull(): Observable<any> {
-    return this.http.get(urlFull);
-  }
 
   postBusqueda(ptrabajou: string, pciudadu: string, pcategoriau:string): Observable<any> {    
 
@@ -32,12 +29,17 @@ export class IndexService {
       busqueda);
   }
 
+  getListaparamsfull(): Observable<any> {
+    return this.http.get(urlFull);
+  }
   getListaparamspart(): Observable<any> {
     return this.http.get(urlPart);
   }
-
   getListaparams(): Observable<any> {
     return this.http.get(baseUrl);
   }
 
 }
+
+  
+

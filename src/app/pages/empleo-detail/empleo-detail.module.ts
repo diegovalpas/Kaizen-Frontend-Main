@@ -4,7 +4,9 @@ import { RouterModule} from '@angular/router';
 import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EmpleoDetailComponent } from './empleo-detail.component';
-import { NavbarModule } from '../nav-bars/nav-bars.module';
+
+
+
 
 @NgModule({
   declarations: [ 
@@ -15,7 +17,6 @@ import { NavbarModule } from '../nav-bars/nav-bars.module';
     ReactiveFormsModule,
     FormsModule,
     RouterModule,
-    NavbarModule,
     NgbModule
   ]
 })

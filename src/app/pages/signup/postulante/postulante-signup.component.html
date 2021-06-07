@@ -78,7 +78,7 @@
                                         </span>
                                     </div>
                                     <div class="invalid-feedback">
-                                        <span class="text-danger" *ngIf="postulantesignupForm.controls['nombreUsuario'].hasError('minlength')">
+                                        <span  class="text-danger" *ngIf="postulantesignupForm.controls['nombreUsuario'].hasError('minlength')">
                                             Debe contener al menos 2 caracteres
                                         </span>
                                     </div>
@@ -126,7 +126,7 @@
 	                            </div>
 	                            <div class="form-group">
 	                                <label for="emailUsuario">Correo electrónico</label>
-	                                <input type="text" (input)="eventWriteMail()" name="emailUsuario" id="emailUsuario" class="form-control required"
+	                                <input type="text" (input)="escribir()" name="emailUsuario" id="emailUsuario" class="form-control required"
                                     formControlName="emailUsuario"
 									[ngClass]="{
 										'is-invalid': postulantesignupForm.controls['emailUsuario'].invalid && 
@@ -188,10 +188,12 @@
 								<div class="form-group radio_input">
 								    <label class="container_radio mr-3" *ngFor="let sexos of Sexos"> {{sexos.text}}
 								        <input type="radio" name="generoUsuario" value="{{sexos.text}}"
-                                        (change)="RBselectedGender($event)" class="required">
+                                        formControlName="generoUsuario" class="required">
 								        <span class="checkmark"></span>
 								    </label>
 								</div>
+								<label for="">fecha nacimiento</label>
+							
 	                            <div class="form-group add_bottom_30 add_top_20">
 	                                <label>Sube tu Currículum<br><small>(Archivos aceptados: .pdf, .doc/docx - Máximo tamaño : 3MB)</small></label>
 	                                <div class="fileupload">
@@ -207,11 +209,12 @@
 								<h3 class="main_question">Completa los siguientes campos</h3>
 								<div class="form-group add_top_30">
 									<div class="styled-select">
-										<select class="form-control required" id="ciudadUsuario" name="ciudadUsuario" 
-										formControlName="ciudadUsuario">
-											<option value="">Selecciona la ciudad</option>
-											<option *ngFor="let ciudad of Ciudades" value="{{ciudad.value}}">{{ciudad.text}}</option>
-										</select>
+
+										<input type="form-control required" class="form-control rounded registration-input-box" list="ciudad" name="ciudad" placeholder="Ciudad" formControlName="ciudadUsuario" >
+										<datalist id="ciudad">
+											<option *ngFor="let ciudad of Ciudades" value="{{ciudad.value}}">{{ciudad.text}}</option>       
+										</datalist>
+
 								    </div>
                                 </div>
 								<div class="form-group add_top_20">
@@ -224,13 +227,8 @@
 									</div>
 								</div>
 								<div class="form-group add_top_20">
-									<label for="fechanacimientoUsuario">Fecha Nacimiento</label>
-	                                <input type="text" id="fechanacimientoUsuario" class="form-control required"
-									formControlName="fechanacimientoUsuario">								
-								</div>
-								<div class="form-group add_top_20">
 									<label for="numerodocumentoUsuario">Número de Documento</label>
-	                                <input type="number" (input)="eventWriteMail()" id="numerodocumentoUsuario" class="form-control required"
+	                                <input type="number" (input)="escribir()" id="numerodocumentoUsuario" class="form-control required"
 									formControlName="numerodocumentoUsuario"
 									[ngClass]="{
 										'is-invalid': postulantesignupForm.controls['numerodocumentoUsuario'].invalid && 
@@ -261,24 +259,25 @@
 										    (change)="seleccionarFotoPerfil($event)">
 										</div>
 								</div>
+								
 								<div class="text-center">
 	                                    <div class="form-group terms">
 	                                        <label class="container_check">Por favor acepta nuestros <a href="#" data-toggle="modal" data-target="#terms-txt">Términos y condiciones</a> antes de Registrarte
-	                                            <input type="checkbox" formControlName="checki" name="checki" value="Yes" class="required" required>
+	                                            <input formControlName="checkear" type="checkbox" name="terms" value="Yes" class="required" required>
 	                                            <span class="checkmark"></span>
 	                                        </label>
 	                                    </div>
-	                            </div>
-								<p style="font-size: 10px; color: red;">{{message}}</p>								
+	                            </div>																
 	                        </div>
 	                        <!-- /step last-->
-
+							<p style="font-size: 10px; color: red;">{{message}}</p>	
 	                    </div>
 	                    <!-- Inicio Botones de navegación -->
 	                    <div id="bottom-wizard">
 	                        <button type="button" name="backward" class="backward">Retroceder</button>
 	                        <button type="button" name="forward" class="forward">Siguiente</button>
-	                        <button type="submit" name="process" class="submit" (click)="LoadPage()">Enviar</button>
+	                        <button type="submit"  name="process" class="submit"
+                            (click)="LoadPage()">Enviar</button>
 	                    </div>
 	                    <!-- Botones de navegación -->
 	                </form>

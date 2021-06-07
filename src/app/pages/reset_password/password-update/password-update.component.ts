@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { CustomValidators } from '../../tools/custom-validators';
 import { PasswordUpdate } from './password-update-interface';
 import { Router } from '@angular/router';
+import { TokenStorageService } from 'src/app/util/token-storage.service';
 
 @Component({
   selector: 'app-password-update',
@@ -44,7 +45,8 @@ export class PasswordUpdateComponent implements OnInit {
 
   constructor(private passwordupdateService: PasswordUpdateService,
               private fb: FormBuilder,
-              private router: Router) { }
+              private router: Router,
+              private tokenstorageService: TokenStorageService) { }
 
   ngOnInit(): void {}
 
@@ -57,13 +59,12 @@ export class PasswordUpdateComponent implements OnInit {
     this.passwordupdateService.PasswordUpdate(passwordUpdate).subscribe(
       data => {
         console.log(data);
-        localStorage.removeItem('passwordresetToken');
+        this.tokenstorageService.signOut();
         window.location.href = '/';
       },
 
       err => {
         this.errorMessage = err.error.message;
-
         this.alert.type = 'invalid';
         this.alert.message = this.errorMessage;
       }

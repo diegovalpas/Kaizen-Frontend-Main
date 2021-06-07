@@ -27,36 +27,53 @@
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/modal.css" />
+    
 
 </head>
 
-<body>
+<body id="start">
 
-    <!-- Barra navegación -->
     <app-navigation></app-navigation>
     
     <!-- Inicio Perfil -->
     <section class="bg-half page-next-level"> 
         <div class="bg-overlay"></div>
-        <div class="container">
+        <div class="container" >
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="candidates-profile-details text-center">
-                        <img src="{{basicInfo.imagen}}" height="150" class="d-block mx-auto shadow rounded-pill mb-4">
-                        <h5 class="text-white mb-2">{{basicInfo.nombrePostulante}}</h5>
-                        <p class="text-white-50 h6 mb-2">{{basicInfo.tituloPostulante}}</p>
+                        <div class="col-md-12 mb-4">
+                            <div class="profile-pic-div" >
+                                <img src="{{basicInfo.imagen}}" id="photo">
+                                <form [formGroup]="postulantebasicinfoupdateForm">
+                                    <input type="file" id="file" formControlName="imagenUsuario" (change)="GuardarFoto($event)">
+                                    <label for="file" (click)="LoadPage()" id="uploadBtn">Seleccionar Foto</label>
+                                </form>
+                                
+                              </div>
+                              <br><br><br><br><br>
+                              <h5 class="text-white mb-2"><a href="{{basicInfo.archivocvPostulante}}" download="{{basicInfo.archivocvPostulante}}" style="color: white;" data-toggle="tooltip" data-placement="right" title=" Haz Click para descargar tu CV">{{basicInfo.nombrePostulante}}</a></h5>
+                              <p class="text-white-50 h6 mb-2">{{basicInfo.tituloPostulante}}</p>
+                        </div>
 
                         <!-- Boton Modal -->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalKaizenpostulante">
-                        Editar perfil
+                            Editar perfil
                         </button>
+                            <br>
+                            <br>
+                            <label class="btn btn-warning" for="my-file-selector">
+                                <input id="my-file-selector" (click)="LoadPage()" (change)="GuardarCV($event)" type="file" style="display:none" accept=".pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                ><i class="fas fa-cloud-upload-alt"></i>
+                                 Sube tu CV
+                            </label>
+                            <span class='label label-info' id="upload-file-info"></span>
                         <br>
                         <br>
-                        <button type="button" class="btn btn-warning">Sube tu CV>
-                            <input type="file" class="form-control" id="inputcv" accept=".pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"></button>
-                        <br>
-                        <br>
-                        <a [routerLink]="" (click)="PasswordRequest()"> Editar contraseña</a>
+                        <div class="col-md-12 mb-4">
+                            <a [routerLink]="" (click)="PasswordRequest()" class="btn btn-info"><i class="fas fa-unlock-alt"></i>  Editar Contraseña</a>
+                        </div>
+                        
                         <!-- Modal Corregido -->
                         <form [formGroup]="postulantebasicinfoupdateForm" (ngSubmit)="updateBasicInfo()">
                             <div class="modal fullscreen-modal fade" id="modalKaizenpostulante" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -70,7 +87,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label for="descripcionUsuario">Mi Perfil</label>
+                                                <label for="descripcionUsuario">Mi Perfil</label>                                                
                                                 <textarea class="form-control" id="descripcionUsuario" rows="3"
                                                 formControlName="descripcionUsuario"
                                                 [ngClass]="{
@@ -173,7 +190,8 @@
             <div class="row">
                 <div class="col-lg-12 mt-3">
                     <div class="border rounded p-4">
-                        <p class="text-muted">{{basicInfo.descripcionPostulante}}</p>
+
+                      <p class="sub-title text-muted" [innerHTML]="basicInfo.descripcionPostulante">  </p>
 
                         <ul class="list-inline pt-3 border-top mb-0">
                             <li class="list-inline-item mr-3">
@@ -190,19 +208,24 @@
                         </ul>
                     </div>
                 </div>
-            </div>           
+            </div>                     
 
             <app-estudios></app-estudios>
-            
             <app-experiencia-laboral></app-experiencia-laboral>
-
+         
+            
       
         </div>
     </section>
     <!-- Fin Perfil --> 
-
-    <!-- Inicio del footer -->
+    
     <app-footer></app-footer>
 
+
+    <!-- Volver Arriba -->
+    <a href="#" class="back-to-top rounded text-center" id="back-to-top"> 
+        <i class="mdi mdi-chevron-up d-block"> </i> 
+    </a>
+    <!-- Volver Arriba -->
 </body>
 </html>

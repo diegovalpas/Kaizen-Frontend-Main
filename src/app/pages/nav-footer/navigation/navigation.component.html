@@ -1,0 +1,90 @@
+<!-- Barra de navegación-->
+<header id="topnav" class="defaultscroll scroll-active">
+    <!-- Inicio Tagline -->
+    <div class="tagline">            
+        <div class="container">
+            <div class="clearfix"></div>
+        </div>
+
+    </div>
+    <!-- Fin Tagline-->
+
+    <!-- Inicio Menú -->
+    <div class="container">
+        <!-- Logo container-->
+        <div>
+            <a href="/" class="logo">
+                <img src="/assets/images/logolight.png" alt="" class="logo-light" height="40" />
+                <img src="/assets/images/logo.png" alt="" class="logo-dark" height="40" />
+            </a>
+        </div>
+        <div class="buy-button" *ngIf="this.isVisibleButton" (click)="Salir()">
+            <a  class="btn btn-secondary"><i class="mdi mdi-logout"></i> Cerrar Sesión </a>
+        </div>
+        <div class="buy-button" *ngIf="this.isVisible">
+            <a href="/signin/reclutador" class="btn btn-primary"><i class="mdi mdi-table-edit"></i> Publicar Empleo </a>
+        </div> 
+        
+        <div class="buy-button" *ngIf="this.isVisible">
+            <a href="/signin/postulante" class="btn btn-primary"><i class="mdi mdi-cloud-upload"></i> Subir mi CV </a>
+        </div>  
+               
+        <!-- Fin del container del logo-->
+        <div class="menu-extras">
+            <div class="menu-item">
+                <!-- Mobile menu -->
+                <a class="navbar-toggle">
+                    <div class="lines">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </a>
+                <!-- Fin del mobile menu-->
+            </div>
+        </div>
+
+        <div id="navigation" >
+            <!-- Menú de Navegación-->   
+            <ul class="navigation-menu">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/home/show/all">Empleos</a></li>
+
+                <li class="has-submenu" *ngIf="this.isMostrar" >
+                    <a href="javascript:void(0)" >Mi Cuenta</a><span class="menu-arrow" ></span>
+                    <ul class="submenu"  >
+                        <li>
+                            <div *ngIf="this.isVisiblePostulaciones">
+                                <a href="/postulante/{{Postulantetoken.idPostulante}}/profile">Mi Perfil</a>
+                            </div>   
+                        </li>
+                        <li>
+                            <div *ngIf="this.isVisibleReclutador">
+                                <a href="/reclutador/{{ReclutadorToken.idReclutador}}/profile">Mi Perfil</a>
+                            </div>   
+                        </li>
+                        <li>
+                            <div *ngIf="this.isVisiblePostulaciones">
+                                <a href="/postulante/{{Postulantetoken.idPostulante}}/postulaciones">Mis Postulaciones</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div *ngIf="this.isVisibleReclutador">
+                                <a href="/postulante/{{ReclutadorToken.idReclutador}}/publicaciones">Mis Publicaciones</a>
+                            </div>
+                        </li>
+                                                
+                    </ul>
+                </li>
+                
+                <li>
+                    <a href="/contactanos">Contáctanos</a>
+                </li>
+            </ul><!--Fin del Menú de navegación-->
+        </div><!--Fin de la navegación-->
+        
+        
+    </div><!--Fin del container-->
+    <!---->
+</header><!--Fin del header-->
+

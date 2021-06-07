@@ -6,6 +6,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { BasicInfoPostulanteProfile } from './postulante-profile-interface';
 import { PasswordRequestService } from '../../reset_password/password-request/password-request.service';
 import { PasswordRequest } from '../../reset_password/password-request/password-request-interface';
+declare const $:any;
 
 @Component({
   selector: 'app-postulante-profile',
@@ -42,6 +43,13 @@ export class PostulanteProfileComponent implements OnInit {
 
     archivocvUsuario: new FormControl(null)
   });
+  CurrentUser2: any;
+  currentLogo?: File;
+  currentcv?: File;
+  signupSuccess = false;
+  selectedlogo: any;
+  selectedcv: any;
+  CurrentUser3: any;
 
   constructor(private tokenService: TokenStorageService,
               private postulanteprofileService: PostulanteProfileService,
@@ -64,6 +72,7 @@ export class PostulanteProfileComponent implements OnInit {
     }
   }
 
+
   Exit() {
     this.tokenService.signOut();
     this.router.navigate(['/signin/postulante']);
@@ -83,9 +92,12 @@ export class PostulanteProfileComponent implements OnInit {
         this.basicInfo.telefonoPostulante = this.basicinfoData.telefonoPostulante,
         this.basicInfo.descripcionPostulante = this.basicinfoData.descripcionPostulante,
         this.basicInfo.tituloPostulante = this.basicinfoData.tituloPostulante,
-        this.basicInfo.fotoperfilPostulante = this.basicinfoData.fotoperfilPostulante,
-        this.basicInfo.archivocvPostulante = this.basicinfoData.archivocvPostulante
-        console.log(this.basicInfo);
+        this.basicInfo.imagen = this.basicinfoData.fotoperfilPostulante.urlImagen,
+        this.basicInfo.nombreimagen = this.basicinfoData.fotoperfilPostulante.nombreImagen,
+        this.basicInfo.archivocvPostulante = this.basicinfoData.archivocvPostulante.urlArchivoCV
+        console.log(this.basicInfo)
+        if (this.basicInfo.descripcionPostulante){ 
+          this.basicInfo.descripcionPostulante = this.basicInfo.descripcionPostulante.replace(/\n/g, '<br />');        }
       }
     );
   }
@@ -126,5 +138,64 @@ export class PostulanteProfileComponent implements OnInit {
         console.log(this.passwordrequestData);
       }
     )
+  }
+
+  GuardarFoto(event: any): void {
+    this.selectedlogo = event.target.files;
+    if (this.selectedlogo) {
+      const logo: File | null = this.selectedlogo.item(0);
+      if (logo) {
+        this.currentLogo = logo;
+        console.log(this.currentLogo);
+        this.postulanteprofileService.updateLogo(this.currentLogo,this.currentPostulante.idPostulante).subscribe(
+          data => {
+            this.CurrentUser2 = data;
+            this.signupSuccess = true;
+            $('#start').css('cursor', 'default'); 
+            window.location.reload();
+            
+          },
+          err => {
+            this.errorMessage = err.error.message;
+            this.signupSuccess = false;
+            $('#start').css('cursor', 'default');
+          }
+        );
+      }
+    }
+  }
+
+  GuardarCV(event:any):void {
+    this.selectedcv = event.target.files;
+    if (this.selectedcv) {
+      const cv: File | null = this.selectedcv.item(0);
+      if (cv) {
+        this.currentcv = cv;
+        console.log(this.currentcv);
+        this.postulanteprofileService.updatecv(this.currentcv,this.currentPostulante.idPostulante).subscribe(
+          data => { 
+            this.CurrentUser3 = data;
+            this.signupSuccess = true;
+            $('#start').css('cursor', 'default');
+            window.location.reload();
+            
+          },
+          err => {
+            this.errorMessage = err.error.message;
+            this.signupSuccess = false;
+            $('#start').css('cursor', 'default');
+          }
+        );
+      }
+    }
+  }
+
+  LoadPage(){
+    $('#start').css('cursor', 'wait');
+  }
+  
+  Salir(){
+      this.tokenService.signOut();
+      this.router.navigate(['/signin/postulante'])
   }
 }

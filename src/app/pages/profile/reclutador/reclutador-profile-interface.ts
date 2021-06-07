@@ -5,7 +5,3 @@ export interface BasicInfoReclutadorProfile {
     telefonoUsuario: string;
     nombrecontactanteUsuario: string;
 }
-
-export interface idempleo {
-    idPuestoTrabajo: number;
-}

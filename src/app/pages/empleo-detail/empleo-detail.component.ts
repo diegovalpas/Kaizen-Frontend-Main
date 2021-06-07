@@ -1,8 +1,8 @@
-import { Component, OnInit,  } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {TokenStorageService} from 'src/app/util/token-storage.service';
 import {Router} from '@angular/router';
 import {EmpleoDetailService} from './empleo-detail.service'
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder,FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-empleo-detail',
@@ -16,17 +16,18 @@ export class EmpleoDetailComponent implements OnInit {
   PostulanteActual:any ;
   currentDetalleLista:any = [];
   auxUsertoken: any;
-  message:any;
 
   constructor(private EmpleoDetailService:EmpleoDetailService,
-    private tokens:TokenStorageService, 
-    private route:Router) { }
+              private tokens:TokenStorageService, 
+              private route:Router,
+              private fb:FormBuilder) {  }
 
   ngOnInit(): void {
     this.PostulanteActual = this.tokens.getUser();
     this.getdetalleEmpleo();
-    this.verBoton();
+    this.verBoton();    
   }
+
 
   verBoton(){
 
@@ -45,12 +46,19 @@ export class EmpleoDetailComponent implements OnInit {
     }
   }
 
+
   getdetalleEmpleo(){
     
     this.EmpleoDetailService.getdetalleLista(this.tokens.getTokenjob()).subscribe(
     data => {
       this.currentDetalleLista = data;
+      this.currentDetalleLista.imagen = data.logoEmpresa.urlImagen;
+      this.currentDetalleLista.descripcionPuestoTrabajo = data.descripcionPuestoTrabajo
       console.log(this.currentDetalleLista);
+      if (this.currentDetalleLista.descripcionPuestoTrabajo){ 
+        this.currentDetalleLista.descripcionPuestoTrabajo = this.currentDetalleLista.descripcionPuestoTrabajo.replace(/\n/g, '<br />');
+      }
+     
     },
     error => {
       console.log(error);
@@ -59,18 +67,17 @@ export class EmpleoDetailComponent implements OnInit {
 
   Postularempleo(){
     if(this.PostulanteActual.idPostulante != null || this.PostulanteActual.idPostulante != undefined  ){
-        this.EmpleoDetailService.PostularTrabajoenDetalle(this.PostulanteActual.idPostulante,this.currentDetalleLista.idPuestoTrabajo).subscribe(
+            this.EmpleoDetailService.PostularTrabajoenDetalle(this.PostulanteActual.idPostulante,this.currentDetalleLista.idPuestoTrabajo).subscribe(
         data => {
           console.log(data);
-          this.message = 'Postulacion exitosa'
-      },
-      error => {
-        this.message = ''+error.error.message;
-      })
+      });
     }else{
-      this.message = 'Ingresar sesion | Debe ser un postulante'
+      var aviso = "Debe ser postulante para realizar esta acción || debes de iniciar sesion";
+      console.log(aviso);
       this.route.navigate(['/signin/postulante']);
     }
-  }
+  } 
+
+  
 
 }

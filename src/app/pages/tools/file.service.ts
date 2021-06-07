@@ -23,4 +23,10 @@ export class FileService {
   getLogoFile(): Observable<any> {
     return this.http.get(`${this.BASE_URL}/logos`);
   }
+
+  getImages(): Observable<any> {
+    return this.http.get(`${this.BASE_URL}/images`);
+  }
+
+
 }

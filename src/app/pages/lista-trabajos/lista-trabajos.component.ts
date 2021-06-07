@@ -5,6 +5,7 @@ import { ListaTrabajosService} from './lista-trabajos.service';
 import { Router } from '@angular/router';
 import { Ciudades, Categorias, Experiencia, PeriodoPublicacion } from '../tools/data-lists';
 
+
 @Component({
   selector: 'app-lista-trabajos',
   templateUrl: './lista-trabajos.component.html',
@@ -19,6 +20,7 @@ export class ListaTrabajosComponent implements OnInit {
   CurrentEmpleo : any;
   p : number =1 ;
   CurrentDetalleLista: any;
+  
 
   //Datalist
   Categorias = Categorias;
@@ -37,6 +39,7 @@ export class ListaTrabajosComponent implements OnInit {
     }
   })
 
+
   public BusquedaParametros = this.fb.group({
     palabraClave: new FormControl('', 
     Validators.required),
@@ -49,12 +52,15 @@ export class ListaTrabajosComponent implements OnInit {
   })
 
   constructor(private listatrabajosservice: ListaTrabajosService,
-    private fb: FormBuilder,
-    private tokens: TokenStorageService, private route: Router) { }
+              private fb: FormBuilder,
+              private tokens: TokenStorageService, private route: Router) { }
 
   ngOnInit(): void {
     this.verListaDeTrabajos();
+    
   }
+
+
 
   getDatos() : void{
     if(this.tokens.getTokenBusqueda() != null){
@@ -125,5 +131,6 @@ export class ListaTrabajosComponent implements OnInit {
  EliminarFiltros(){
    window.location.reload();
  }
+  
 
 }

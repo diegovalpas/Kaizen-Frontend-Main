@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contáctanos - Kaizen Talent</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="José Soplin Roncal" />
+
+    <link rel="shortcut icon" href="/assets/images/favicon.ico">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+
+    <!--Material Icon -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/materialdesignicons.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.css" />
+
+    <!-- selectize css -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/selectize.css" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/nice-select.css" />
+
+    <!-- Custom  Css -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+
+</head>
+
+<body>
+    
+    <app-navigation></app-navigation>
+    <!-- Inicio Home -->
+    <section class="bg-half page-next-level"> 
+        <div class="bg-overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="text-center text-white">
+                        <h4 class="text-uppercase title mb-4">Contáctanos</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Fin Home -->
+
+    <!-- Inicio Contáctanos -->
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4 class="text-dark mb-0">Contáctanos :</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8 col-md-7 mt-4 pt-2">
+                    <div class="custom-form rounded border p-4">
+                        <div id="message"></div>
+                        <form method="post" action="php/contact.php" name="contact-form" id="contact-form">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group app-label">
+                                        <label class="text-muted">Nombre</label>
+                                        <input name="name" id="name2" type="text" class="form-control resume" placeholder="Ingresa tu nombre..">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group app-label">
+                                        <label class="text-muted">Email</label>
+                                        <input name="email" id="email1" type="email" class="form-control resume" placeholder="Ingresa tu Email..">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group app-label">
+                                        <label class="text-muted">Asunto</label>
+                                        <input type="text" class="form-control resume" id="subject" placeholder="Ingresa el asunto..">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group app-label">
+                                        <label class="text-muted">Mensaje</label>
+                                        <textarea name="comments" id="comments" rows="5" class="form-control resume" placeholder="Escribe aquí tu mensaje.."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary" value="Enviar Mensaje">
+                                    <div id="simple-msg"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-5 mt-4 pt-2">
+                    <div class="border rounded text-center p-4">
+                        <h5 class="text-dark pb-3">Ubícanos</h5>
+                        <div class="contact-location rounded mt-5 p-4">
+                            <div class="contact-location-icon bg-white text-primary rounded-pill">
+                                <i class="mdi mdi-map-marker"></i>
+                            </div>
+                            <p class="text-muted pt-4 f-20 mb-0">Av Malachowsky 340, San Borja 15036</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Fin Contáctanos -->
+
+    <app-footer></app-footer>
+
+    <!-- Volver arriba -->
+    <a href="#" class="back-to-top rounded text-center" id="back-to-top"> 
+        <i class="mdi mdi-chevron-up d-block"> </i> 
+    </a>
+    <!-- Volver arriba -->
+
+   
+</body>
+</html>

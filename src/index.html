@@ -36,22 +36,14 @@
   <script type="text/javascript" src="../assets/js/popper.min.js"></script>
   <script type="text/javascript" src="../assets/js/scrollspy.min.js"></script>
   <script type="text/javascript" src="../assets/js/velocity.min.js"></script>
+
   <link rel="manifest" href="manifest.webmanifest">
+
   <meta name="theme-color" content="#1976d2">
 </head>
 <body>
   <app-root></app-root>  
   <noscript>Please enable JavaScript to continue using this application.</noscript>
-
-  <script>
-    $(document).ready(function() {
-        $('#example2').DataTable({
-            responsive: true
-        });
-    } );  
-    
-    </script>
-
   <script>
     var check = function() {
       if (document.getElementById('password').value ==
@@ -62,7 +54,7 @@
               document.getElementById('message').style.color = 'red';
           document.getElementById('message').innerHTML = 'Ambas contraseñas NO coinciden';
       }
-    }
+  }
 </script>
 </body>
 </html>

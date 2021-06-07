@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <title>Empleos - Kaizen Talent</title>
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="José Soplin Roncal" />
+
+        <!-- Tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <!--  Datatables  -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>  
+
+        <!--  extension responsive  -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+
+        <!-- CSS -->
+
+        <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="/assets/css/empleosreclutador.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+
+        <!--Material Icon -->
+        <link rel="stylesheet" type="text/css" href="/assets/css/materialdesignicons.min.css" />
+
+        <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.css" />
+
+        <!-- selectize css -->
+        <link rel="stylesheet" type="text/css" href="/assets/css/selectize.css" />
+
+        <link rel="stylesheet" type="text/css" href="/assets/css/nice-select.css" />
+
+        <title></title>
+
+        <style>
+        table thead{
+            background-color: #38ef7d;        
+        }
+        </style>
+    </head>
+
+    <body>        
+        <div class="row">
+            <div class="col-lg-12 mt-4 pt-2">
+                <h4 class="text-dark">Empleos Pausados :</h4>
+                    <br> 
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table id="example2" class="table table-bordered  display nowrap" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Nombre del Empleo </th>
+                                    <th>Estado</th>
+                                    <th>Candidatos</th>
+                                    <th>Enlace</th>
+                                    <th>Detalle</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let listpausa of ListPaused">
+                                    <td>{{listpausa.nombrePuestoTrabajo}}</td>
+                                    <td>{{listpausa.estadoPuestoTrabajo}}</td>
+                                    <td>{{listpausa.cantidadPostulantes}}</td>
+                                    <td><a style="cursor: pointer;" [class.active]="listpausa == ListEmpleoCurrent" (click)="Seleccionarempleo(listpausa)" (click)="verDetalle()" >Ir a publicación</a></td>
+                                    <td><a style="cursor: pointer;" [class.active]="listpausa == ListEmpleoCurrent" (click)="Seleccionarempleo(listpausa)" (click)="verPostulantes()">Ver Candidatos</a></td>
+                                    <td [class.active]="listpausa == ListEmpleoCurrent" (click)="Seleccionarempleo(listpausa)">
+                                        <a href="#editEmployeeModal" class="edit" data-toggle="modal"> <i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
+                                        <a href="#deleteEmployeeModal"   class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
+                                        <a href="#reanudarEmployeeModal"   class="delete" data-toggle="modal"><i class="material-icons play_arrow" data-toggle="tooltip" title="Reanudar">&#xe037;</i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Nombre del Empleo </th>
+                                    <th>Estado</th>
+                                    <th>Candidatos</th>
+                                    <th>Enlace</th>
+                                    <th>Detalle</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </tfoot>                    
+                        </table>                
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="reanudarEmployeeModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form (ngSubmit)="ActivarEmpleo()">
+                        <div class="modal-header">      
+                            <h4 class="modal-title">Reanudar Publicación</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">     
+                            <p>¿Estás seguro que deseas reanudar esta publicación?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                            <input type="submit" class="btn btn-danger" value="Reanudar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+

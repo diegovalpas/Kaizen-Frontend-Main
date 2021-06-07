@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+
+//const BASE_URL = 'http://localhost:8080/api/postulante';
 const deleteEdu =  'https://backend-kaizentalent.herokuapp.com/api/educacion';
 const baseUrl = 'https://backend-kaizentalent.herokuapp.com/api/postulante';
 const updateEdu = 'https://backend-kaizentalent.herokuapp.com/api';

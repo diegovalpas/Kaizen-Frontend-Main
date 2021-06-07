@@ -41,6 +41,11 @@ export interface PeriodoPublicacion {
     selector : string;
 }
 
+export interface TipoPostulacion {
+    value : string;
+    text : string;
+}
+
 export interface Publicacion {
     value : number;
     text : string;
@@ -63,15 +68,12 @@ export const Remoto: Remoto [] = [
     { value: 'Temporalmente por cuarentena', text: 'Temporalmente por cuarentena'}
 ]
 
-export interface TipoPostulacion {
-    value : string;
-    text : string;
-}
-
 export const TipoPostulacion: TipoPostulacion[] = [
     { value: 'Part-Time', text: 'Part-Time' },
     { value: 'Full-Time', text: 'Full-Time' } 
 ]
+
+
 
 export const Ciudades: Ciudades[] = [
     { value: 'Bagua Grande', text: 'Bagua Grande' },
@@ -244,21 +246,6 @@ export const PeriodoPublicacion: PeriodoPublicacion[] = [
     { value: '168', text: 'Ultimas 7 dias' , selector:'3'},
     { value: '336', text: 'Ultimos 14 dias', selector:'4' },
     { value: '720', text: 'Ultimos 30 dias', selector:'5' }
-]
-
-export const FechaMes: FechaMes[] = [
-    { value: '01', text: 'Enero' },
-    { value: '02', text: 'Febrero' },
-    { value: '03', text: 'Marzo' },
-    { value: '04', text: 'Abril' },
-    { value: '05', text: 'Mayo' },
-    { value: '06', text: 'Junio' },
-    { value: '07', text: 'Julio' },
-    { value: '08', text: 'Agosto' },
-    { value: '09', text: 'Septiembre' },
-    { value: '10', text: 'Octubre' },
-    { value: '11', text: 'Noviembre' },
-    { value: '12', text: 'Diciembre' },
 ]
 
 export const Experiencia: Experiencia[] = [

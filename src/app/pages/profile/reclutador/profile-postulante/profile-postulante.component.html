@@ -1,0 +1,140 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mi Perfil - Kaizen Talent</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="José Soplin Roncal" />
+    <link rel="shortcut icon" href="/assets/images/favicon.ico">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+    <!--Material Icon -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.css" />
+    <!-- slectize css -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/selectize.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/nice-select.css" />
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/modal.css" />
+</head>
+<body>
+
+    <app-navigation></app-navigation>
+    
+    <section class="bg-half page-next-level"> 
+        <div class="bg-overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="candidates-profile-details text-center">
+                        <img src="{{Usuario.fotoperfilPostulante}}" height="150" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
+                        <h5 class="text-white mb-2">{{Usuario.nombrePostulante}}</h5>
+                        <p class="text-white-50 h6 mb-2">{{Usuario.tituloPostulante}}</p>
+                        <br>
+                    </div>
+                    <!--  codigo anterior -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4 class="text-dark">Mi Perfil :</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 mt-3">
+                    <div class="border rounded p-4">
+                        
+                        <p class="sub-title text-muted" [innerHTML]="Usuario.descripcionPostulante"> </p>
+
+                        <label for="">Nombre :</label><p class="text-muted">{{Usuario.nombrePostulante}}</p>
+                        <label for="">Apellido :</label><p class="text-muted">{{Usuario.apellidoPostulante}}</p>
+
+                        <ul class="list-inline pt-3 border-top mb-0">
+                            <li class="list-inline-item mr-3">
+                                <a href="" class="text-muted f-15 mb-0"><i class="mdi mdi-map-marker mr-2"></i>{{Usuario.direccionPostulante}}</a>
+                            </li>
+
+                            <li class="list-inline-item mr-3">
+                                <a href="" class="text-muted f-15 mb-0"><i class="mdi mdi-email mr-2"></i>{{Usuario.emailPostulante}}</a>
+                            </li>
+
+                            <li class="list-inline-item mr-3">
+                                <a href="" class="text-muted f-15 mb-0"><i class="mdi mdi-cellphone-iphone mr-2"></i>{{Usuario.telefonoPostulante}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 mt-4 pt-2">
+                    <h4 class="text-dark">Educacion :</h4>
+                </div>
+            </div>
+                        
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mt-4 pt-5" *ngFor="let edu of CurrentEducacion">
+                    <div class="border rounded candidates-profile-education text-center text-muted">
+                        <div class="profile-education-icon border rounded-pill bg-white text-primary">
+                            <i class="mdi mdi-36px mdi-school"></i>
+                        </div>
+                        <h6 class="text-uppercase f-17"><a href="#" class="text-muted"> {{edu.institucionEducacion}} </a></h6>
+                        <p>{{edu.periodoinicioEducacion}} - {{edu.periodofinEducacion}}</p>
+                        
+                        <p class="pb-3 mb-0">{{edu.nombreEducacion}}</p>                       
+                        <!--<p class="pt-3 border-top mb-0">:v</p>-->
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-12 mt-4 pt-2">
+                    <h4 class="text-dark">Experiencia Laboral :</h4>
+                </div>
+            </div>
+
+            <div class="row" >
+                <div class="col-md-6 mt-3 mt-md-0 pt-3"  *ngFor="let exp of CurrentExperiencia"   >
+                    <div class="border rounded job-list-box p-4">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="company-brand-logo text-center mb-4">
+                                    <img src="{{exp.logoEmpresa.urlImagen}}" alt="" class="img-fluid mx-auto d-block">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-9">
+                                <div class="job-list-desc candidates-profile-exp-desc">
+                                    <h5 class="f-19 mb-2"><a href="#" class="text-dark"> {{exp.empresaExperienciaLaboral}} </a></h5>
+                                    <b><p class="text-muted mb-0 f-16"> {{exp.nombreExperienciaLaboral}} </p></b>
+                                    <p>{{exp.periodoinicioExperienciaLaboral}} - {{exp.periodofinExperienciaLaboral}}</p>                                  
+                                </div>     
+                            </div>
+                        </div>
+                    </div>                    
+                </div>                
+            </div>
+        </div>
+    </section>
+
+    <app-footer></app-footer>
+</body>
+</html>
+
+
+
+
+
+
+

@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Ciudades, TamañoEmpresas } from 'src/app/pages/tools/data-lists';
+import { TokenStorageService } from 'src/app/util/token-storage.service';
 import { CustomValidators } from '../../tools/custom-validators';
 import { ReclutadorSignupRequest } from './reclutador-signup-interface';
 import { ReclutadorSignupService } from './reclutador-signup.service';
-import * as $ from 'jquery';
+declare var $:any;
 
 @Component({
   selector: 'app-reclutador-signup',
@@ -14,13 +15,7 @@ import * as $ from 'jquery';
 })
 export class ReclutadorSignupComponent implements OnInit {
 
-  //mensajito
-  message:any;
-  signupSuccess = false;
-  errorMessage:any;
-  selectedLogo?: FileList;
-  currentLogo?: File;
-
+ 
   //Lista de Ciudades ordenados por Nombre creado en util/data-lists
   Ciudades = Ciudades.sort(function (a, b) {
     if (a.text > b.text) {
@@ -79,31 +74,55 @@ export class ReclutadorSignupComponent implements OnInit {
 
     tamañoempresaUsuario: new FormControl('', 
     Validators.required),
-
-    checki: new FormControl('', 
+    
+    checkear: new FormControl('', 
     Validators.required),
 
     imagenUsuario: new FormControl(null)
   }); 
+  isVisibleReclutador = false;
+  userToken: any;
 
   constructor(public fb: FormBuilder,
               private reclutadorsignupServie: ReclutadorSignupService,
-              private router: Router) { }
+              private router: Router,
+              private tokenstorageService: TokenStorageService) { }
 
   ngOnInit() {
-    
+    this.ifLogin();
+  }
+
+
+  signupSuccess = false;
+  errorMessage = '';
+
+  selectedLogo?: FileList;
+  currentLogo?: File;
+
+  message:any;
+
+  ifLogin(){
+
+    if(this.tokenstorageService.getUser()){
+      this.userToken = this.tokenstorageService.getUser()
+      if(this.userToken.idReclutador !== undefined){       
+        this.router.navigate(['/reclutador/' + this.userToken.idReclutador + '/profile']);
+      }
+      if(this.userToken.idPostulante !== undefined){
+        this.router.navigate(['/postulante/' + this.userToken.idPostulante + '/profile']);
+      }
+    }
+    if(this.tokenstorageService.getToken() === null){
+    }
+  }
+
+
+  escribir() :void {
+    this.message = null;
   }
 
   seleccionarLogo(event: any): void {
     this.selectedLogo = event.target.files;
-  }
-
-  eventWriteMail() :void {
-    this.message = null;
-  }
-
-  LoadPage(){
-    $('#start').css('cursor', 'wait');
   }
 
   subirLogo(): any {
@@ -118,6 +137,10 @@ export class ReclutadorSignupComponent implements OnInit {
     }
   }
 
+  LoadPage(){
+    $('#start').css('cursor', 'wait');
+  }
+
   guardarReclutador(): void {
 
     var usuario: ReclutadorSignupRequest = {
@@ -127,27 +150,36 @@ export class ReclutadorSignupComponent implements OnInit {
       numerodocumentoUsuario: this.reclutadorsignupForm.controls['numerodocumentoUsuario'].value,
       contraseñaUsuario: this.reclutadorsignupForm.controls['contraseñaUsuario'].value,
       nombrecontactanteUsuario: this.reclutadorsignupForm.controls['nombrecontactanteUsuario'].value,
-      tamañoempresaUsuario: this.reclutadorsignupForm.controls['tamañoempresaUsuario'].value,
+      tamañoempresaUsuario: this.reclutadorsignupForm.controls['tamañoempresaUsuario'].value
     }
 
     if (this.reclutadorsignupForm.invalid) {
-      this.message = null;
       $('#start').css('cursor', 'default');
       return;
-    } 
+    }
 
     this.reclutadorsignupServie.SignUpReclutador(usuario, this.subirLogo()).subscribe(
       data => { 
-         this.signupSuccess = true;
-         this.router.navigate(['/signin/reclutador']);
-         $('#start').css('cursor', 'default'); 
+        $('#start').css('cursor', 'default');
+        console.log(data);
+        this.signupSuccess = true;
+        this.router.navigate(['/signin/reclutador']); 
       },
+
       err => {
+        $('#start').css('cursor', 'default');
         this.errorMessage = err.error.message;
         this.message = this.errorMessage;
-        $('#start').css('cursor', 'default');
         this.signupSuccess = false;
       }
-    ) 
+    );
   }
 }
+
+
+
+ 
+
+ 
+  
+

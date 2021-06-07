@@ -253,26 +253,6 @@ Autor: José Soplin Roncal
   background-color: #6b5bd8 !important;
 }
 
-.btn-flotante {
-	font-size: 16px; /* Cambiar el tamaño de la tipografia */
-	text-transform: uppercase; /* Texto en mayusculas */
-	color: #ffffff; /* Color del texto */
-	border-radius: 50px; /* Borde del boton */
-	letter-spacing: 2px; /* Espacio entre letras */
-	background-color: rgba(250, 250, 250);
-	padding: 10px 18px; /* Relleno del boton */
-	position: fixed;
-	bottom: 40px;
-	right: 40px;
-	transition: all 300ms ease 0ms;
-	box-shadow: 0px 8px 15px rgba(0, 0, 0);
-	z-index: 99;
-}
-.btn-flotante:hover {
-	background-color: #16eb3ad2; /* Color de fondo al pasar el cursor */
-  border-radius: 100px;
-}
-
 .btn.btn-info-outline {
   border: 1px solid #9084e2;
   color: #9084e2;
@@ -699,6 +679,7 @@ button:not(:disabled) {
 
 .form-button .nice-select.open .list {
   width: 100%;
+  
 }
 
 .subcribe-form input {
@@ -1155,7 +1136,7 @@ p {
 }
 
 #topnav .navbar-toggle.open span:nth-child(2) {
-  visibility:visible;
+  visibility: hidden;
 }
 
 #topnav .navbar-toggle.open span:last-child {
@@ -1199,7 +1180,7 @@ p {
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
   font-family: "Nunito", sans-serif;
-  padding-left: 150px;
+  padding-left: 15px;
   padding-right: 15px;
 }
 
@@ -1640,7 +1621,7 @@ p {
     display: none;
   }
   #topnav .navbar-toggle .lines {
-    margin-right: 0;
+    margin-right: 0 !important;
   }
 }
 
@@ -2628,6 +2609,55 @@ hr {
   margin-bottom: 0;
   border: 0;
   border-top: 1px solid #333744;
+}
+.profile-pic-div{
+  height: 150px;
+  width: 150px;
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid grey;
+}
+
+#photo{
+  height: 100%;
+  width: 100%;
+}
+
+#file{
+  display: none;
+}
+
+#uploadBtn{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  transform: translateY(24%) translateX(-50%);
+  text-align: center;
+  background: transparent;
+  color: rgba(0,0,0,0);
+  line-height: 30px;
+  font-family: sans-serif;
+  font-size: 13px;
+  cursor: pointer;   
+}
+#uploadBtn:hover{
+  height: 40px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    color: wheat;
+    line-height: 30px;
+    font-family: sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+
 }
 /*# sourceMappingURL=style.css.map */
 

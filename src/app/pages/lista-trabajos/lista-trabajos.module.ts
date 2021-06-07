@@ -5,7 +5,7 @@ import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { ListaTrabajosComponent } from './lista-trabajos.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { NavbarModule } from '../nav-bars/nav-bars.module';
+import { NavFooterModule } from '../nav-footer/nav-footer.module';
 
 @NgModule({
   declarations: [
@@ -17,8 +17,12 @@ import { NavbarModule } from '../nav-bars/nav-bars.module';
     RouterModule,
     NgbModule,
     FormsModule,
-    NavbarModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NavFooterModule
   ]
 })
-export class ListaTrabajosModule {}
+export class ListaTrabajosModule { 
+
+
+  
+}

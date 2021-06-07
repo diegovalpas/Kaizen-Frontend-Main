@@ -1,18 +1,14 @@
 import { Injectable } from '@angular/core';
 
-/*
-*nombres de los token a usar en LocalStorage
-*/
-//Objetos guardados en LocalStorage
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
-const PROFILE_KEY = 'auth-profile';
 
 //Datos guardados en LocalStorage
 const LOOKFOR_KEY = 'auth-filter';
 const JOB_KEY = 'auth-job';
 const EXP_KEY = 'auth-exp';
 const EDU_KEY = 'auth-edu'
+const PROFILE_KEY = 'auth-profile'
 
 @Injectable({
   providedIn: 'root'
@@ -83,16 +79,6 @@ export class TokenStorageService {
     }
   }
 
-    //obtiene los datos BasicInfo del perfil
-    public saveUsuarioPerfil(token: string): void {
-      window.localStorage.removeItem(PROFILE_KEY);
-      window.localStorage.setItem(PROFILE_KEY, token);
-    }
-    
-    public getUsuarioPerfil(): string | null {
-      return window.localStorage.getItem(PROFILE_KEY);
-    }
-
   public deleteTokenBusqueda(): any {
     window.localStorage.removeItem(LOOKFOR_KEY);
   }
@@ -106,4 +92,16 @@ export class TokenStorageService {
   public getTokenjob(): string | null {
     return window.localStorage.getItem(JOB_KEY);
   }
+
+  //obtiene los datos BasicInfo del perfil
+  public saveUsuarioPerfil(token: string): void {
+    window.localStorage.removeItem(PROFILE_KEY);
+    window.localStorage.setItem(PROFILE_KEY, token);
+  }
+  
+  public getUsuarioPerfil(): string | null {
+    return window.localStorage.getItem(PROFILE_KEY);
+  }
+
+
 }

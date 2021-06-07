@@ -1,0 +1,45 @@
+.ngx-pagination {
+    padding-left: 0px !important;
+    border-radius: 20px !important;
+    border: transparent !important;
+    text-align: center !important;
+    height: 40px !important; 
+    font-size: 20px !important;
+  }
+
+  .ngx-pagination .current, .btn-info{
+    background:  #1bcf1b  !important;
+    border-radius: 25px !important; 
+  }
+
+  .ngx-pagination .current:hover{
+    border-radius: 25px !important;
+    background: #e6e6e6 !important;
+
+  }
+
+  .ngx-pagination li a:hover {
+    border-radius: 25px !important;
+    background: #e6e6e6 !important; 
+  }
+ 
+  
+  .ngx-pagination li:hover {
+    background: transparent !important;
+    border-radius: 25px !important;    
+  }
+  
+  .ngx-pagination li{
+    background: #fff !important; 
+    border-radius: 25px;  
+    border: solid 1px #cbcbcc  !important;
+    color: #8d8c8c !important;
+  }
+ 
+  
+
+
+
+
+
+

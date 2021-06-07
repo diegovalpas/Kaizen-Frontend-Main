@@ -6,7 +6,6 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { BasicInfoReclutadorProfile } from './reclutador-profile-interface';
 import { PasswordRequestService } from '../../reset_password/password-request/password-request.service';
 import { PasswordRequest } from '../../reset_password/password-request/password-request-interface';
-import * as $ from 'jquery';
 
 @Component({
   selector: 'app-reclutador-profile',
@@ -16,6 +15,8 @@ import * as $ from 'jquery';
 
 export class ReclutadorProfileComponent implements OnInit {
 
+  isLoginFailed: boolean = false;
+
   currentReclutador: any;
   idReclutador: any;
 
@@ -23,22 +24,18 @@ export class ReclutadorProfileComponent implements OnInit {
   basicInfo: any = {};
 
   passwordrequestData: any = {};
-  CurrentUserparam:any = [];
-  Usuario:any = {};
-  
-  CurrentUser:any;
-  CurrentUser2:any;
-  CurrentUser3:any;
-  isLoginFailed = false;
+
   signupSuccess = false;
-  errorMessage = '';
-  TamanioEmpresaReclutador: any;
-
-  auxnombreReclutador: any = '';
-
-  selectedlogo: any;
+  CurrentUser2: any;
   currentLogo?: File;
+  selectedlogo: any;
 
+
+
+
+  
+
+  
   public reclutadorbasicinfoupdateForm = this.fb.group({
     
     descripcionUsuario: new FormControl('', Validators.minLength(5)),
@@ -60,6 +57,7 @@ export class ReclutadorProfileComponent implements OnInit {
 
     imagenUsuario: new FormControl(null)
   });
+  
 
   constructor(private tokenService: TokenStorageService,
               private reclutadorprofileService: ReclutadorProfileService,
@@ -71,6 +69,7 @@ export class ReclutadorProfileComponent implements OnInit {
     this.Auth();
   }
 
+  errorMessage = '';
 
   Auth() {
     if (this.tokenService.getToken()) {
@@ -101,13 +100,17 @@ export class ReclutadorProfileComponent implements OnInit {
         this.basicInfo.emailReclutador = this.basicinfoData.emailReclutador,
         this.basicInfo.telefonoReclutador = this.basicinfoData.telefonoReclutador,
         this.basicInfo.nombrecontactanteReclutador = this.basicinfoData.nombrecontactanteReclutador,
-        this.basicInfo.logoempresaReclutador = this.basicinfoData.logoempresaReclutador
-        
+        this.basicInfo.logoempresaReclutador = this.basicinfoData.logoempresaReclutador.urlImagen              
+
         console.log(this.basicInfo);
+        if (this.basicInfo.descripcionReclutador){ 
+          this.basicInfo.descripcionReclutador = this.basicInfo.descripcionReclutador.replace(/\n/g, '<br />');
+        }
       }
     );
   }
 
+  
   updateBasicInfo() {
     var postulante: BasicInfoReclutadorProfile = {
       descripcionUsuario: this.reclutadorbasicinfoupdateForm.controls['descripcionUsuario'].value,
@@ -147,27 +150,26 @@ export class ReclutadorProfileComponent implements OnInit {
     )
   }
 
-  //codigo que falta agregar al HTML
-  seleccionarLogo(event: any): void {
-    this.selectedlogo = event.target.files;
-  }
-
-  subirLogo(): any {
+  subirFoto(): any {
     if (this.selectedlogo) {
       const logo: File | null = this.selectedlogo.item(0);
       if (logo) {
         this.currentLogo = logo;
       }
       return this.currentLogo;
+      }
     }
-  }
 
-  UpdateLogoempresa(){
+    seleccionarLogo(event: any): void {
+      this.selectedlogo = event.target.files;
+    }
+  
+    UpdateLogoempresa(){
     
-    this.reclutadorprofileService.updateLogo(this.subirLogo(),this.CurrentUser.idReclutador).subscribe(
+    this.reclutadorprofileService.updateLogo(this.subirFoto(),this.currentReclutador.idReclutador).subscribe(
       data => { 
         this.CurrentUser2 = data;
-        this.CurrentUser2.logoempresaReclutador = this.currentLogo;
+        this.CurrentUser2.fotoperfilPostulante = this.currentLogo;
         this.signupSuccess = true; 
         window.location.reload();
         
@@ -175,8 +177,11 @@ export class ReclutadorProfileComponent implements OnInit {
       err => {
         this.errorMessage = err.error.message;
         this.signupSuccess = false;
-      }
-    );
-  }
+      });
+    }
 
+    Salir(){
+      this.tokenService.signOut();
+      this.router.navigate(['/signin/reclutador'])
+    }
 }

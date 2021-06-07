@@ -13,7 +13,7 @@
 		<link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
 </head>
 <body>    
-    <div class="form-body">
+    <div class="form-body" id="start">
         <div class="website-logo">
             <a href="/">
                 <div class="logo">
@@ -38,7 +38,7 @@
                         </div>
                         <form [formGroup]="postulanteSigninForm" (ngSubmit)="SigninPostulante()">
                         <div class="input-group has-validation">
-                            <input class="form-control" type="text" name="emailUsuario" placeholder="Correo electrónico" aria-describedby="emailUsuario" required
+                            <input class="form-control" (input)="AlertDefault()" type="text" name="emailUsuario" placeholder="Correo electrónico" aria-describedby="emailUsuario" required
                             formControlName="emailUsuario"
                             [ngClass]="{
                                 'is-invalid': postulanteSigninForm.controls['emailUsuario'].invalid && 
@@ -58,7 +58,7 @@
                         </div>
                         <br>
                         <div class="input-group has-validation">
-                            <input class="form-control" type="password" name="contraseñaUsuario" placeholder="Contraseña" aria-describedby="contraseñaUsuario" required
+                            <input class="form-control" (input)="AlertDefault()" type="password" name="contraseñaUsuario" placeholder="Contraseña" aria-describedby="contraseñaUsuario" required
                             formControlName="contraseñaUsuario"
 							[ngClass]="{
 								'is-invalid': postulanteSigninForm.controls['contraseñaUsuario'].invalid && 
@@ -75,7 +75,7 @@
                         <ngb-alert [type]="alert.type" [dismissible]="false">{{ alert.message }}</ngb-alert>
 
                             <div class="form-button">
-                                <button id="submit" type="submit" class="ibtn" [disabled]="!postulanteSigninForm.valid">Iniciar Sesión</button>
+                                <button id="submit" type="submit" class="ibtn" (click)="LoadPage()" [disabled]="!postulanteSigninForm.valid">Iniciar Sesión</button>
                                 <br>
                                 <br>
                                 <a href="/password/request">¿Olvidaste tu contraseña?</a>

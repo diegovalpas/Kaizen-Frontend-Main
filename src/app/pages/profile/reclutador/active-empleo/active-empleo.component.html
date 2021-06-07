@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <title>Empleos - Kaizen Talent</title>
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="José Soplin Roncal" />
+
+        <!-- Tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <!--  Datatables  -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>  
+
+        <!--  extension responsive  -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+        <link rel="stylesheet" type="text/css" href="/assets/css/pagination.css" />
+
+        <!-- CSS -->
+
+        <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="/assets/css/empleosreclutador.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+
+        <!--Material Icon -->
+        <link rel="stylesheet" type="text/css" href="/assets/css/materialdesignicons.min.css" />
+
+        <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.css" />
+
+        <!-- selectize css -->
+        <link rel="stylesheet" type="text/css" href="/assets/css/selectize.css" />
+
+        <link rel="stylesheet" type="text/css" href="/assets/css/nice-select.css" />
+
+        <title></title>
+
+        <style>
+        table thead{
+            background-color: #38ef7d;        
+        }
+        </style>
+    </head>
+
+    <body>
+        <div class="row">
+            <div class="col-lg-12 mt-4 pt-2">
+                <h4 class="text-dark">Empleos Activos :</h4>
+                    <br> 
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table id="example2" class="table table-bordered  display nowrap" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Nombre del Empleo </th>
+                                    <th>Estado</th>
+                                    <th>Candidatos</th>
+                                    <th>Enlace</th>
+                                    <th>Detalle</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let listactivo of ListActive ">
+                                    <td>{{listactivo.nombrePuestoTrabajo}}</td>
+                                    <td>{{listactivo.estadoPuestoTrabajo}}</td>
+                                    <td>{{listactivo.cantidadPostulantes}}</td>
+                                    <td ><a style="cursor: pointer;" [class.active]="listactivo == ListEmpleoCurrent" (click)="Seleccionarempleo(listactivo)" (click)="verDetalle()" >Ir a publicación</a></td>
+                                    <td><a style="cursor: pointer;" [class.active]="listactivo == ListEmpleoCurrent" (click)="Seleccionarempleo(listactivo)" (click)="verPostulantes()">Ver Candidatos</a></td>
+                                    <td [class.active]="listactivo == ListEmpleoCurrent" (click)="Seleccionarempleo(listactivo)">
+                                        <a href="#editEmployeeModal" class="edit" data-toggle="modal"> <i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
+                                        <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
+                                        <a href="#pauseEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Pausar">&#xe034;</i></a>
+                                    </td>
+                                    
+                                </tr>
+                                
+                            </tbody>                      
+                            <tfoot>
+                                <tr>
+                                    <th>Nombre del Empleo </th>
+                                    <th>Estado</th>
+                                    <th>Candidatos</th>
+                                    <th>Enlace</th>
+                                    <th>Detalle</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </tfoot>                        
+                        </table>     
+                          
+                    </div>
+                </div> 
+            </div>    
+        </div>
+
+        <div id="pauseEmployeeModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form (ngSubmit)="PausaEmpleo()">
+                        <div class="modal-header">      
+                            <h4 class="modal-title">Pausar Publicación</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">     
+                            <p>¿Estás seguro que deseas pausar esta publicación?</p>
+                            <p class="text-warning"><small>Podrás volver a activar la publicación desde empleos publicados.</small></p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                            <input type="submit" class="btn btn-danger" value="Pausar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="deleteEmployeeModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form (ngSubmit)="BorrarEmpleo()">
+                        <div class="modal-header">      
+                            <h4 class="modal-title">Eliminar Publicación</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">     
+                            <p>¿Estás seguro que deseas eliminar esta publicación?</p>
+                            <p class="text-warning"><small>Esta acción no se puede deshacer</small></p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                            <input type="submit" class="btn btn-danger" value="Eliminar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+            
+
+        <div id="editEmployeeModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form [formGroup]="puestostrabajoform" (ngSubmit)="ActualizarEmpleo()">
+                        <h4 class="text-dark mb-3">Editar Empleo :</h4>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group app-label mt-2">
+                                    <label class="text-muted">Título del puesto </label>
+                                    <input id="company-name" type="text" class="form-control resume" placeholder="" formControlName="nombrePuestoTrabajo"  >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group app-label mt-2">
+                                    <label class="text-muted">Tipo de Jornada</label>
+                                    <div class="form-button">
+                                        <input type="form-control" class="form-control demo-default" list="tpostulacion" placeholder="Tipo de Jordana" 
+                                            formControlName="tipojornadaPuestoTrabajo"  >
+                                        <datalist id="tpostulacion">
+                                            <option *ngFor="let tpostulacion of TipoPostulacion" value="{{tpostulacion.value}}">{{tpostulacion.text}}</option>                           
+                                        </datalist>
+                                    </div>                                            
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group app-label mt-2">
+                                    <label class="text-muted">Ciudad</label>
+                                    <div class="form-button">
+                                        <input type="form-control" class="form-control demo-default" list="ciudad" placeholder="Ciudad" 
+                                            formControlName="ciudadPuestoTrabajo"  >
+                                        <datalist id="ciudad">
+                                            <option *ngFor="let ciudad of Ciudades" value="{{ciudad.value}}">{{ciudad.text}}</option>                           
+                                        </datalist>
+                                    </div>
+                                </div>
+                            </div>                                    
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group app-label mt-2">
+                                    <label class="text-muted">Sueldo</label>
+                                    <input id="city" type="text" class="form-control resume" placeholder="" formControlName="sueldoPuestoTrabajo" >
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group app-label mt-2">
+                                    <label class="text-muted">Categoría de Empleo</label>
+                                    <div class="form-button">
+                                        <input type="form-control" class="form-control demo-default" list="categoria" placeholder="Categoría" 
+                                            formControlName="categoriaPuestoTrabajo"  >
+                                        <datalist id="categoria">
+                                            <option *ngFor="let categoria of Categorias" value="{{categoria.value}}">{{categoria.text}}</option>                           
+                                        </datalist>
+                                    </div>
+                                </div>
+                            </div>                                   
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group app-label mt-2">
+                                    <label class="text-muted">Años de Experiencia</label>
+                                    <div class="form-button">
+                                        <input type="form-control" class="form-control demo-default" list="experiencia" placeholder="Experiencia" 
+                                            formControlName="experienciaPuestoTrabajo"  >
+                                        <datalist id="experiencia">
+                                            <option *ngFor="let experiencia of Experiencia" value="{{experiencia.value}}" >{{experiencia.text}}</option>                           
+                                        </datalist>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group app-label mt-2">
+                                    <label class="text-muted"></label>
+                                    <div class="form-button">
+                                        <input type="hidden" class="form-control demo-default" list="publicacion" placeholder="Tiempo de publicación" 
+                                        formControlName="periodopublicacionPuestoTrabajo"  >
+                                        <datalist id="publicacion">
+                                            <option *ngFor="let publicacion of Publicacion" value="{{publicacion.value}}" >{{publicacion.text}}</option>                           
+                                        </datalist>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group app-label mt-2">
+                                    <label class="text-muted">Trabajo Remoto</label>
+                                    <div class="form-button">
+                                        <input type="form-control" class="form-control demo-default" list="remoto" placeholder="Trabajo Remoto" 
+                                            formControlName="trabajoremotoPuestoTrabajo" >
+                                        <datalist id="remoto">
+                                            <option *ngFor="let remoto of Remoto" >{{remoto.text}}</option>                           
+                                        </datalist>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+
+                        <div class="row">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group app-label mt-2">
+                                    <label class="text-muted">Descripción del Empleo</label>
+                                    <textarea id="description" rows="6" class="form-control resume" placeholder="" formControlName="descripcionPuestoTrabajo" ></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12 mt-2">
+                                <input href="#" class="btn btn-primary" type="submit" value="Actualizar Empleo">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <app-no-active-empleo></app-no-active-empleo>
+        <app-paused-empleo></app-paused-empleo>
+    </body>
+</html>
+
+            
+
+        
+
+

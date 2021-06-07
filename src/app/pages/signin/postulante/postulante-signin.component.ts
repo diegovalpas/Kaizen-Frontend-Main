@@ -4,6 +4,7 @@ import { PostulanteSigninService } from './postulante-signin.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PostulanteSignin } from './postulante-signin-interface';
+declare const $:any;
 
 @Component({
   selector: 'app-postulante-signin',
@@ -29,10 +30,13 @@ import { PostulanteSignin } from './postulante-signin-interface';
 
 export class PostulanteSigninComponent implements OnInit {
 
-  //variables
   loggedPostulante: any;
+
   errorMessage = '';
+
   alert: any = {};
+
+
 
   public postulanteSigninForm = this.fb.group({
     
@@ -44,6 +48,7 @@ export class PostulanteSigninComponent implements OnInit {
     contraseñaUsuario: new FormControl('', 
     Validators.required)
   });
+  userToken: any;
 
   constructor(private tokenstorageService : TokenStorageService, 
               private postulanteService : PostulanteSigninService, 
@@ -52,8 +57,27 @@ export class PostulanteSigninComponent implements OnInit {
 
   ngOnInit(): void {
     this.AlertDefault();
+    this.ifLogin();
   }
 
+  LoadPage(){
+    $('#start').css('cursor', 'wait');
+  }
+
+  ifLogin(){
+
+    if(this.tokenstorageService.getUser()){
+      this.userToken = this.tokenstorageService.getUser()
+      if(this.userToken.idReclutador !== undefined){       
+        this.router.navigate(['/reclutador/' + this.userToken.idReclutador + '/profile']);
+      }
+      if(this.userToken.idPostulante !== undefined){
+        this.router.navigate(['/postulante/' + this.userToken.idPostulante + '/profile']);
+      }
+    }
+    if(this.tokenstorageService.getToken() === null){
+    }
+  }
   
   AlertDefault() {
     this.alert.type = 'default';
@@ -68,13 +92,16 @@ export class PostulanteSigninComponent implements OnInit {
 
     this.postulanteService.SignInPostulante(postulante).subscribe(
       data => {
+
         this.tokenstorageService.saveToken(data.token);
         this.tokenstorageService.saveUser(data);
+        $('#start').css('cursor', 'default');
         this.loggedPostulante = this.tokenstorageService.getUser();
         this.router.navigate(['/postulante/' + this.loggedPostulante.idPostulante + '/profile']);
       },
 
       err => {
+        $('#start').css('cursor', 'default');
         console.log(err);
         this.alert.type = 'invalid';  
         this.alert.message = 'Email o Contraseña incorrecta';

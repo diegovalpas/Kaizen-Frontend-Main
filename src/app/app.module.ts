@@ -9,16 +9,19 @@ import { SignupModule } from './pages/signup/signup.module';
 import { authInterceptorProviders } from './util/auth.interceptor';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { IndexModule } from './pages/index/index.module';
 import { ProfileModule } from './pages/profile/profile.module';
 import { ResetPasswordModule } from './pages/reset_password/reset-password.module';
 import { EmpleoDetailModule } from './pages/empleo-detail/empleo-detail.module';
-import { IndexModule } from './pages/index/index.module';
-import { NavbarModule } from './pages/nav-bars/nav-bars.module';
 import { ListaTrabajosModule } from './pages/lista-trabajos/lista-trabajos.module';
+import { ContactanosModule } from './pages/contactanos/contactanos.module';
+import { NavFooterModule } from './pages/nav-footer/nav-footer.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -28,10 +31,11 @@ import { ListaTrabajosModule } from './pages/lista-trabajos/lista-trabajos.modul
     SignupModule,
     ProfileModule,
     IndexModule,
-    NavbarModule,
-    ListaTrabajosModule,
-    EmpleoDetailModule,
     ResetPasswordModule,
+    EmpleoDetailModule,
+    ListaTrabajosModule,
+    ContactanosModule,
+    NavFooterModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

@@ -35,9 +35,9 @@
 </head>
 
 <body>
-
     <!-- Barra navegación -->
     <app-navigation></app-navigation>
+    <!-- Fin de la navbar -->
     
     <!-- Inicio Mis Postulaciones -->
     <section class="bg-half page-next-level"> 
@@ -116,9 +116,10 @@
                     </table>
                     <div class="clearfix">
 
+                        <div class="hint-text"> <b>Tiene</b> <b> {{conteo}} </b> <b> Postulaciones </b> </div>
 
                         <div style="text-align: right;">
-                            <pagination-controls (pageChange)="p = $event"   ></pagination-controls> 
+                            <pagination-controls (pageChange)="p = $event" ></pagination-controls> 
                         </div>
                         
                     </div>
@@ -128,9 +129,7 @@
     </section>
     <!-- Fin Perfil --> 
 
-    <!-- Inicio del footer -->
     <app-footer></app-footer>
-    <!-- Javascript -->
     
 </body>
 </html>

@@ -5,13 +5,15 @@ import { Observable } from 'rxjs';
 const baseUrl = 'https://backend-kaizentalent.herokuapp.com/api/puestotrabajo';
 const basePostular = 'https://backend-kaizentalent.herokuapp.com/api/postulante';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class EmpleoDetailService {
 
   constructor(private http:HttpClient) { }
-  
+
   getdetalleLista(id:any): Observable<any> {
     return this.http.get(`${baseUrl}/${id}/detail`);
   }
@@ -27,4 +29,5 @@ export class EmpleoDetailService {
       puestotrabajo
     );
   }
+
 }

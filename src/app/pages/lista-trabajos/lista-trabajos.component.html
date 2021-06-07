@@ -20,20 +20,21 @@
 
     <!-- Selectize Css -->
     <link rel="stylesheet" type="text/css" href="/assets/css/selectize.css" />
-    <link rel="stylesheet" type="text/css" href="/assetscss/owl.carousel.css" />
-    <link rel="stylesheet" type="text/css" href="/assetscss/owl.theme.css" />
-    <link rel="stylesheet" type="text/css" href="/assetscss/owl.transitions.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/nice-select.css" />
 
     <!-- Style CSS -->
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
-    <link rel="stylesheet" type="text/css" href="/assets/css/modal.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/pagination.css" />
 
 </head>
 
 <body>
 
     <!-- Barra de navegación-->
-    <app-navigation></app-navigation>
+    <header id="topnav" class="defaultscroll scroll-active">
+        <app-navigation></app-navigation>
+    </header><!-- Fin del header -->
+    <!-- Fin de la navbar -->
 
      <!-- Inicio del home -->
      <section class="bg-half page-next-level"> 
@@ -182,7 +183,7 @@
                                         <div class="col-lg-7 col-md-9">
                                             <div class="job-list-desc">
                                                 <h6 class="mb-2"><a href="#" class="text-dark">{{empleo.nombrePuestoTrabajo}}</a></h6>
-                                                <p class="text-muted mb-0"><i class="mdi mdi-bank mr-2"></i>{{empleo.tituloPuestoTrabajo}}</p>
+                                                <p class="text-muted mb-0"><i class="mdi mdi-bank mr-2"></i>Partnertech EIRL</p>
                                                 <ul class="list-inline mb-0">
                                                     <li class="list-inline-item mr-3">
                                                         <p class="text-muted mb-0"><i class="mdi mdi-map-marker mr-2"></i>{{empleo.direccionEmpresa}} </p>
@@ -202,17 +203,22 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>       
+                        </div>    
+                         
                         <div>
-                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                            <br>                            
+                            <pagination-controls class="ngx-pagination" (pageChange)="p = $event" previousLabel="" nextLabel="">    
+                            </pagination-controls> 
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    
+    </section>    
     </form>
+
+    <app-footer></app-footer>
+
     
 </body>
 

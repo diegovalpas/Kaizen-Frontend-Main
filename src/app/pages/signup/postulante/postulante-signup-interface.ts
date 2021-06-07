@@ -7,5 +7,6 @@ export interface PostulanteSignupRequest {
     numerodocumentoUsuario: string;
     contraseñaUsuario: string;
     generoUsuario: string;
-    fechanacimientoUsuario:string;
+    fechanacimientoUsuario: string
+
 }

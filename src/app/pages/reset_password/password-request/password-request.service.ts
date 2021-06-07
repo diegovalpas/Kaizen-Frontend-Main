@@ -4,6 +4,7 @@ import { PasswordRequest } from './password-request-interface';
 import { Observable } from 'rxjs';
 
 const AUTH_API = 'https://backend-kaizentalent.herokuapp.com/api/forgotpassword/sendemail';
+//const AUTH_API = 'http://localhost:8080/api/forgotpassword/sendemail';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})

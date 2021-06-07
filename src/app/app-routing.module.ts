@@ -9,13 +9,18 @@ import { ReclutadorProfileComponent } from './pages/profile/reclutador/reclutado
 import { PostulanteProfileComponent } from './pages/profile/postulante/postulante-profile.component';
 import { PasswordRequestComponent } from './pages/reset_password/password-request/password-request.component';
 import { PasswordUpdateComponent } from './pages/reset_password/password-update/password-update.component';
-import { EmpleoDetailComponent } from './pages/empleo-detail/empleo-detail.component';
+
+import { EmpleoDetailComponent } from './pages/empleo-detail/empleo-detail.component'
 import { ListaTrabajosComponent } from './pages/lista-trabajos/lista-trabajos.component';
-import { PostempleoComponent } from './pages/profile/reclutador/postempleo/postempleo.component';
-import { ListCandidatosComponent } from './pages/profile/reclutador/list-candidatos/list-candidatos.component';
 import { PostulacionesComponent } from './pages/profile/postulante/postulaciones/postulaciones.component';
-import { ProfileCandidatoComponent } from './pages/profile/reclutador/list-candidatos/profile-candidato/profile-candidato.component';
-import { ListEmpleosComponent } from './pages/profile/reclutador/list-empleos/list-empleos.component';
+import { PublicarEmpleoComponent } from './pages/profile/reclutador/publicar-empleo/publicar-empleo.component';
+import { ListaPostulantesComponent } from './pages/profile/reclutador/lista-postulantes/lista-postulantes.component';
+import { ProfilePostulanteComponent } from './pages/profile/reclutador/profile-postulante/profile-postulante.component';
+import { ContactanosComponent } from './pages/contactanos/contactanos.component'
+import { ActiveEmpleoComponent } from './pages/profile/reclutador/active-empleo/active-empleo.component';
+
+
+
 
 const routes: Routes = [
   { path: 'signin/postulante', component: PostulanteSigninComponent, data: { title: 'Iniciar Sesión – Kaizen Talent' } },
@@ -26,15 +31,21 @@ const routes: Routes = [
   { path: 'postulante/:idPostulante/profile', component: PostulanteProfileComponent, data: { title: 'Mi Perfil | Kaizen Talent' } },
   { path: '', component: IndexComponent, data: { title: 'Kaizen Talent' }},
   { path: 'index', component: IndexComponent, data: { title: 'Kaizen Talent' }},
-  { path: 'puestotrabajo/:idPuestoTrabajo/detail', component:EmpleoDetailComponent},
+  { path: 'password/request', component: PasswordRequestComponent, data: {title: 'Recupera tu contraseña - Kaizen Talent '}},
   { path: 'password/update', component: PasswordUpdateComponent },
+  { path: 'puestotrabajo/:idPuestoTrabajo/detail', component:EmpleoDetailComponent},
   { path: 'home/show/all', component:ListaTrabajosComponent },
-  { path: 'publicaciones', component:ListEmpleosComponent },
-  { path: 'candidatos', component:ListCandidatosComponent},
-  { path: 'perfilcandidato', component:ProfileCandidatoComponent},
   { path: 'postulante/:idPostulante/postulaciones', component:PostulacionesComponent},
-  { path: 'reclutador/:idReclutador/publicar', component:PostempleoComponent },
-  { path: 'password/request', component: PasswordRequestComponent, data: {title: 'Recupera tu contraseña - Kaizen Talent '}}
+  { path: 'reclutador/:idReclutador/publicar', component:PublicarEmpleoComponent},
+  { path: 'listacandidatos', component:ListaPostulantesComponent},
+  { path: 'perfilcandidato', component:ProfilePostulanteComponent},
+  { path: 'postulante/:idReclutador/publicaciones', component:ActiveEmpleoComponent},
+  { path: 'contactanos', component:ContactanosComponent }
+
+
+
+
+
 ];
 
 @NgModule({

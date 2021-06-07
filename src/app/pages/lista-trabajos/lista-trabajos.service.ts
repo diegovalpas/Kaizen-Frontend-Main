@@ -1,10 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 const baseUrl = 'https://backend-kaizentalent.herokuapp.com/api/empleos/show/all';
-const auxUrl = 'https://backend-kaizentalent.herokuapp.com/api/empleos/find/by';
-
+const auxUrl = 'https://backend-kaizentalent.herokuapp.com/api/empleos/find/by'
 @Injectable({
   providedIn: 'root'
 })
